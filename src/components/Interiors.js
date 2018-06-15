@@ -11,9 +11,16 @@ const StyledH3 = styled.h3`
    padding: 10px 4px 4px;
    text-transform: uppercase;
    text-align: center;
-   margin: 0.6rem 0;
-   font-size: 1.4rem;
+   margin: 0 0 1.8rem;
+   font-size: 1.3rem;
    line-height: 1.4rem;
+   letter-spacing: 2px;
+`;
+
+const StyledUl = styled.ul`
+   li {
+      margin-bottom: 0.3rem;
+   }
 `;
 
 export class Interiors extends Component {
@@ -36,7 +43,7 @@ export class Interiors extends Component {
                      <TypeNav />
                      <StyledH3>Projects</StyledH3>
 
-                     <ul>
+                     <StyledUl>
                         {this.state.projects.map((project, index) => {
                            return (
                               <li key={index}>
@@ -50,7 +57,7 @@ export class Interiors extends Component {
                               </li>
                            );
                         })}
-                     </ul>
+                     </StyledUl>
                   </div>
                </div>
             ) : (

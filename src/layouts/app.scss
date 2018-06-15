@@ -134,24 +134,6 @@ div.gallery-grid {
    }
 }
 
-.type-toggler {
-   margin: 1rem 0;
-   font-style: italic;
-   color: #999;
-   font-size: 0.9rem;
-
-   a {
-      color: #999;
-      a.active {
-         font-weight: bold;
-      }
-   }
-
-   @media screen and (min-width: 960px) {
-      margin: 2rem 0;
-   }
-}
-
 .thumbs {
    width: 330px;
    margin: 0 auto;
