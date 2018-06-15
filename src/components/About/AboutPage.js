@@ -37,12 +37,6 @@ const AboutPageDiv = styled.div`
 `;
 
 export const ConnectedAboutPage = props => {
-   // const curBio = tempBios.filter(loc => {
-   //    return loc.location === props.match.params.theLocation;
-   // })[0];
-
-   console.log("props:", props);
-
    return (
       <AboutPageDiv className="about-page">
          {props.theLocation === "new-york" ? (

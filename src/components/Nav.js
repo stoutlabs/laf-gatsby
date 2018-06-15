@@ -30,7 +30,7 @@ const StyledUl = styled.ul`
 
    @media screen and (max-width: 767px) {
       flex-direction: column;
-      background-color: #ccc;
+      background-color: #dee4e5;
       height: 100vh;
       left: 0;
       position: fixed;
@@ -39,6 +39,7 @@ const StyledUl = styled.ul`
       transition: transform 150ms ease-out;
       width: 200px;
       z-index: 100;
+      padding-top: 2.8rem;
 
       &.show {
          transform: translateX(0px);
@@ -124,7 +125,10 @@ export const ConnectedNav = props => {
          <StyledUl className={props.status}>
             <li>
                <a
-                  onClick={() => handleLocationClick(props, "new-york")}
+                  onClick={() => {
+                     handleLocationClick(props, "new-york");
+                     props.hideNav();
+                  }}
                   className={props.theLocation === "new-york" ? "active" : ""}
                >
                   New York
@@ -157,7 +161,10 @@ export const ConnectedNav = props => {
             </li>
             <li>
                <a
-                  onClick={() => handleLocationClick(props, "palm-beach")}
+                  onClick={() => {
+                     handleLocationClick(props, "palm-beach");
+                     props.hideNav();
+                  }}
                   className={props.theLocation === "palm-beach" ? "active" : ""}
                >
                   Palm Beach
