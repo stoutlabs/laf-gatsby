@@ -17,15 +17,10 @@ export class MainPicContainer extends Component {
             >
                <Img
                   sizes={item.sizes}
-                  //srcSet={item.sizes.srcSet}
-                  //src={item.sizes.src}
-                  //className="the-pic"
-                  //outerWrapperClassName="pic-outer"
                   position="absolute"
                   key={item.id}
                   style={{ maxHeight: "70vh" }}
                   imgStyle={{
-                     //maxHeight: "70vh",
                      maxWidth: "100%",
                      width: "100%",
                      objectFit: "contain"

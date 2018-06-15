@@ -17,8 +17,6 @@ export class GridGallery extends Component {
    };
 
    componentDidMount = () => {
-      //console.log("this.props.images", this.props.images);
-
       const newImages = this.props.images.map(({ picture }, index) => {
          return picture.localFile.childImageSharp;
       });
@@ -52,12 +50,6 @@ export class GridGallery extends Component {
       this.handleNewActive(val);
    };
 
-   // handleImageLoad = image => {
-   //    this.setState(prevState => {
-   //       return { images: prevState.images.concat(image), loadCount: prevState.loadCount + 1 };
-   //    });
-   // };
-
    handleNewActive = id => {
       const newActiveImage = this.state.images.filter(img => {
          return img.id === id;
@@ -66,27 +58,6 @@ export class GridGallery extends Component {
          return { activeImage: newActiveImage };
       });
    };
-
-   // renderInvisPreloader = () => {
-   //    return (
-   //       <div className="preloader-invis">
-   //          {this.state.data &&
-   //             this.state.data.map((image, index) => {
-   //                return (
-   //                   <img
-   //                      srcSet={image.srcSet}
-   //                      src={image.src}
-   //                      onLoad={() => {
-   //                         this.handleImageLoad(image);
-   //                      }}
-   //                      key={image.id}
-   //                      alt=""
-   //                   />
-   //                );
-   //             })}
-   //       </div>
-   //    );
-   // };
 
    render() {
       let content = this.state.content;

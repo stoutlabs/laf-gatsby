@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
-import ReactCSSTransitionReplace from "react-css-transition-replace";
+//import ReactCSSTransitionReplace from "react-css-transition-replace";
 
 import Header from "../components/Header";
 import "./index.scss";
@@ -29,15 +29,15 @@ const Layout = ({ children, data }) => (
       />
       <Header location={location} />
       <main>
-         <ReactCSSTransitionReplace
+         {/* <ReactCSSTransitionReplace
             transitionName="mainfader"
             transitionEnterTimeout={1200}
             transitionLeaveTimeout={500}
-         >
-            <div className="inner" key={location.pathname}>
-               {children()}
-            </div>
-         </ReactCSSTransitionReplace>
+         > */}
+         <div className="inner" key={location.pathname}>
+            {children()}
+         </div>
+         {/* </ReactCSSTransitionReplace> */}
       </main>
    </div>
 );

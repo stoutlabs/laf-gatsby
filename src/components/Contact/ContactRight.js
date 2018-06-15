@@ -50,10 +50,7 @@ export const ContactRight = ({ contactInfo }) => {
    return (
       <StyledRightDiv className="contact-right">
          <h2>{contactInfo.title}</h2>
-         <p>
-            {contactInfo.address} <br />
-            {contactInfo.city}, {contactInfo.state} {contactInfo.zip}
-         </p>
+         <p dangerouslySetInnerHTML={{ __html: contactInfo.address }} />
 
          <div className="contact-phone">
             <h3>PHONE</h3>

@@ -1,13 +1,40 @@
-import React from 'react'
-import Link from 'gatsby-link'
+import React from "react";
+import Home from "../components/Home/Home";
 
-const IndexPage = () => (
-  <div>
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <Link to="/page-2/">Go to page 2</Link>
-  </div>
-)
+const IndexPage = props => (
+   <div>
+      <Home content={props.data.prismicHomePage.data} history={props.history} />
+   </div>
+);
 
-export default IndexPage
+export default IndexPage;
+
+export const query = graphql`
+   query HomeContentQuery {
+      prismicHomePage {
+         data {
+            left_image {
+               localFile {
+                  childImageSharp {
+                     id
+                     sizes(maxHeight: 650, quality: 79) {
+                        ...GatsbyImageSharpSizes_withWebp
+                     }
+                  }
+               }
+            }
+
+            right_image {
+               localFile {
+                  childImageSharp {
+                     id
+                     sizes(maxHeight: 650, quality: 79) {
+                        ...GatsbyImageSharpSizes_withWebp
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+`;

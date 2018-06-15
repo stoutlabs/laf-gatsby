@@ -23,8 +23,9 @@ export class Interiors extends Component {
    state = { projects: [], hasContent: false, images: [], content: null };
 
    componentDidMount = () => {
+      console.log("data:", this.props.data.prismicLocations);
       this.setState(() => {
-         return { projects: this.props.data.allPrismicProjects.edges, hasContent: true };
+         return { projects: this.props.data.prismicLocations.data.locprojects, hasContent: true };
       });
    };
 
@@ -43,11 +44,11 @@ export class Interiors extends Component {
                            return (
                               <li key={index}>
                                  <Link
-                                    to={`/${project.node.data.location.document[0].uid}/interiors/${
-                                       project.node.uid
+                                    to={`/${this.props.data.prismicLocations.uid}/interiors/${
+                                       project.theproject.document[0].uid
                                     }`}
                                  >
-                                    {project.node.data.title.text}
+                                    {project.theproject.document[0].data.title.text}
                                  </Link>
                               </li>
                            );
@@ -76,18 +77,43 @@ export class Interiors extends Component {
 
 export default Interiors;
 
+// export const query = graphql`
+//    query AllInteriorsListQuery($uid: String!) {
+//       allPrismicProjects(filter: { data: { location: { document: { uid: { eq: $uid } } } } }) {
+//          edges {
+//             node {
+//                id
+//                uid
+//                data {
+//                   title {
+//                      text
+//                   }
+//                   location {
+//                      document {
+//                         uid
+//                         data {
+//                            title {
+//                               text
+//                            }
+//                         }
+//                      }
+//                   }
+//                }
+//             }
+//          }
+//       }
+//    }
+// `;
+
 export const query = graphql`
    query AllInteriorsListQuery($uid: String!) {
-      allPrismicProjects(filter: { data: { location: { document: { uid: { eq: $uid } } } } }) {
-         edges {
-            node {
-               id
-               uid
-               data {
-                  title {
-                     text
-                  }
-                  location {
+      prismicLocations(uid: { eq: $uid }) {
+         uid
+         data {
+            locprojects {
+               theproject {
+                  __typename
+                  ... on theproject_2 {
                      document {
                         uid
                         data {
@@ -98,6 +124,9 @@ export const query = graphql`
                      }
                   }
                }
+            }
+            title {
+               text
             }
          }
       }

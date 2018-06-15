@@ -17,7 +17,7 @@ module.exports = {
             linkResolver: ({ node, key, value }) => doc => {
                //console.log("doc:", doc);
                // Your link resolver
-               //if (doc.type === "projects") return "/project/" + doc.uid;
+               if (doc.type === "theproject") return "/project/" + doc.uid;
                //if (doc.type === "page") return "/" + doc.uid;
                // Fallback for other types, in case new custom types get created
                return "/doc/" + doc.id;

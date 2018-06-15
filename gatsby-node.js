@@ -1,7 +1,7 @@
 const path = require("path");
 
 exports.onCreateNode = ({ node }) => {
-   console.log(node.internal.type);
+   //console.log(node.internal.type);
 };
 
 exports.createPages = async ({ graphql, boundActionCreators }) => {
@@ -11,42 +11,36 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
       {
          prismicContactPage {
             data {
-               body {
-                  html
-                  text
-               }
-               contact_image {
-                  url
-               }
+               id
             }
          }
       }
    `);
 
-   const projects = await graphql(`
-      {
-         allPrismicProjects {
-            edges {
-               node {
-                  id
-                  uid
-                  data {
-                     location {
-                        document {
-                           uid
-                           data {
-                              title {
-                                 text
-                              }
-                           }
-                        }
-                     }
-                  }
-               }
-            }
-         }
-      }
-   `);
+   // const projects = await graphql(`
+   //    {
+   //       allPrismicProjects {
+   //          edges {
+   //             node {
+   //                id
+   //                uid
+   //                data {
+   //                   location {
+   //                      document {
+   //                         uid
+   //                         data {
+   //                            title {
+   //                               text
+   //                            }
+   //                         }
+   //                      }
+   //                   }
+   //                }
+   //             }
+   //          }
+   //       }
+   //    }
+   // `);
 
    const locations = await graphql(`
       {
@@ -55,6 +49,7 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
                node {
                   id
                   uid
+
                   data {
                      title {
                         text
@@ -66,21 +61,67 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
       }
    `);
 
-   projects.data.allPrismicProjects.edges.forEach(edge => {
-      createPage({
-         path: `${
-            edge.node.data.location.document[0].data.title.text === "New York"
-               ? "new-york"
-               : "palm-beach"
-         }/interiors/${edge.node.uid}`,
-         //component: pageTemplates[edge.node.template],
-         component: path.resolve("./src/components/ViewProject.js"),
-         context: {
-            id: edge.node.id,
-            uid: edge.node.uid
+   const allLocProjects = await graphql(`
+      {
+         allPrismicLocations {
+            edges {
+               node {
+                  uid
+                  data {
+                     locprojects {
+                        theproject {
+                           __typename
+                           ... on theproject {
+                              document {
+                                 id
+                                 uid
+                              }
+                           }
+                           #document {
+                           # uid
+                           #}
+                        }
+                     }
+                     title {
+                        text
+                     }
+                  }
+               }
+            }
          }
+      }
+   `);
+
+   console.log("allLocProjects", JSON.stringify(allLocProjects, null, 4));
+
+   allLocProjects.data.allPrismicLocations.edges.forEach(edge => {
+      edge.node.data.locprojects.forEach(item => {
+         createPage({
+            path: `${edge.node.uid}/interiors/${item.theproject.document[0].uid}`,
+            component: path.resolve("./src/components/ViewProject.js"),
+            context: {
+               id: item.theproject.document[0].id,
+               uid: item.theproject.document[0].uid
+            }
+         });
       });
    });
+
+   // projects.data.allPrismicProjects.edges.forEach(edge => {
+   //    createPage({
+   //       path: `${
+   //          edge.node.data.location.document[0].data.title.text === "New York"
+   //             ? "new-york"
+   //             : "palm-beach"
+   //       }/interiors/${edge.node.uid}`,
+   //       //component: pageTemplates[edge.node.template],
+   //       component: path.resolve("./src/components/ViewProject.js"),
+   //       context: {
+   //          id: edge.node.id,
+   //          uid: edge.node.uid
+   //       }
+   //    });
+   // });
 
    locations.data.allPrismicLocations.edges.forEach(edge => {
       //interiors index/lists
@@ -112,21 +153,16 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
             location: edge.node.uid
          }
       });
+
+      // individual project pages
+      // edge.node.data.projects.forEach(({ project }) => {
+      //    createPage({
+      //       path: `${edge.node.uid}/interiors/${project.document[0].uid}`,
+      //       component: path.resolve("./src/components/ViewProject.js"),
+      //       context: {
+      //          uid: project.document[0].uid
+      //       }
+      //    });
+      // });
    });
-
-   // const pageTemplates = {
-   //    Light: path.resolve("./src/templates/light.js"),
-   //    Dark: path.resolve("./src/templates/dark.js")
-   // };
-
-   // contactPage.data.prismicContactPage.edges.forEach(edge => {
-   //    createPage({
-   //       path: `/${edge.node.uid}`,
-   //       //component: pageTemplates[edge.node.template],
-   //       component: path.resolve("./src/templates/some-template.js"),
-   //       context: {
-   //          id: edge.node.id
-   //       }
-   //    });
-   // });
 };

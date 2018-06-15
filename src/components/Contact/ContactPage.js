@@ -23,16 +23,24 @@ export const ConnectedContactPage = props => {
       props.theLocation === "new-york"
          ? {
               sizes: contactContent.contact_image.localFile.childImageSharp.sizes,
-              body: contactContent.body.html
+              title: contactContent.label_ny.text,
+              address: contactContent.address_ny.html,
+              phone: contactContent.phone_ny,
+              fax: contactContent.fax_ny,
+              email: contactContent.email_ny
            }
          : {
               sizes: contactContent.image_pb.localFile.childImageSharp.sizes,
-              body: contactContent.body_pb.html
+              title: contactContent.label_pb.text,
+              address: contactContent.address_pb.html,
+              phone: contactContent.phone_pb,
+              fax: contactContent.fax_ny,
+              email: contactContent.email_pb
            };
    return (
       <ContactPageDiv className="contact-page">
          <ContactLeft sizes={contactInfo.sizes} />
-         <ContactRight contactInfo={contactInfo.body} />
+         <ContactRight contactInfo={contactInfo} />
       </ContactPageDiv>
    );
 };
@@ -49,9 +57,15 @@ export const query = graphql`
       prismicContactPage {
          id
          data {
-            body {
+            address_ny {
                html
             }
+            label_ny {
+               text
+            }
+            phone_ny
+            fax_ny
+            email_ny
             contact_image {
                localFile {
                   childImageSharp {
@@ -61,15 +75,16 @@ export const query = graphql`
                      }
                   }
                }
-               # url
-               # dimensions {
-               # width
-               # height
-               # }
             }
-            body_pb {
+            address_pb {
                html
             }
+            label_pb {
+               text
+            }
+            phone_pb
+            fax_pb
+            email_pb
             image_pb {
                localFile {
                   childImageSharp {
