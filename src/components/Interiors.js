@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import Img from "gatsby-image";
 import Link from "gatsby-link";
-//import { connect } from "react-redux";
-//import { Link, withRouter } from "react-router-dom";
 import styled from "styled-components";
 
 import TypeNav from "./GridGallery/TypeNav";
-//import tempInteriors from "../utils/tempProjects";
 
 const StyledH3 = styled.h3`
    border: 3px double #eff2f2;
@@ -23,7 +20,7 @@ export class Interiors extends Component {
    state = { projects: [], hasContent: false, images: [], content: null };
 
    componentDidMount = () => {
-      console.log("data:", this.props.data.prismicLocations);
+      //console.log("data:", this.props.data.prismicLocations);
       this.setState(() => {
          return { projects: this.props.data.prismicLocations.data.locprojects, hasContent: true };
       });
@@ -62,48 +59,27 @@ export class Interiors extends Component {
                </div>
             )}
             <div className="column is-two-thirds has-text-centered proj-intro-right">
-               {/* <Image imageUrl="/leta_w-4palmbeaxh.jpg" alt="" /> */}
+               <Img
+                  sizes={
+                     this.props.data.prismicLocations.data.intro_image.localFile.childImageSharp
+                        .sizes
+                  }
+                  position="absolute"
+                  style={{ maxHeight: "70vh" }}
+                  imgStyle={{
+                     maxWidth: "100%",
+                     width: "100%",
+                     objectFit: "contain"
+                  }}
+                  alt=""
+               />
             </div>
          </div>
       );
    }
 }
 
-// const mapStateToProps = state => {
-//    return { theLocation: state.content.theLocation };
-// };
-
-//const Interiors = withRouter(connect(mapStateToProps)(ConnectedInteriors));
-
 export default Interiors;
-
-// export const query = graphql`
-//    query AllInteriorsListQuery($uid: String!) {
-//       allPrismicProjects(filter: { data: { location: { document: { uid: { eq: $uid } } } } }) {
-//          edges {
-//             node {
-//                id
-//                uid
-//                data {
-//                   title {
-//                      text
-//                   }
-//                   location {
-//                      document {
-//                         uid
-//                         data {
-//                            title {
-//                               text
-//                            }
-//                         }
-//                      }
-//                   }
-//                }
-//             }
-//          }
-//       }
-//    }
-// `;
 
 export const query = graphql`
    query AllInteriorsListQuery($uid: String!) {
@@ -127,6 +103,16 @@ export const query = graphql`
             }
             title {
                text
+            }
+            intro_image {
+               localFile {
+                  childImageSharp {
+                     id
+                     sizes(maxWidth: 800, quality: 77) {
+                        ...GatsbyImageSharpSizes
+                     }
+                  }
+               }
             }
          }
       }

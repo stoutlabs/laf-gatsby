@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Img from "gatsby-image";
 
 const StyledLeftDiv = styled.div`
-   padding: 1rem;
+   /* padding: 1rem; */
 
    @media screen and (min-width: 960px) {
       width: 50%;
@@ -13,16 +13,22 @@ const StyledLeftDiv = styled.div`
       visibility: hidden;
       display: none;
    }
-
-   img {
-      object-fit: cover;
-   }
 `;
 
 export const ContactLeft = props => {
    return (
       <StyledLeftDiv className="contact-left">
-         <Img sizes={props.sizes} alt="" />
+         <Img
+            sizes={props.sizes}
+            position="absolute"
+            style={{ maxHeight: "70vh" }}
+            imgStyle={{
+               maxWidth: "100%",
+               width: "100%",
+               objectFit: "contain"
+            }}
+            alt=""
+         />
       </StyledLeftDiv>
    );
 };

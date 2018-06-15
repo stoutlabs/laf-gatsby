@@ -77,7 +77,7 @@ const StyledUl = styled.ul`
 //custom 'isActive' function for 'interiors' pages
 const isInterior = (match, location) => {
    //console.log("match:", match);
-   console.log("location: ", location);
+
    let locArray = null;
 
    if (!match && !location) {
@@ -93,23 +93,32 @@ const isInterior = (match, location) => {
    if (locArray[2] === "interiors") {
       return true;
    }
-   //return false;
+
+   return false;
 };
 
 const handleLocationClick = (props, locSlug) => {
+   //console.log("location:", props.location);
    const curUrl = props.location.pathname;
    let urlArr = curUrl.split("/");
    urlArr[1] = locSlug;
-   const newUrl = urlArr.join("/");
+
+   // if on 'interiors' pages, just go back to list page on loc change. otherwise just swap out the location in the url and go there.
+   const newUrl = urlArr[2] === "interiors" ? `/${locSlug}/interiors` : urlArr.join("/");
 
    if (curUrl !== newUrl) {
       props.setLocation(locSlug);
       props.history.push(newUrl);
-      console.log("nav to " + newUrl);
    }
 };
 
 export const ConnectedNav = props => {
+   // this sets the location (in redux) if refreshing the page, or coming from an outside link
+   if (props.theLocation === undefined) {
+      const curLoc = props.location.pathname.split("/")[1];
+      props.setLocation(curLoc);
+   }
+
    return (
       <StyledNav>
          <StyledUl className={props.status}>

@@ -27,7 +27,6 @@ export class MainPicContainer extends Component {
                   }}
                   alt=""
                   className="gallery-mainpic-pic"
-                  onClick={() => console.log("test")}
                />
             </ReactCSSTransitionReplace>
          </div>

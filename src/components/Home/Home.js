@@ -23,6 +23,7 @@ const HomeNY = styled.div`
       width: 50%;
    }
 
+   /*
    img {
       object-fit: cover;
       width: 100%;
@@ -31,6 +32,7 @@ const HomeNY = styled.div`
          height: 100%;
       }
    }
+   */
 `;
 
 const HomePB = styled.div`
@@ -41,13 +43,14 @@ const HomePB = styled.div`
       width: 50%;
    }
 
-   img {
+   /* img {
       object-fit: cover;
 
       @media screen and (min-width: 960px) {
          height: 100%;
       }
-   }
+   } 
+   */
 `;
 
 const HomeLogoBox = styled.div`

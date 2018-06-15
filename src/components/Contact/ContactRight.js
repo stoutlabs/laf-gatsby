@@ -17,6 +17,7 @@ const StyledRightDiv = styled.div`
 
       @media screen and (min-width: 769px) {
          font-size: 1.2rem;
+         margin: 3.5rem auto 3.2rem;
          width: 50%;
       }
    }
@@ -24,21 +25,19 @@ const StyledRightDiv = styled.div`
    h3 {
       color: #666;
       margin: 1.6rem 0 0;
+      letter-spacing: 3px;
    }
 
    p {
-      line-height: 2rem;
+      line-height: 1.8rem;
+      margin-bottom: 2rem;
+      color: #999;
    }
 
    padding: 1rem;
 
    @media screen and (min-width: 960px) {
       width: 50%;
-   }
-
-   @media screen and (max-width: 960px) {
-      visibility: hidden;
-      display: none;
    }
 
    img {
@@ -54,19 +53,23 @@ export const ContactRight = ({ contactInfo }) => {
 
          <div className="contact-phone">
             <h3>PHONE</h3>
-            {contactInfo.phone}
+            <p>
+               <a href={`tel:${contactInfo.phone}`}>{contactInfo.phone}</a>
+            </p>
          </div>
 
          {contactInfo.fax && (
             <div className="contact-fax">
                <h3>FAX</h3>
-               {contactInfo.fax}
+               <p>{contactInfo.fax}</p>
             </div>
          )}
 
          <div className="contact-email">
             <h3>EMAIL</h3>
-            <a href={"mailto:" + contactInfo.email}>{contactInfo.email}</a>
+            <p>
+               <a href={"mailto:" + contactInfo.email}>{contactInfo.email}</a>
+            </p>
          </div>
       </StyledRightDiv>
    );

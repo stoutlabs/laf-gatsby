@@ -1,6 +1,6 @@
 module.exports = {
    siteMetadata: {
-      title: "Leta Austin Foster - Interior Design"
+      title: "Leta Austin Foster - Interior Design - NY - Palm Beach"
    },
    plugins: [
       `gatsby-plugin-react-next`,

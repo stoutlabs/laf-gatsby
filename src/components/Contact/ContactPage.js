@@ -34,7 +34,7 @@ export const ConnectedContactPage = props => {
               title: contactContent.label_pb.text,
               address: contactContent.address_pb.html,
               phone: contactContent.phone_pb,
-              fax: contactContent.fax_ny,
+              fax: contactContent.fax_pb,
               email: contactContent.email_pb
            };
    return (
@@ -70,8 +70,8 @@ export const query = graphql`
                localFile {
                   childImageSharp {
                      id
-                     sizes(maxHeight: 650, quality: 79) {
-                        ...GatsbyImageSharpSizes_withWebp
+                     sizes(maxWidth: 800, quality: 79) {
+                        ...GatsbyImageSharpSizes
                      }
                   }
                }
@@ -89,8 +89,8 @@ export const query = graphql`
                localFile {
                   childImageSharp {
                      id
-                     sizes(maxHeight: 650, quality: 79) {
-                        ...GatsbyImageSharpSizes_withWebp
+                     sizes(maxWidth: 800, quality: 79) {
+                        ...GatsbyImageSharpSizes
                      }
                   }
                }

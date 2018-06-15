@@ -12,7 +12,7 @@ const StyledHeader = styled.header`
 
    @media screen and (min-width: 768px) {
       padding: 0.7rem 0 0;
-      height: 160px;
+      height: 150px;
    }
 
    div.logo {
@@ -20,7 +20,7 @@ const StyledHeader = styled.header`
       transition: opacity 300ms ease-out 0ms, visibility 0ms linear 0ms;
 
       @media screen and (min-width: 768px) {
-         padding: 0 0 1.2rem;
+         padding: 0 0 0.2rem;
       }
    }
 
@@ -74,7 +74,7 @@ export class Header extends Component {
    };
 
    render() {
-      console.log("loc:", this.props.location);
+      //console.log("loc:", this.props.location);
       const loc = this.props.location.pathname.slice(1);
 
       //const loc = "test";

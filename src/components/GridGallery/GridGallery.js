@@ -40,13 +40,12 @@ export class GridGallery extends Component {
 
    componentDidUpdate = (prevProps, prevState) => {
       if (prevState.imagesLoaded !== this.state.imagesLoaded) {
-         console.log("all images loaded.");
          this.handleThumbClick(this.state.images[0].id);
       }
    };
 
    handleThumbClick = val => {
-      console.log("thumbClick", val);
+      //console.log("thumbClick", val);
       this.handleNewActive(val);
    };
 

@@ -21,14 +21,12 @@ export class Homebox extends Component {
    state = { isOver: false };
 
    handleBoxOver = () => {
-      console.log("box moused over");
       this.setState(() => {
          return { isOver: true };
       });
    };
 
    handleBoxOut = () => {
-      console.log("box moused out");
       this.setState(() => {
          return { isOver: false };
       });
@@ -44,7 +42,16 @@ export class Homebox extends Component {
             onMouseLeave={this.handleBoxOut}
             onClick={() => this.props.handleBoxClick(this.props.url)}
          >
-            <Img sizes={this.props.image} alt="" />
+            <Img
+               sizes={this.props.image}
+               outerWrapperClassName={"homebox-pic-outer-wrapper"}
+               style={{ height: "100%" }}
+               imgStyle={{
+                  objectFit: "cover",
+                  width: "100%"
+               }}
+               alt=""
+            />
             <HomeInfo title={this.props.title} overClass={overClass} />
 
             <div className="homebtn" />

@@ -18,7 +18,6 @@ class TransitionHandler extends React.Component {
    }
 }
 
-//const Layout = ({ children, data }, ...props) => (
 const Layout = props => {
    // dirty hack to make location props work in 'build' compiles (worked fine in development...*shakes fist lovingly at Gatsby*)
    const { children, location, data } = props;
