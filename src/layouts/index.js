@@ -4,6 +4,7 @@ import Helmet from "react-helmet";
 //import ReactCSSTransitionReplace from "react-css-transition-replace";
 
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import "./index.scss";
 import "./app.scss";
 
@@ -44,6 +45,7 @@ const Layout = props => {
             </div>
             {/* </ReactCSSTransitionReplace> */}
          </main>
+         <Footer />
       </div>
    );
 };
