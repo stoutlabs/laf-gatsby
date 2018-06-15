@@ -5,7 +5,7 @@ import Helmet from "react-helmet";
 
 import Header from "../components/Header";
 import "./index.scss";
-import "./app.scss";
+import "./App.scss";
 
 class TransitionHandler extends React.Component {
    // shouldComponentUpdate(nextProps, nextState) {
