@@ -74,7 +74,9 @@ export class Header extends Component {
    };
 
    render() {
+      console.log("loc:", this.props.location);
       const loc = this.props.location.pathname.slice(1);
+
       //const loc = "test";
       const locStyle = loc === "" ? "home" : "";
       return (

@@ -18,29 +18,35 @@ class TransitionHandler extends React.Component {
    }
 }
 
-const Layout = ({ children, data }) => (
-   <div>
-      <Helmet
-         title={data.site.siteMetadata.title}
-         meta={[
-            { name: "description", content: "Sample" },
-            { name: "keywords", content: "sample, something" }
-         ]}
-      />
-      <Header location={location} />
-      <main>
-         {/* <ReactCSSTransitionReplace
+//const Layout = ({ children, data }, ...props) => (
+const Layout = props => {
+   const { children, location, data } = props;
+   const renderedChildren = typeof window === "undefined" ? children({ location }) : children();
+
+   return (
+      <div>
+         <Helmet
+            title={data.site.siteMetadata.title}
+            meta={[
+               { name: "description", content: "Sample" },
+               { name: "keywords", content: "sample, something" }
+            ]}
+         />
+         <Header location={location} />
+         <main>
+            {/* <ReactCSSTransitionReplace
             transitionName="mainfader"
             transitionEnterTimeout={1200}
             transitionLeaveTimeout={500}
          > */}
-         <div className="inner" key={location.pathname}>
-            {children()}
-         </div>
-         {/* </ReactCSSTransitionReplace> */}
-      </main>
-   </div>
-);
+            <div className="inner" key={location.pathname}>
+               {renderedChildren}
+            </div>
+            {/* </ReactCSSTransitionReplace> */}
+         </main>
+      </div>
+   );
+};
 
 Layout.propTypes = {
    children: PropTypes.func
