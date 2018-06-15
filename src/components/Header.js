@@ -17,7 +17,7 @@ const StyledHeader = styled.header`
 
    div.logo {
       padding: 0;
-      transition: opacity 300ms ease-out 0ms, visibility 0ms linear 0ms;
+      transition: opacity 300ms ease-out 0ms, visibility 0ms linear 0ms, display 0ms linear 0ms;
 
       @media screen and (min-width: 768px) {
          padding: 0 0 0.2rem;
@@ -28,7 +28,9 @@ const StyledHeader = styled.header`
       div.logo {
          opacity: 0;
          visibility: hidden;
-         transition: opacity 300ms ease-out 0ms, visibility 0ms linear 300ms;
+         display: none;
+         transition: opacity 300ms ease-out 0ms, visibility 0ms linear 300ms,
+            display 0ms linear 300ms;
       }
 
       nav {
@@ -86,7 +88,11 @@ export class Header extends Component {
                   <img src={Logo} alt="LAF - logo" />
                </Link>
             </div>
-            <HamburgerBtn showNav={this.showNav} navActive={this.state.navActive} />
+            <HamburgerBtn
+               showNav={this.showNav}
+               navActive={this.state.navActive}
+               location={this.props.location}
+            />
             <Nav status={this.state.navActive ? "show" : "hide"} hideNav={this.hideNav} />
             <NavOverlay className={this.state.navActive ? "show" : "hide"} onClick={this.hideNav} />
          </StyledHeader>
