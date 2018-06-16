@@ -31,6 +31,11 @@ const StyledHeader = styled.header`
          display: none;
          transition: opacity 300ms ease-out 0ms, visibility 0ms linear 300ms,
             display 0ms linear 300ms;
+
+         @media screen and (min-width: 768px) {
+            display: block;
+            transition: opacity 300ms ease-out 0ms, visibility 0ms linear 300ms;
+         }
       }
 
       nav {
