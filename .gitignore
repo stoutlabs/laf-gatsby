@@ -7,5 +7,8 @@ yarn-error.log
 /public
 .DS_Store
 
+# dotenv config
+.env.development
+
 # temp folder(s)
 /temp_projects

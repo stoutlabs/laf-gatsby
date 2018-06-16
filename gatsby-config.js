@@ -1,3 +1,7 @@
+require("dotenv").config({
+   path: `.env.${process.env.NODE_ENV}`
+});
+
 module.exports = {
    siteMetadata: {
       title: "Leta Austin Foster - Interior Design - NY - Palm Beach"
@@ -12,8 +16,7 @@ module.exports = {
          resolve: "gatsby-source-prismic",
          options: {
             repositoryName: "stoutlabs-sandbox",
-            accessToken:
-               "MC5XeE5vdlIwQUFCOVl4bGxk.We-_ve-_ve-_vSTvv71177-9KE_vv73vv73vv73vv73vv70HFG3vv73vv73vv70J77-977-977-9Eu-_ve-_vSvvv71P77-9",
+            accessToken: `${process.env.API_KEY}`,
             linkResolver: ({ node, key, value }) => doc => {
                //console.log("doc:", doc);
                // Your link resolver
