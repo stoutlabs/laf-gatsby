@@ -19,11 +19,11 @@ const StyledH3 = styled.h3`
    }
 `;
 
-export const InfoPanel = ({ title }) => {
+export const InfoPanel = ({ title, label }) => {
    return (
       <div className="gallery-info">
          <TypeNav />
-         <StyledH3>Projects</StyledH3>
+         <StyledH3>{label}</StyledH3>
          <h4>{title ? title : "Loading..."}</h4>
       </div>
    );

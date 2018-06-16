@@ -99,7 +99,6 @@ const isInterior = (match, location) => {
 };
 
 const handleLocationClick = (props, locSlug) => {
-   //console.log("location:", props.location);
    const curUrl = props.location.pathname;
    let urlArr = curUrl.split("/");
    urlArr[1] = locSlug;
@@ -114,9 +113,13 @@ const handleLocationClick = (props, locSlug) => {
 };
 
 export const ConnectedNav = props => {
-   // this sets the location (in redux) if refreshing the page, or coming from an outside link
+   // this sets the correct location (in redux) if refreshing the page, or coming from an outside link
+   let curLoc = "";
    if (props.theLocation === undefined) {
-      const curLoc = props.location.pathname.split("/")[1];
+      curLoc = props.location.pathname.split("/")[1];
+      if (curLoc === "404") {
+         curLoc = "new-york";
+      }
       props.setLocation(curLoc);
    }
 

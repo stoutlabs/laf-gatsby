@@ -1,19 +1,19 @@
 import React, { Component } from "react";
 import GridGallery from "./GridGallery/GridGallery";
 
-export class ViewProject extends Component {
+export class ViewRoom extends Component {
    state = { hasContent: false, images: [], content: null };
 
    componentDidMount = () => {
-      const project = this.props.data.prismicProjects.data;
+      const room = this.props.data.prismicRoom.data;
 
       //separating images and content here
-      const theContent = { title: project.title.text };
-      const theImages = project.pictures.map(({ picture }, index) => {
-         return picture.localFile.childImageSharp;
+      const theContent = { title: room.title.text };
+      const theImages = room.photos.map(({ photo }, index) => {
+         return photo.localFile.childImageSharp;
       });
-      const theThumbs = project.thumbs.map(({ picture }, index) => {
-         return picture.localFile.childImageSharp;
+      const theThumbs = room.thumbs.map(({ photo }, index) => {
+         return photo.localFile.childImageSharp;
       });
 
       this.setState(() => {
@@ -21,7 +21,7 @@ export class ViewProject extends Component {
             images: theImages,
             thumbs: theThumbs,
             content: theContent,
-            activeItem: project.uid
+            activeItem: room.uid
          };
       });
    };
@@ -34,7 +34,7 @@ export class ViewProject extends Component {
                   images={this.state.images}
                   thumbs={this.state.thumbs}
                   content={this.state.content}
-                  label={"Projects"}
+                  label={"Rooms"}
                />
             ) : (
                <div>
@@ -46,19 +46,18 @@ export class ViewProject extends Component {
    }
 }
 
-export default ViewProject;
+export default ViewRoom;
 
 export const query = graphql`
-   query ViewProjectQuery($id: String!) {
-      prismicProjects(id: { eq: $id }) {
+   query ViewRoomQuery($id: String!) {
+      prismicRoom(id: { eq: $id }) {
          data {
             title {
-               html
                text
             }
 
-            pictures {
-               picture {
+            photos {
+               photo {
                   localFile {
                      childImageSharp {
                         id
@@ -70,8 +69,8 @@ export const query = graphql`
                }
             }
 
-            thumbs: pictures {
-               picture {
+            thumbs: photos {
+               photo {
                   localFile {
                      childImageSharp {
                         id

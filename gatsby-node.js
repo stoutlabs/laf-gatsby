@@ -77,9 +77,17 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
                                  uid
                               }
                            }
-                           #document {
-                           # uid
-                           #}
+                        }
+                     }
+                     rooms_list {
+                        room {
+                           __typename
+                           ... on room {
+                              document {
+                                 id
+                                 uid
+                              }
+                           }
                         }
                      }
                      title {
@@ -94,6 +102,7 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
 
    //console.log("allLocProjects", JSON.stringify(allLocProjects, null, 4));
 
+   // these two make all the pages for each project and room, and pass a uid for the query within each page
    allLocProjects.data.allPrismicLocations.edges.forEach(edge => {
       edge.node.data.locprojects.forEach(item => {
          createPage({
@@ -105,29 +114,35 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
             }
          });
       });
+
+      edge.node.data.rooms_list.forEach(item => {
+         createPage({
+            path: `${edge.node.uid}/interiors/room/${item.room.document[0].uid}`,
+            component: path.resolve("./src/components/ViewRoom.js"),
+            context: {
+               id: item.room.document[0].id,
+               uid: item.room.document[0].uid
+            }
+         });
+      });
    });
 
-   // projects.data.allPrismicProjects.edges.forEach(edge => {
-   //    createPage({
-   //       path: `${
-   //          edge.node.data.location.document[0].data.title.text === "New York"
-   //             ? "new-york"
-   //             : "palm-beach"
-   //       }/interiors/${edge.node.uid}`,
-   //       //component: pageTemplates[edge.node.template],
-   //       component: path.resolve("./src/components/ViewProject.js"),
-   //       context: {
-   //          id: edge.node.id,
-   //          uid: edge.node.uid
-   //       }
-   //    });
-   // });
-
+   // These make all the location-specific pages (NY and Palm Beach)
    locations.data.allPrismicLocations.edges.forEach(edge => {
       //interiors index/lists
       createPage({
          path: `${edge.node.uid}/interiors`,
          component: path.resolve("./src/components/Interiors.js"),
+         context: {
+            id: edge.node.id,
+            uid: edge.node.uid
+         }
+      });
+
+      //rooms index/lists
+      createPage({
+         path: `${edge.node.uid}/interiors/rooms`,
+         component: path.resolve("./src/components/Rooms.js"),
          context: {
             id: edge.node.id,
             uid: edge.node.uid
@@ -153,16 +168,5 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
             location: edge.node.uid
          }
       });
-
-      // individual project pages
-      // edge.node.data.projects.forEach(({ project }) => {
-      //    createPage({
-      //       path: `${edge.node.uid}/interiors/${project.document[0].uid}`,
-      //       component: path.resolve("./src/components/ViewProject.js"),
-      //       context: {
-      //          uid: project.document[0].uid
-      //       }
-      //    });
-      // });
    });
 };

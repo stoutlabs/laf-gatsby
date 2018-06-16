@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 
 import AboutBio from "./AboutBio";
-//import tempBios from "../../utils/tempBios";
 
 const AboutPageDiv = styled.div`
    display: flex;

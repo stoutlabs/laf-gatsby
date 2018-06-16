@@ -17,23 +17,15 @@ export class GridGallery extends Component {
    };
 
    componentDidMount = () => {
-      const newImages = this.props.images.map(({ picture }, index) => {
-         return picture.localFile.childImageSharp;
-      });
-
-      const newThumbs = this.props.thumbs.map(({ picture }, index) => {
-         return picture.localFile.childImageSharp;
-      });
-
       this.setState(() => {
          return {
             data: this.props.images,
-            images: newImages,
-            thumbs: newThumbs,
-            imageCount: newImages.length,
+            images: this.props.images,
+            thumbs: this.props.thumbs,
+            imageCount: this.props.images.length,
             content: this.props.content,
             imagesLoaded: true,
-            activeImage: newImages[0]
+            activeImage: this.props.images[0]
          };
       });
    };
@@ -67,6 +59,7 @@ export class GridGallery extends Component {
                <InfoPanel
                   content={this.state.content}
                   title={this.state.content ? this.state.content.title : "Loading..."}
+                  label={this.props.label}
                />
             </div>
 

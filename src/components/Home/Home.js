@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
+
+import { setLocation } from "../../actions";
 
 import Homebox from "./Homebox";
 import homeLogo from "../../assets/home_logo.png";
@@ -85,10 +88,11 @@ const HomeLogoBox = styled.div`
    }
 `;
 
-export class Home extends Component {
-   handleBoxClick = loc => {
+export class ConnectedHomePage extends Component {
+   handleBoxClick = (loc, locSlug) => {
       console.log("box clicked");
       console.log("props", this.props);
+      this.props.setLocation(locSlug);
       this.props.history.push(loc);
    };
 
@@ -100,6 +104,7 @@ export class Home extends Component {
                   image={this.props.content.left_image.localFile.childImageSharp.sizes}
                   title="New York"
                   url="/new-york/interiors"
+                  locSlug="new-york"
                   handleBoxClick={this.handleBoxClick}
                />
             </HomeNY>
@@ -114,6 +119,7 @@ export class Home extends Component {
                   image={this.props.content.right_image.localFile.childImageSharp.sizes}
                   title="Palm Beach"
                   url="/palm-beach/interiors"
+                  locSlug="palm-beach"
                   handleBoxClick={this.handleBoxClick}
                />
             </HomePB>
@@ -122,4 +128,19 @@ export class Home extends Component {
    }
 }
 
-export default Home;
+const mapStateToProps = state => {
+   return { theLocation: state.theLocation };
+};
+
+const mapDispatchToProps = dispatch => {
+   return {
+      setLocation: theLocation => dispatch(setLocation(theLocation))
+   };
+};
+
+const HomePage = connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(ConnectedHomePage);
+
+export default HomePage;

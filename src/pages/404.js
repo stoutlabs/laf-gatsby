@@ -1,10 +1,15 @@
-import React from 'react'
+import React from "react";
+import styled from "styled-components";
+
+const StyledNotFound = styled.div`
+   padding: 1rem;
+`;
 
 const NotFoundPage = () => (
-  <div>
-    <h1>NOT FOUND</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-  </div>
-)
+   <StyledNotFound>
+      <h1>NOT FOUND - 404</h1>
+      <p>Oops! You just hit a route that doesn&#39;t exist.</p>
+   </StyledNotFound>
+);
 
-export default NotFoundPage
+export default NotFoundPage;

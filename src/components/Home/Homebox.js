@@ -40,7 +40,7 @@ export class Homebox extends Component {
             className="homebox"
             onMouseEnter={this.handleBoxOver}
             onMouseLeave={this.handleBoxOut}
-            onClick={() => this.props.handleBoxClick(this.props.url)}
+            onClick={() => this.props.handleBoxClick(this.props.url, this.props.locSlug)}
          >
             <Img
                sizes={this.props.image}
