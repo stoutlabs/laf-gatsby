@@ -73,7 +73,7 @@ export class Rooms extends Component {
       const locationForTitle = this.props.data.prismicLocations.data.title.text;
 
       const seoImage = this.props.data.prismicLocations.data.intro_image.localFile.childImageSharp
-         .resize.src;
+         .sizes.src;
       const seoData = {
          frontmatter: {
             title: `Leta Austin Foster Interior Design • ${locationForTitle} | Rooms`,
@@ -164,9 +164,7 @@ export const query = graphql`
                localFile {
                   childImageSharp {
                      id
-                     resize {
-                        src
-                     }
+
                      sizes(maxWidth: 800, quality: 77) {
                         ...GatsbyImageSharpSizes
                      }

@@ -32,7 +32,7 @@ export class ViewProject extends Component {
       // console.log("props:", this.props);
       // SEO stuff
       const postImage = this.props.data.prismicProjects.data.pictures[0].picture.localFile
-         .childImageSharp.resize.src;
+         .childImageSharp.sizes.src;
       const pageTitle = `Leta Austin Foster Interior Design | ${
          this.props.data.prismicProjects.data.title.text
       }`;
@@ -82,9 +82,7 @@ export const query = graphql`
                   localFile {
                      childImageSharp {
                         id
-                        resize {
-                           src
-                        }
+
                         sizes(maxWidth: 800, quality: 81) {
                            ...GatsbyImageSharpSizes
                         }
