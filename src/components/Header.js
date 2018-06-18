@@ -1,4 +1,4 @@
-import Logo from "../assets/logo_top.png";
+import Logo from "../assets/laf_logo_2018.png";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -16,15 +16,22 @@ const StyledHeader = styled.header`
    }
 
    div.logo {
+      margin: 0 auto;
       padding: 0;
       transition: opacity 300ms ease-out 0ms, visibility 0ms linear 0ms, display 0ms linear 0ms;
+      max-width: 210px;
 
-      @media screen and (min-width: 768px) {
-         padding: 0 0 0.2rem;
+      &.a {
+         display: block;
       }
    }
 
    &.home {
+      @media screen and (min-width: 768px) {
+         padding: 0;
+         height: auto;
+      }
+
       div.logo {
          opacity: 0;
          visibility: hidden;
@@ -32,7 +39,7 @@ const StyledHeader = styled.header`
          transition: opacity 300ms ease-out 0ms, visibility 0ms linear 300ms,
             display 0ms linear 300ms;
 
-         @media screen and (min-width: 768px) {
+         @media screen and (min-width: 960px) {
             display: block;
             transition: opacity 300ms ease-out 0ms, visibility 0ms linear 300ms;
          }
@@ -41,6 +48,7 @@ const StyledHeader = styled.header`
       nav {
          opacity: 0;
          visibility: hidden;
+         display: none;
          transition: opacity 300ms ease-out 0ms, visibility 0ms linear 300ms;
       }
    }

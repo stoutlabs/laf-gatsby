@@ -16,7 +16,7 @@ const TypeToggler = styled.div`
       }
    }
 
-   @media screen and (min-width: 960px) {
+   @media screen and (min-width: 768px) {
       margin: 2.5rem 0 2rem;
    }
 `;

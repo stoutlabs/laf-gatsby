@@ -4,7 +4,7 @@ module.exports = {
    description: `Leta Austin Foster & Associates are an established and well-known East coast interior design firm with office locations in Palm Beach and New York.`,
    url: "https://www.letaaustinfoster.com",
    image: "https://www.letaaustinfoster.com/images/site-image.jpg",
-   logo: "https://www.letaaustinfoster.com/android-chrome-512x512.png",
+   logo: "https://www.letaaustinfoster.com/android-chrome-512x512.jpg",
    //twitter: '@LAFPB',
    fbAppID: "",
 

@@ -6,16 +6,52 @@ import styled from "styled-components";
 import SEO from "./SEO";
 import TypeNav from "./GridGallery/TypeNav";
 
+const ProjIntroDiv = styled.div`
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+
+   @media screen and (min-width: 768px) {
+      flex-direction: row;
+   }
+
+   div.proj-intro-details {
+      min-width: 330px;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 1.4rem;
+
+      @media screen and (min-width: 768px) {
+         flex-direction: row;
+         width: 33%;
+      }
+   }
+
+   div.proj-intro-pic {
+      width: 100%;
+      align-self: center;
+
+      @media screen and (min-width: 768px) {
+         width: 66%;
+         margin: 1rem;
+      }
+   }
+`;
+
 const StyledH3 = styled.h3`
    border: 3px double #eff2f2;
    border-width: 4px 0;
    padding: 10px 4px 4px;
    text-transform: uppercase;
    text-align: center;
-   margin: 0 0 1.8rem;
-   font-size: 1.3rem;
-   line-height: 1.4rem;
-   letter-spacing: 2px;
+   margin: 0 0 1rem;
+   font-size: 1.2rem;
+   line-height: 1.2rem;
+   letter-spacing: 1px;
+
+   @media screen and (min-width: 768px) {
+      margin: 0 0 2rem;
+   }
 `;
 
 const StyledUl = styled.ul`
@@ -47,11 +83,11 @@ export class Rooms extends Component {
       };
 
       return (
-         <div className="columns proj-intro">
+         <ProjIntroDiv className="proj-intro">
             <SEO postData={seoData} postImage={seoImage} />
 
             {this.state.hasContent ? (
-               <div className="column is-one-third has-text-centered">
+               <div className="proj-intro-details">
                   <div className="gallery-info">
                      <TypeNav />
                      <StyledH3>Rooms</StyledH3>
@@ -74,11 +110,11 @@ export class Rooms extends Component {
                   </div>
                </div>
             ) : (
-               <div className="column">
+               <div className="proj-intro-details">
                   <p>Loading...</p>
                </div>
             )}
-            <div className="column is-two-thirds has-text-centered proj-intro-right">
+            <div className="proj-intro-pic">
                <Img
                   sizes={
                      this.props.data.prismicLocations.data.intro_image.localFile.childImageSharp
@@ -94,7 +130,7 @@ export class Rooms extends Component {
                   alt=""
                />
             </div>
-         </div>
+         </ProjIntroDiv>
       );
    }
 }

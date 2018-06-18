@@ -7,7 +7,7 @@ import { setLocation } from "../../actions";
 
 import Homebox from "./Homebox";
 import SEO from "../SEO";
-import homeLogo from "../../assets/home_logo.png";
+import homeLogo from "../../assets/laf_logo_2018.png";
 
 const HomepageDiv = styled.div`
    display: flex;
@@ -33,7 +33,7 @@ const HomePB = styled.div`
    position: relative;
    order: 4;
 
-   @media screen and (min-width: 769px) {
+   @media screen and (min-width: 960px) {
       width: 50%;
    }
 `;
@@ -43,7 +43,7 @@ const HomeLogoBox = styled.div`
    flex-direction: column;
    align-items: center;
    justify-content: space-between;
-   min-width: 330px;
+   min-width: 250px;
    border: 0.8rem solid #dfe5e5;
    padding: 0 0.8rem;
    margin: 0.8rem;
@@ -51,6 +51,7 @@ const HomeLogoBox = styled.div`
 
    img {
       margin: 2rem 0 0;
+      max-width: 240px;
    }
 
    h4 {
@@ -66,6 +67,7 @@ const HomeLogoBox = styled.div`
 
       img {
          margin-top: 120px;
+         max-width: 210px;
       }
    }
 `;

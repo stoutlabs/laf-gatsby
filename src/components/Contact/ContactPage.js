@@ -13,7 +13,7 @@ const ContactPageDiv = styled.div`
    padding: 1rem;
    text-align: center;
 
-   @media screen and (min-width: 960px) {
+   @media screen and (min-width: 768px) {
       flex-direction: row;
       min-height: 550px;
    }

@@ -7,7 +7,7 @@ const HamburgerDiv = styled.div`
    right: 0.5rem;
    z-index: 60;
 
-   @media screen and (min-width: 769px) {
+   @media screen and (min-width: 768px) {
       visibility: hidden;
    }
 
@@ -20,7 +20,7 @@ const HamburgerDiv = styled.div`
       position: relative;
       margin: 10px auto;
       transform: rotate(0deg);
-      transition: 0.5s ease-in-out;
+      transition: transform 0.5s ease-in-out;
       cursor: pointer;
    }
 

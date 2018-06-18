@@ -36,8 +36,9 @@ const StyledRightDiv = styled.div`
 
    padding: 1rem;
 
-   @media screen and (min-width: 960px) {
+   @media screen and (min-width: 768px) {
       width: 50%;
+      align-self: center;
    }
 
    img {

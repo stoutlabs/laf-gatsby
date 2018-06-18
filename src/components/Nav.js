@@ -113,14 +113,13 @@ const handleLocationClick = (props, locSlug) => {
 };
 
 export const ConnectedNav = props => {
-   // this sets the correct location (in redux) if refreshing the page, or coming from an outside link
+   // This (dirty hack) sets the correct location in redux if refreshing the page, or coming from an outside link.
+   // (Sorry, feel free to PR a better way!)
    let curLoc = "";
    if (props.theLocation === undefined) {
-      // curLoc = props.location.pathname.split("/")[1];
-      // if (curLoc === "404") {
-      //    curLoc = "new-york";
-      // }
-      curLoc = "new-york"; //just defaulting to NY on undefined (404 errors) - fixes nav bug on bad paths
+      curLoc = props.location.pathname.split("/")[1];
+      curLoc = curLoc === "palm-beach" ? "palm-beach" : "new-york";
+      //curLoc = "new-york"; //just defaulting to NY on undefined (404 errors) - fixes nav bug on bad paths
       props.setLocation(curLoc);
    }
 
