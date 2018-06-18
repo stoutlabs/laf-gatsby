@@ -29,7 +29,7 @@ export class ViewProject extends Component {
    };
 
    render() {
-      console.log("props:", this.props);
+      //console.log("props:", this.props);
       // SEO stuff
       const postImage = this.props.data.prismicProjects.data.pictures[0].picture.localFile
          .childImageSharp.sizes.src;

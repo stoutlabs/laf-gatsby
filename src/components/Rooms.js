@@ -28,14 +28,12 @@ export class Rooms extends Component {
    state = { rooms: [], hasContent: false, images: [], content: null };
 
    componentDidMount = () => {
-      //console.log("data:", this.props.data.prismicLocations);
       this.setState(() => {
          return { rooms: this.props.data.prismicLocations.data.rooms_list, hasContent: true };
       });
    };
 
    render() {
-      console.log("props:", this.props);
       const locationForTitle = this.props.data.prismicLocations.data.title.text;
 
       const seoImage = this.props.data.prismicLocations.data.intro_image.localFile.childImageSharp

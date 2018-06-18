@@ -29,9 +29,9 @@ export class ViewRoom extends Component {
 
    render() {
       // SEO stuff
-      const postImage = this.props.data.prismicRoom.data.photos[0].photo.localFile.childImageSharp
+      const seoImage = this.props.data.prismicRoom.data.photos[0].photo.localFile.childImageSharp
          .sizes.src;
-      const postData = {
+      const seoData = {
          frontmatter: {
             title: `Leta Austin Foster Interior Design | Room: ${
                this.state.content ? this.state.content.title : ""
@@ -44,7 +44,7 @@ export class ViewRoom extends Component {
 
       return (
          <div>
-            <SEO postData={postData} postImage={postImage} isProjectPage={true} />
+            <SEO postData={seoData} postImage={seoImage} isProjectPage={true} />
             {this.state.content ? (
                <GridGallery
                   images={this.state.images}

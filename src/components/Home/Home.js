@@ -72,22 +72,20 @@ const HomeLogoBox = styled.div`
 
 export class ConnectedHomePage extends Component {
    handleBoxClick = (loc, locSlug) => {
-      console.log("box clicked");
-      console.log("props", this.props);
       this.props.setLocation(locSlug);
       this.props.history.push(loc);
    };
 
    render() {
-      const postData = {
+      const seoData = {
          frontmatter: {
-            title: `Leta Austin Foster and Associates • Interior Design | New York - Palm Beach`,
+            title: `Leta Austin Foster & Associates • Interior Design | New York | Palm Beach`,
             slug: ``
          }
       };
       return (
          <HomepageDiv className="home-page">
-            <SEO postData={postData} />
+            <SEO postData={seoData} />
             <HomeNY>
                <Homebox
                   image={this.props.content.left_image.localFile.childImageSharp.sizes}

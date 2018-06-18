@@ -28,14 +28,12 @@ export class Interiors extends Component {
    state = { projects: [], hasContent: false, images: [], content: null };
 
    componentDidMount = () => {
-      //console.log("data:", this.props.data.prismicLocations);
       this.setState(() => {
          return { projects: this.props.data.prismicLocations.data.locprojects, hasContent: true };
       });
    };
 
    render() {
-      //console.log("theLocation:", this.props.theLocation);
       const locationForTitle = this.props.data.prismicLocations.data.title.text;
       const seoImage = this.props.data.prismicLocations.data.intro_image.localFile.childImageSharp
          .sizes.src;

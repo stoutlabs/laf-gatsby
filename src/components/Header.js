@@ -69,23 +69,21 @@ export class Header extends Component {
    state = { navActive: false };
 
    showNav = () => {
-      this.setState(prevState => {
+      this.setState(() => {
          return { navActive: true };
       });
    };
 
    hideNav = () => {
-      this.setState(prevState => {
+      this.setState(() => {
          return { navActive: false };
       });
    };
 
    render() {
-      //console.log("loc:", this.props.location);
       const loc = this.props.location.pathname.slice(1);
-
-      //const loc = "test";
       const locStyle = loc === "" ? "home" : "";
+
       return (
          <StyledHeader className={locStyle}>
             <div className="logo">

@@ -72,6 +72,7 @@ const HamburgerDiv = styled.div`
 
 export const HamburgerBtn = props => {
    const hide = props.location.pathname === "/" ? "hide" : "";
+
    return (
       <HamburgerDiv className={`nav-toggle ${hide}`}>
          <div id="nav-btn" onClick={props.showNav} className={props.navActive ? "open" : ""}>

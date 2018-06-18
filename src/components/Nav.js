@@ -116,10 +116,11 @@ export const ConnectedNav = props => {
    // this sets the correct location (in redux) if refreshing the page, or coming from an outside link
    let curLoc = "";
    if (props.theLocation === undefined) {
-      curLoc = props.location.pathname.split("/")[1];
-      if (curLoc === "404") {
-         curLoc = "new-york";
-      }
+      // curLoc = props.location.pathname.split("/")[1];
+      // if (curLoc === "404") {
+      //    curLoc = "new-york";
+      // }
+      curLoc = "new-york"; //just defaulting to NY on undefined (404 errors) - fixes nav bug on bad paths
       props.setLocation(curLoc);
    }
 
