@@ -4,12 +4,14 @@ require("dotenv").config({
 
 module.exports = {
    siteMetadata: {
-      title: "Leta Austin Foster - Interior Design - NY - Palm Beach"
+      siteUrl: `https://www.letaaustinfoster.com`,
+      title: "Leta Austin Foster and Associates • Interior Design | New York - Palm Beach"
    },
    plugins: [
       `gatsby-plugin-react-next`,
       `gatsby-plugin-react-helmet`,
       `gatsby-plugin-sass`,
+      `gatsby-plugin-sitemap`,
       `gatsby-transformer-sharp`,
       `gatsby-plugin-sharp`,
       {
@@ -53,6 +55,20 @@ module.exports = {
                //      return null
                //  }
             }
+         }
+      },
+      {
+         resolve: `gatsby-plugin-google-analytics`,
+         options: {
+            trackingId: `UA-1076375-35`,
+            // Puts tracking script in the head instead of the body
+            head: false
+            // Setting this parameter is optional
+            //anonymize: true,
+            // Setting this parameter is also optional
+            //respectDNT: true,
+            // Avoids sending pageview hits from custom paths
+            //exclude: ["/preview/**", "/do-not-track/me/too/"],
          }
       }
    ]

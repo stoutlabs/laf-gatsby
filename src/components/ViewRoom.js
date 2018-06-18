@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import GridGallery from "./GridGallery/GridGallery";
+import SEO from "./SEO";
 
 export class ViewRoom extends Component {
    state = { hasContent: false, images: [], content: null };
@@ -27,8 +28,23 @@ export class ViewRoom extends Component {
    };
 
    render() {
+      // SEO stuff
+      const postImage = this.props.data.prismicRoom.data.photos[0].photo.localFile.childImageSharp
+         .sizes.src;
+      const postData = {
+         frontmatter: {
+            title: `Leta Austin Foster Interior Design | Room: ${
+               this.state.content ? this.state.content.title : ""
+            }`,
+            slug: `${this.props.pathContext.locuid}/interiors/room/${
+               this.props.data.prismicRoom.uid
+            }`
+         }
+      };
+
       return (
          <div>
+            <SEO postData={postData} postImage={postImage} isProjectPage={true} />
             {this.state.content ? (
                <GridGallery
                   images={this.state.images}

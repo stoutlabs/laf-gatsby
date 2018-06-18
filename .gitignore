@@ -9,6 +9,7 @@ yarn-error.log
 
 # dotenv config
 .env.development
+.env.production
 
 # temp folder(s)
 /temp_projects

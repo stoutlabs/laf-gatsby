@@ -1,7 +1,9 @@
 import React, { Fragment } from "react";
+import Helmet from "react-helmet";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
+import SEO from "../SEO";
 import AboutBio from "./AboutBio";
 
 const AboutPageDiv = styled.div`
@@ -36,8 +38,19 @@ const AboutPageDiv = styled.div`
 `;
 
 export const ConnectedAboutPage = props => {
+   //console.log("postData", postData);
+   const locationForTitle = props.theLocation === "new-york" ? "New York" : "Palm Beach";
+   const postData = {
+      frontmatter: {
+         title: `Leta Austin Foster Interior Design • ${locationForTitle} | About`,
+         slug: `${props.theLocation}/about`
+      }
+   };
+
    return (
       <AboutPageDiv className="about-page">
+         {/* <Helmet title={`Leta Austin Foster Interior Design • ${locationForTitle} | About`} /> */}
+         <SEO postData={postData} />
          {props.theLocation === "new-york" ? (
             <Fragment>
                <div className="leftside">

@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import Helmet from "react-helmet";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
 import { setLocation } from "../../actions";
 
 import Homebox from "./Homebox";
+import SEO from "../SEO";
 import homeLogo from "../../assets/home_logo.png";
 
 const HomepageDiv = styled.div`
@@ -25,17 +27,6 @@ const HomeNY = styled.div`
    @media screen and (min-width: 960px) {
       width: 50%;
    }
-
-   /*
-   img {
-      object-fit: cover;
-      width: 100%;
-
-      @media screen and (min-width: 960px) {
-         height: 100%;
-      }
-   }
-   */
 `;
 
 const HomePB = styled.div`
@@ -45,15 +36,6 @@ const HomePB = styled.div`
    @media screen and (min-width: 769px) {
       width: 50%;
    }
-
-   /* img {
-      object-fit: cover;
-
-      @media screen and (min-width: 960px) {
-         height: 100%;
-      }
-   } 
-   */
 `;
 
 const HomeLogoBox = styled.div`
@@ -97,8 +79,15 @@ export class ConnectedHomePage extends Component {
    };
 
    render() {
+      const postData = {
+         frontmatter: {
+            title: `Leta Austin Foster and Associates • Interior Design | New York - Palm Beach`,
+            slug: ``
+         }
+      };
       return (
          <HomepageDiv className="home-page">
+            <SEO postData={postData} />
             <HomeNY>
                <Homebox
                   image={this.props.content.left_image.localFile.childImageSharp.sizes}

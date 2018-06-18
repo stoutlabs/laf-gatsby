@@ -1,9 +1,11 @@
 import React from "react";
+import Helmet from "react-helmet";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
 import ContactLeft from "./ContactLeft";
 import ContactRight from "./ContactRight";
+import SEO from "../SEO";
 
 const ContactPageDiv = styled.div`
    display: flex;
@@ -19,6 +21,7 @@ const ContactPageDiv = styled.div`
 
 export const ConnectedContactPage = props => {
    const contactContent = props.data.prismicContactPage.data;
+
    const contactInfo =
       props.theLocation === "new-york"
          ? {
@@ -37,8 +40,18 @@ export const ConnectedContactPage = props => {
               fax: contactContent.fax_pb,
               email: contactContent.email_pb
            };
+
+   // For SEO stuff
+   const postData = {
+      frontmatter: {
+         title: `Leta Austin Foster Interior Design • ${contactInfo.title} | Contact`,
+         slug: `${props.theLocation}/about`
+      }
+   };
+
    return (
       <ContactPageDiv className="contact-page">
+         <SEO postData={postData} />
          <ContactLeft sizes={contactInfo.sizes} />
          <ContactRight contactInfo={contactInfo} />
       </ContactPageDiv>

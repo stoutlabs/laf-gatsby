@@ -3,6 +3,7 @@ import Img from "gatsby-image";
 import Link from "gatsby-link";
 import styled from "styled-components";
 
+import SEO from "./SEO";
 import TypeNav from "./GridGallery/TypeNav";
 
 const StyledH3 = styled.h3`
@@ -34,9 +35,23 @@ export class Rooms extends Component {
    };
 
    render() {
-      //console.log("theLocation:", this.props.theLocation);
+      console.log("props:", this.props);
+      const locationForTitle = this.props.data.prismicLocations.data.title.text;
+
+      const seoImage = this.props.data.prismicLocations.data.intro_image.localFile.childImageSharp
+         .sizes.src;
+      const seoData = {
+         frontmatter: {
+            title: `Leta Austin Foster Interior Design • ${locationForTitle} | Rooms`,
+            slug: `${this.props.pathContext.locuid}/interiors/rooms/`,
+            description: `Here we have sorted the photos from our interior design projects into rooms. These are from our ${locationForTitle} office.`
+         }
+      };
+
       return (
          <div className="columns proj-intro">
+            <SEO postData={seoData} postImage={seoImage} />
+
             {this.state.hasContent ? (
                <div className="column is-one-third has-text-centered">
                   <div className="gallery-info">

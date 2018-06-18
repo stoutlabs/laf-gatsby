@@ -17,31 +17,6 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
       }
    `);
 
-   // const projects = await graphql(`
-   //    {
-   //       allPrismicProjects {
-   //          edges {
-   //             node {
-   //                id
-   //                uid
-   //                data {
-   //                   location {
-   //                      document {
-   //                         uid
-   //                         data {
-   //                            title {
-   //                               text
-   //                            }
-   //                         }
-   //                      }
-   //                   }
-   //                }
-   //             }
-   //          }
-   //       }
-   //    }
-   // `);
-
    const locations = await graphql(`
       {
          allPrismicLocations {
@@ -110,7 +85,8 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
             component: path.resolve("./src/components/ViewProject.js"),
             context: {
                id: item.theproject.document[0].id,
-               uid: item.theproject.document[0].uid
+               uid: item.theproject.document[0].uid,
+               locuid: edge.node.uid
             }
          });
       });
@@ -121,7 +97,8 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
             component: path.resolve("./src/components/ViewRoom.js"),
             context: {
                id: item.room.document[0].id,
-               uid: item.room.document[0].uid
+               uid: item.room.document[0].uid,
+               locuid: edge.node.uid
             }
          });
       });
@@ -135,7 +112,8 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
          component: path.resolve("./src/components/Interiors.js"),
          context: {
             id: edge.node.id,
-            uid: edge.node.uid
+            uid: edge.node.uid,
+            locuid: edge.node.uid
          }
       });
 
@@ -145,7 +123,8 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
          component: path.resolve("./src/components/Rooms.js"),
          context: {
             id: edge.node.id,
-            uid: edge.node.uid
+            uid: edge.node.uid,
+            locuid: edge.node.uid
          }
       });
 
@@ -155,7 +134,8 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
          component: path.resolve("./src/components/Contact/ContactPage.js"),
          context: {
             // id: edge.node.id,
-            location: edge.node.uid
+            location: edge.node.uid,
+            locuid: edge.node.uid
          }
       });
 
@@ -165,7 +145,8 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
          component: path.resolve("./src/components/About/AboutPage.js"),
          context: {
             // id: edge.node.id,
-            location: edge.node.uid
+            location: edge.node.uid,
+            locuid: edge.node.uid
          }
       });
    });

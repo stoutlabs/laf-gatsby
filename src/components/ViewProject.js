@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import GridGallery from "./GridGallery/GridGallery";
 
+import SEO from "./SEO";
+
 export class ViewProject extends Component {
    state = { hasContent: false, images: [], content: null };
 
@@ -27,8 +29,24 @@ export class ViewProject extends Component {
    };
 
    render() {
+      console.log("props:", this.props);
+      // SEO stuff
+      const postImage = this.props.data.prismicProjects.data.pictures[0].picture.localFile
+         .childImageSharp.sizes.src;
+      const postData = {
+         frontmatter: {
+            title: `Leta Austin Foster Interior Design | Project: ${
+               this.state.content ? this.state.content.title : ""
+            }`,
+            slug: `${this.props.pathContext.locuid}/interiors/${
+               this.props.data.prismicProjects.uid
+            }`
+         }
+      };
+
       return (
          <div>
+            <SEO postData={postData} postImage={postImage} isProjectPage={true} />
             {this.state.content ? (
                <GridGallery
                   images={this.state.images}
@@ -51,6 +69,7 @@ export default ViewProject;
 export const query = graphql`
    query ViewProjectQuery($id: String!) {
       prismicProjects(id: { eq: $id }) {
+         uid
          data {
             title {
                html
