@@ -12,7 +12,7 @@ const StyledHeader = styled.header`
 
    @media screen and (min-width: 768px) {
       padding: 0.7rem 0 0;
-      height: 150px;
+      height: 140px;
    }
 
    div.logo {
@@ -27,9 +27,11 @@ const StyledHeader = styled.header`
    }
 
    &.home {
+      height: auto;
+
       @media screen and (min-width: 768px) {
          padding: 0;
-         height: auto;
+         height: 140px;
       }
 
       div.logo {
