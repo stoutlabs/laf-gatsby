@@ -73,7 +73,7 @@ export class Rooms extends Component {
       const locationForTitle = this.props.data.prismicLocations.data.title.text;
 
       const seoImage = this.props.data.prismicLocations.data.intro_image.localFile.childImageSharp
-         .sizes.src;
+         .resize.src;
       const seoData = {
          frontmatter: {
             title: `Leta Austin Foster Interior Design • ${locationForTitle} | Rooms`,

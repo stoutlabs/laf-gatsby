@@ -30,7 +30,7 @@ export class ViewRoom extends Component {
    render() {
       // SEO stuff
       const seoImage = this.props.data.prismicRoom.data.photos[0].photo.localFile.childImageSharp
-         .sizes.src;
+         .resize.src;
       const pageTitle = `Leta Austin Foster Interior Design | ${
          this.props.data.prismicRoom.data.title.text
       }`;

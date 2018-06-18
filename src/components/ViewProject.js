@@ -32,7 +32,7 @@ export class ViewProject extends Component {
       // console.log("props:", this.props);
       // SEO stuff
       const postImage = this.props.data.prismicProjects.data.pictures[0].picture.localFile
-         .childImageSharp.sizes.src;
+         .childImageSharp.resize.src;
       const pageTitle = `Leta Austin Foster Interior Design | ${
          this.props.data.prismicProjects.data.title.text
       }`;
