@@ -42,16 +42,16 @@ export const ConnectedContactPage = props => {
            };
 
    // For SEO stuff
-   const postData = {
+   const seoData = {
       frontmatter: {
          title: `Leta Austin Foster Interior Design • ${contactInfo.title} | Contact`,
-         slug: `${props.theLocation}/about`
+         slug: `${props.theLocation}/contact`
       }
    };
 
    return (
       <ContactPageDiv className="contact-page">
-         <SEO postData={postData} />
+         <SEO postData={seoData} />
          <ContactLeft sizes={contactInfo.sizes} />
          <ContactRight contactInfo={contactInfo} />
       </ContactPageDiv>

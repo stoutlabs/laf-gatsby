@@ -10,7 +10,7 @@ const StyledHeader = styled.header`
    padding: 0;
    text-align: center;
 
-   @media screen and (min-width: 768px) {
+   @media screen and (min-width: 960px) {
       padding: 0.7rem 0 0;
       height: 140px;
    }
@@ -29,7 +29,7 @@ const StyledHeader = styled.header`
    &.home {
       height: auto;
 
-      @media screen and (min-width: 768px) {
+      @media screen and (min-width: 960px) {
          padding: 0;
          height: 140px;
       }
@@ -41,7 +41,7 @@ const StyledHeader = styled.header`
          transition: opacity 300ms ease-out 0ms, visibility 0ms linear 300ms,
             display 0ms linear 300ms;
 
-         @media screen and (min-width: 768px) {
+         @media screen and (min-width: 960px) {
             display: block;
             transition: opacity 300ms ease-out 0ms, visibility 0ms linear 300ms;
          }
