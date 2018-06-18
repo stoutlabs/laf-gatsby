@@ -29,15 +29,16 @@ export class ViewProject extends Component {
    };
 
    render() {
-      //console.log("props:", this.props);
+      // console.log("props:", this.props);
       // SEO stuff
       const postImage = this.props.data.prismicProjects.data.pictures[0].picture.localFile
          .childImageSharp.sizes.src;
+      const pageTitle = `Leta Austin Foster Interior Design | ${
+         this.props.data.prismicProjects.data.title.text
+      }`;
       const postData = {
          frontmatter: {
-            title: `Leta Austin Foster Interior Design | Project: ${
-               this.state.content ? this.state.content.title : ""
-            }`,
+            title: pageTitle,
             slug: `${this.props.pathContext.locuid}/interiors/${
                this.props.data.prismicProjects.uid
             }`

@@ -31,11 +31,12 @@ export class ViewRoom extends Component {
       // SEO stuff
       const seoImage = this.props.data.prismicRoom.data.photos[0].photo.localFile.childImageSharp
          .sizes.src;
+      const pageTitle = `Leta Austin Foster Interior Design | ${
+         this.props.data.prismicRoom.data.title.text
+      }`;
       const seoData = {
          frontmatter: {
-            title: `Leta Austin Foster Interior Design | Room: ${
-               this.state.content ? this.state.content.title : ""
-            }`,
+            title: pageTitle,
             slug: `${this.props.pathContext.locuid}/interiors/room/${
                this.props.data.prismicRoom.uid
             }`
