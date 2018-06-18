@@ -33,7 +33,7 @@ const ProjIntroDiv = styled.div`
 
       @media screen and (min-width: 768px) {
          width: 66%;
-         margin: 1rem;
+         ${"" /* margin: 1rem; */};
       }
    }
 `;
