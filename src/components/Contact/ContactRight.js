@@ -15,9 +15,9 @@ const StyledRightDiv = styled.div`
       text-transform: uppercase;
       text-align: center;
 
-      @media screen and (min-width: 769px) {
+      @media screen and (min-width: 768px) {
          font-size: 1.2rem;
-         margin: 3.5rem auto 3.2rem;
+         margin: 0 auto 3.2rem;
          width: 50%;
       }
    }
