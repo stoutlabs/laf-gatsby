@@ -1,10 +1,10 @@
-import Logo from "../assets/laf_logo_2018.png";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import Nav from "./Nav";
 import HamburgerBtn from "./HamburgerBtn";
+import Logo from "../assets/laf_logo_2018.png";
 
 const StyledHeader = styled.header`
    padding: 0;
