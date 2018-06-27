@@ -27,6 +27,7 @@ const StyledToggler = styled.div`
 `;
 
 export const LocationToggler = props => {
+   console.log("props here:", props);
    return (
       <StyledToggler className="location-toggler">
          <a
