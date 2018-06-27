@@ -7,7 +7,7 @@ const StyledFooter = styled.footer`
    color: #999;
    font-size: 0.8rem;
    letter-spacing: 2px;
-   margin-bottom: 2rem;
+   margin-bottom: 1rem;
 
    @media screen and (max-width: 600px) {
       font-size: 0.75rem;

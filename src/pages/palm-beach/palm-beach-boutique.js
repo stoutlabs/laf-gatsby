@@ -15,7 +15,7 @@ const StyledBoutiquePage = styled.div`
       font-size: 1.1rem;
       letter-spacing: 2px;
       line-height: 1.2rem;
-      margin: 0.6rem 0 1.5rem;
+      margin: 0.6rem 0 3rem;
       padding: 10px 4px 4px;
       text-transform: uppercase;
       text-align: center;
@@ -55,8 +55,26 @@ const StyledBoutiquePage = styled.div`
    }
 `;
 
+const StyledIntro = styled.div`
+   margin: 0 auto;
+   padding: 1rem;
+
+   p {
+      font-size: 1.3rem;
+      text-align: center;
+      margin-bottom: 2.5rem;
+   }
+`;
+
+const SlicesContainer = styled.div`
+   max-width: 800px;
+   margin: 0 auto;
+`;
+
 const StyledTextWithImage = styled.div`
-   margin: 0 0 4rem;
+   margin: 0 0 3rem;
+   padding: 3rem 0 0;
+   border-top: 1px solid #ddd;
 
    h3 {
       font-size: 1.2rem;
@@ -66,6 +84,7 @@ const StyledTextWithImage = styled.div`
    div.slice-inner {
       display: flex;
       flex-direction: row;
+      align-items: center;
 
       div.slice-text_content {
          width: 60%;
@@ -80,7 +99,9 @@ const StyledTextWithImage = styled.div`
 `;
 
 const StyledTextOnly = styled.div`
-   margin: 0 0 4rem;
+   margin: 0 0 3rem;
+   padding: 3rem 0 0;
+   border-top: 1px solid #ddd;
 
    h3 {
       font-size: 1.2rem;
@@ -151,16 +172,30 @@ export const BoutiquePage = props => {
          <SEO postData={seoData} />
          <h2>{content.title.text}</h2>
 
-         {content.body.map(slice => {
-            if ("textWithImage" in slice) {
-               return renderTextWithImage(slice);
-            }
+         <StyledIntro className="intro">
+            <p>
+               Static content here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+               Suspendisse a efficitur lacus. Pellentesque habitant morbi tristique senectus et
+               netus et malesuada fames ac turpis egestas. Fusce vel risus mauris.
+            </p>
+            <p>
+               Duis vel consectetur ex. Phasellus id diam imperdiet, ultrices leo quis, condimentum
+               arcu. Integer id lorem dui. Proin at luctus tellus. Duis in ultricies sem.
+            </p>
+         </StyledIntro>
 
-            if ("textOnly" in slice) {
-               return renderTextOnlySlice(slice);
-            }
-         })}
-         {/* <div dangerouslySetInnerHTML={{ __html: content.body.html }} /> */}
+         <SlicesContainer className="slices">
+            {content.body.map(slice => {
+               if ("textWithImage" in slice) {
+                  return renderTextWithImage(slice);
+               }
+
+               if ("textOnly" in slice) {
+                  return renderTextOnlySlice(slice);
+               }
+            })}
+            {/* <div dangerouslySetInnerHTML={{ __html: content.body.html }} /> */}
+         </SlicesContainer>
       </StyledBoutiquePage>
    );
 };
