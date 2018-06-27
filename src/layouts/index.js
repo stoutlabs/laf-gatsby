@@ -35,7 +35,7 @@ const Layout = props => {
             <link rel="apple-touch-icon" href={appleTouchIcon} />
          </Helmet>
          <Header location={location} />
-         <main>
+         <main className={location.pathname === "/" ? "homepage" : ""}>
             {/* <ReactCSSTransitionReplace
             transitionName="mainfader"
             transitionEnterTimeout={1200}

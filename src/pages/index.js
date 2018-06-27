@@ -1,10 +1,10 @@
-import React from "react";
-import Home from "../components/Home/Home";
+import React, { Fragment } from "react";
+import Home from "../components/Home/NewHome";
 
 const IndexPage = props => (
-   <div>
+   <Fragment>
       <Home content={props.data.prismicHomePage.data} history={props.history} />
-   </div>
+   </Fragment>
 );
 
 export default IndexPage;
@@ -17,8 +17,8 @@ export const query = graphql`
                localFile {
                   childImageSharp {
                      id
-                     sizes(maxHeight: 650, quality: 79) {
-                        ...GatsbyImageSharpSizes_withWebp
+                     sizes(maxWidth: 550, quality: 83) {
+                        ...GatsbyImageSharpSizes
                      }
                   }
                }
@@ -28,8 +28,8 @@ export const query = graphql`
                localFile {
                   childImageSharp {
                      id
-                     sizes(maxHeight: 650, quality: 79) {
-                        ...GatsbyImageSharpSizes_withWebp
+                     sizes(maxWidth: 550, quality: 83) {
+                        ...GatsbyImageSharpSizes
                      }
                   }
                }

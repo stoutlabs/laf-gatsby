@@ -4,15 +4,18 @@ import styled from "styled-components";
 
 import Nav from "./Nav";
 import HamburgerBtn from "./HamburgerBtn";
+//import BoutiqueBtn from "./BoutiqueBtn";
+
 import Logo from "../assets/laf_logo_2018.png";
+import { LocationToggler } from "./LocationToggler";
 
 const StyledHeader = styled.header`
    padding: 0;
    text-align: center;
 
-   @media screen and (min-width: 960px) {
+   @media screen and (min-width: 768px) {
       padding: 0.7rem 0 0;
-      height: 140px;
+      height: 150px;
    }
 
    div.logo {
@@ -29,9 +32,8 @@ const StyledHeader = styled.header`
    &.home {
       height: auto;
 
-      @media screen and (min-width: 960px) {
-         padding: 0;
-         height: 140px;
+      @media screen and (min-width: 768px) {
+         height: 150px;
       }
 
       div.logo {
@@ -41,7 +43,7 @@ const StyledHeader = styled.header`
          transition: opacity 300ms ease-out 0ms, visibility 0ms linear 300ms,
             display 0ms linear 300ms;
 
-         @media screen and (min-width: 960px) {
+         @media screen and (min-width: 768px) {
             display: block;
             transition: opacity 300ms ease-out 0ms, visibility 0ms linear 300ms;
          }
@@ -106,6 +108,7 @@ export class Header extends Component {
                navActive={this.state.navActive}
                location={this.props.location}
             />
+
             <Nav status={this.state.navActive ? "show" : "hide"} hideNav={this.hideNav} />
             <NavOverlay className={this.state.navActive ? "show" : "hide"} onClick={this.hideNav} />
          </StyledHeader>

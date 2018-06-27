@@ -5,23 +5,11 @@ import Paginator from "./Paginator";
 export class Thumbs extends Component {
    constructor(props) {
       super(props);
-
       this.state = { thumbcount: 0, activePage: 1, pageHeight: 220, scrollPos: 0 };
       this.scrollDiv = null;
    }
 
-   // componentDidMount = () => {
-   //   console.log("scrollHeight at mount:", this.scrollDiv.scrollHeight);
-   //   this.setState(() => {
-   //     return { pageHeight: this.scrollDiv.scrollHeight };
-   //   });
-   // };
-
    handlePageClick = pageNum => {
-      console.log("clicked page:", pageNum);
-      console.log("pageHeight:", this.state.pageHeight);
-      //this.scrollDiv.scrollTop = 220 * pageNum;
-      //*** Note: Changed here for temporary height setting */
       const scrollPos = -(this.state.pageHeight * (pageNum - 1));
       this.setState(() => {
          return {

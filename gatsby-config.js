@@ -20,7 +20,7 @@ module.exports = {
             repositoryName: "stoutlabs-sandbox",
             accessToken: `${process.env.API_KEY}`,
             linkResolver: ({ node, key, value }) => doc => {
-               //console.log("doc:", doc);
+               // console.log("doc.type:", doc.type);
                // Your link resolver
                //if (doc.type === "theproject") return "/project/" + doc.uid;
                //if (doc.type === "page") return "/" + doc.uid;

@@ -40,17 +40,19 @@ const AboutPageDiv = styled.div`
 export const ConnectedAboutPage = props => {
    //console.log("postData", postData);
    const locationForTitle = props.theLocation === "new-york" ? "New York" : "Palm Beach";
-   const postData = {
+   const seoDesc = `Learn more about the backgrounds of Leta Austin Foster and her associates: Sallie Giordano, Alexandra Wernink, and India Foster.`;
+   const seoData = {
       frontmatter: {
          title: `Leta Austin Foster Interior Design • ${locationForTitle} | About`,
-         slug: `${props.theLocation}/about`
+         slug: `${props.theLocation}/about`,
+         description: seoDesc
       }
    };
 
    return (
       <AboutPageDiv className="about-page">
          {/* <Helmet title={`Leta Austin Foster Interior Design • ${locationForTitle} | About`} /> */}
-         <SEO postData={postData} />
+         <SEO postData={seoData} />
          {props.theLocation === "new-york" ? (
             <Fragment>
                <div className="leftside">

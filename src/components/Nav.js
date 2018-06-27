@@ -5,11 +5,12 @@ import Link from "gatsby-link";
 import styled from "styled-components";
 
 import { setLocation } from "../actions";
+import { LocationToggler } from "./LocationToggler";
 
 const StyledNav = styled.nav`
    width: 100%;
    display: flex;
-   flex-direction: row;
+   flex-direction: column;
    align-items: center;
    justify-content: center;
    transition: opacity 300ms ease-out 0ms, visibility 0ms linear 0ms;
@@ -52,7 +53,7 @@ const StyledUl = styled.ul`
 
       @media screen and (min-width: 768px) {
          border-right: 1px solid #ccc;
-         margin: 0 0.4rem 0 0;
+         margin: 0 0.3rem 0 0;
 
          &:last-child {
             border-right: none;
@@ -60,7 +61,7 @@ const StyledUl = styled.ul`
       }
 
       a {
-         font-size: 0.85rem;
+         font-size: 0.8rem;
          font-family: "Vollkorn", serif;
          text-transform: uppercase;
          text-decoration: none;
@@ -98,23 +99,27 @@ const isInterior = (match, location) => {
    return false;
 };
 
-const handleLocationClick = (props, locSlug) => {
-   const curUrl = props.location.pathname;
+const handleLocationClick = (locProps, locSlug) => {
+   const curUrl = locProps.location.pathname;
    let urlArr = curUrl.split("/");
    urlArr[1] = locSlug;
 
-   // if on 'interiors' pages, just go back to list page on loc change. otherwise just swap out the location in the url and go there.
-   const newUrl = urlArr[2] === "interiors" ? `/${locSlug}/interiors` : urlArr.join("/");
+   // if on 'interiors' pages (or on the boutique page), just go back to list page on loc change.
+   // otherwise just swap out the location in the url and go there.
+   const newUrl =
+      urlArr[2] === "interiors" || urlArr[2] === "palm-beach-boutique"
+         ? `/${locSlug}/interiors`
+         : urlArr.join("/");
 
    if (curUrl !== newUrl) {
-      props.setLocation(locSlug);
-      props.history.push(newUrl);
+      locProps.setLocation(locSlug);
+      locProps.history.push(newUrl);
    }
 };
 
 export const ConnectedNav = props => {
    // This (dirty hack) sets the correct location in redux if refreshing the page, or coming from an outside link.
-   // (Sorry, feel free to PR a better way!)
+   // (Sorry, feel free to show me a better way!)
    let curLoc = "";
    if (props.theLocation === undefined) {
       curLoc = props.location.pathname.split("/")[1];
@@ -125,18 +130,13 @@ export const ConnectedNav = props => {
 
    return (
       <StyledNav>
+         <LocationToggler
+            theLocation={props.theLocation}
+            locProps={props}
+            handleClick={handleLocationClick}
+            hideNav={props.hideNav}
+         />
          <StyledUl className={props.status}>
-            <li>
-               <a
-                  onClick={() => {
-                     handleLocationClick(props, "new-york");
-                     props.hideNav();
-                  }}
-                  className={props.theLocation === "new-york" ? "active" : ""}
-               >
-                  New York
-               </a>
-            </li>
             <li>
                <Link to="/" onClick={props.hideNav}>
                   Home
@@ -162,17 +162,14 @@ export const ConnectedNav = props => {
                   Contact
                </Link>
             </li>
-            <li>
-               <a
-                  onClick={() => {
-                     handleLocationClick(props, "palm-beach");
-                     props.hideNav();
-                  }}
-                  className={props.theLocation === "palm-beach" ? "active" : ""}
-               >
-                  Palm Beach
-               </a>
-            </li>
+
+            {props.theLocation === "palm-beach" && (
+               <li>
+                  <Link exact to={`/palm-beach/palm-beach-boutique`} onClick={props.hideNav}>
+                     Boutique
+                  </Link>
+               </li>
+            )}
          </StyledUl>
       </StyledNav>
    );

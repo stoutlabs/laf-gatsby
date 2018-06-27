@@ -37,7 +37,6 @@ export class Homebox extends Component {
 
       return (
          <HomeboxDiv
-            className="homebox"
             onMouseEnter={this.handleBoxOver}
             onMouseLeave={this.handleBoxOut}
             onClick={() => this.props.handleBoxClick(this.props.url, this.props.locSlug)}
@@ -48,7 +47,8 @@ export class Homebox extends Component {
                style={{ height: "100%" }}
                imgStyle={{
                   objectFit: "cover",
-                  width: "100%"
+                  width: "100%",
+                  height: "100%"
                }}
                alt=""
             />
