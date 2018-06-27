@@ -13,13 +13,20 @@ const StyledTextWithImage = styled.div`
 
    div.slice-inner {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       align-items: center;
       padding: 0 1rem;
 
+      @media screen and (min-width: 768px) {
+         flex-direction: row;
+      }
+
       div.slice-text_content {
-         width: 60%;
          margin: 0 1rem 0 0;
+
+         @media screen and (min-width: 768px) {
+            width: 60%;
+         }
 
          p {
             font-size: 1.15rem;
@@ -27,15 +34,23 @@ const StyledTextWithImage = styled.div`
       }
 
       div.slice-image {
-         width: 40%;
          height: 100%;
+
+         @media screen and (min-width: 768px) {
+            width: 40%;
+         }
+
+         div.slice-pic-outer-wrapper {
+            height: 100%;
+            min-width: 300px;
+         }
       }
    }
 `;
 
 export const SliceTextImage = ({ textWithImage }) => {
    return (
-      <StyledTextWithImage className="slice-textWithImage" key={textWithImage.heading.text}>
+      <StyledTextWithImage className="slice-textWithImage">
          <div className="slice-inner">
             <div className="slice-text_content">
                <h3>{textWithImage.heading.text}</h3>

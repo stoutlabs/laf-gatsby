@@ -21,7 +21,7 @@ const StyledTextOnly = styled.div`
 
 export const SliceTextOnly = ({ textOnly }) => {
    return (
-      <StyledTextOnly className="slice-textOnly" key={textOnly.heading.text}>
+      <StyledTextOnly className="slice-textOnly">
          <div className="slice-inner">
             <h3>{textOnly.heading.text}</h3>
 

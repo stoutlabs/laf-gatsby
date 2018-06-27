@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const StyledIntro = styled.div`
    margin: 0 auto;
-   padding: 1rem 2rem 3rem;
+   padding: 1rem 1rem 3rem;
 
    p {
       font-size: 1.3rem;
@@ -53,11 +53,11 @@ const StyledIntro = styled.div`
 
       div.intro-info {
          background: #fafafa;
-         padding: 2rem;
+         padding: 1.5rem;
 
          @media screen and (min-width: 768px) {
             width: 50%;
-            padding: 2rem 1rem;
+            padding: 2rem 1.5rem;
          }
 
          @media screen and (min-width: 960px) {

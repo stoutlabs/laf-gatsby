@@ -82,11 +82,18 @@ export const BoutiquePage = props => {
          <SlicesContainer className="slices">
             {content.body.map(slice => {
                if ("textWithImage" in slice) {
-                  return <SliceTextImage textWithImage={slice.textWithImage} />;
+                  return (
+                     <SliceTextImage
+                        textWithImage={slice.textWithImage}
+                        key={slice.textWithImage.heading.text}
+                     />
+                  );
                }
 
                if ("textOnly" in slice) {
-                  return <SliceTextOnly textOnly={slice.textOnly} />;
+                  return (
+                     <SliceTextOnly textOnly={slice.textOnly} key={slice.textOnly.heading.text} />
+                  );
                }
             })}
          </SlicesContainer>
