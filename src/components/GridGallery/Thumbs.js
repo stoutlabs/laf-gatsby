@@ -44,6 +44,7 @@ export class Thumbs extends Component {
                itemsPerPage={6}
                totalItems={this.props.items.length}
                onChange={this.handlePageClick}
+               hideSingle={true}
             />
          </div>
       );

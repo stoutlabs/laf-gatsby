@@ -52,7 +52,7 @@ const StyledIntro = styled.div`
       }
 
       div.intro-info {
-         background: #fafafa;
+         background: #fbfbfb;
          padding: 1.5rem;
 
          @media screen and (min-width: 768px) {
@@ -66,18 +66,30 @@ const StyledIntro = styled.div`
          }
 
          p {
-            color: #acacac;
-            font-size: 1.25rem;
+            color: #aaa;
+            font-size: 1.15rem;
             margin-bottom: 1.5rem;
 
             &:last-child {
                margin-bottom: 0;
             }
+
+            a {
+               font-size: 1rem;
+
+               color: #777;
+
+               &:hover {
+                  color: #444;
+               }
+            }
+
             @media screen and (min-width: 768px) {
                text-align: center;
             }
             @media screen and (min-width: 960px) {
-               font-size: 1.3rem;
+               font-size: 1.2rem;
+               line-height: 1.35;
             }
          }
       }
@@ -102,21 +114,24 @@ export const IntroContent = () => {
             </div>
 
             <div className="intro-info">
-               <p>Call: 561.655.5489</p>
-               <p>
-                  64 Via Mizner <br />
-                  Palm Beach, Florida 33480
+               <p className="hours">
+                  <b>HOURS:</b> <br />
+                  Mon thru Fri, 9am - 4pm
                </p>
-               <p>
+               <p className="addy">
+                  <b>ADDRESS:</b> <br />
+                  64 Via Mizner <br />
+                  Palm Beach, Florida 33480 <br />
                   <a
                      href="https://goo.gl/maps/ASVPa6ZZfaK2"
                      rel="noopener noreferrer"
                      title="View on Google Maps"
                      target="_blank"
                   >
-                     View Google Map
+                     > View Google Map
                   </a>
                </p>
+               <p className="call">561.655.5489</p>
             </div>
          </div>
       </StyledIntro>
