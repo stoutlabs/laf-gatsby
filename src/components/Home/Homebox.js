@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import Img from "gatsby-image";
+import Link from "gatsby-link";
 
 import HomeInfo from "./HomeInfo";
 
@@ -14,6 +15,17 @@ const HomeboxDiv = styled.div`
       left: 0;
       right: 0;
       bottom: 0;
+
+      a {
+         display: block;
+         overflow: hidden;
+         text-indent: -400px;
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+      }
    }
 `;
 
@@ -39,7 +51,7 @@ export class Homebox extends Component {
          <HomeboxDiv
             onMouseEnter={this.handleBoxOver}
             onMouseLeave={this.handleBoxOut}
-            onClick={() => this.props.handleBoxClick(this.props.url, this.props.locSlug)}
+            // onClick={() => this.props.handleBoxClick(this.props.url, this.props.locSlug)}
          >
             <Img
                sizes={this.props.image}
@@ -54,7 +66,9 @@ export class Homebox extends Component {
             />
             <HomeInfo title={this.props.title} overClass={overClass} />
 
-            <div className="homebtn" />
+            <div className="homebtn">
+               <Link to={`/${this.props.locSlug}/interiors`}>{this.props.title}</Link>
+            </div>
          </HomeboxDiv>
       );
    }
