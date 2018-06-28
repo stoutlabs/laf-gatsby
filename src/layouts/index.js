@@ -22,7 +22,7 @@ const Layout = props => {
             meta={[
                {
                   name: "description",
-                  content: `Leta Austin Foster & Associates are an established and well-known East coast interior design firm with office locations in Palm Beach and New York.`
+                  content: `Leta Austin Foster & Associates, Inc. is an established and well-known East coast interior design firm with office locations in Palm Beach and New York.`
                },
                {
                   name: "keywords",

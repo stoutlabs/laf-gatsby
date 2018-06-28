@@ -31,8 +31,10 @@ export const LocationToggler = props => {
       <StyledToggler className="location-toggler">
          <a
             onClick={() => {
-               props.handleClick(props.locProps, "new-york");
-               props.hideNav();
+               if (props.locProps.location.pathname !== "/press") {
+                  props.handleClick(props.locProps, "new-york");
+                  props.hideNav();
+               }
             }}
             className={props.theLocation === "new-york" ? "active" : ""}
          >
@@ -40,8 +42,10 @@ export const LocationToggler = props => {
          </a>
          <a
             onClick={() => {
-               props.handleClick(props.locProps, "palm-beach");
-               props.hideNav();
+               if (props.locProps.location.pathname !== "/press") {
+                  props.handleClick(props.locProps, "palm-beach");
+                  props.hideNav();
+               }
             }}
             className={props.theLocation === "palm-beach" ? "active" : ""}
          >

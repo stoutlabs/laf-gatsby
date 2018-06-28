@@ -142,6 +142,7 @@ export const ConnectedNav = props => {
                   Home
                </Link>
             </li>
+
             <li>
                <Link
                   exact
@@ -152,11 +153,19 @@ export const ConnectedNav = props => {
                   Interiors
                </Link>
             </li>
+
             <li>
                <Link exact to={`/${props.theLocation}/about`} onClick={props.hideNav}>
                   About
                </Link>
             </li>
+
+            <li>
+               <Link exact to={`/press`} onClick={props.hideNav}>
+                  Press
+               </Link>
+            </li>
+
             <li>
                <Link exact to={`/${props.theLocation}/contact`} onClick={props.hideNav}>
                   Contact

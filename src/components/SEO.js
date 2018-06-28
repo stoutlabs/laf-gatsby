@@ -81,6 +81,7 @@ const SEO = ({ postData, postImage, isProjectPage }) => {
    return (
       <Helmet title={title}>
          {/* General tags */}
+         <html lang="en" />
          <meta name="description" content={description} />
          <meta name="image" content={image} />
 
