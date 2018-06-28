@@ -52,6 +52,7 @@ const StyledIntro = styled.div`
       }
 
       div.intro-info {
+         border: 4px double #ddd;
          background: #fbfbfb;
          padding: 1.5rem;
 
@@ -115,11 +116,13 @@ export const IntroContent = () => {
 
             <div className="intro-info">
                <p className="hours">
-                  <b>HOURS:</b> <br />
+                  <b>HOURS:</b>
+                  <br />
                   Mon thru Fri, 9am - 4pm
                </p>
                <p className="addy">
-                  <b>ADDRESS:</b> <br />
+                  <b>ADDRESS:</b>
+                  <br />
                   64 Via Mizner <br />
                   Palm Beach, Florida 33480 <br />
                   <a
