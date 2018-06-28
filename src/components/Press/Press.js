@@ -95,7 +95,7 @@ const PressDiv = styled.div`
 
 export const Press = props => {
    const pressData = props.content;
-   console.log("pressData", pressData);
+   //console.log("pressData", pressData);
    //const locationForTitle = props.theLocation === "new-york" ? "New York" : "Palm Beach";
    const seoDesc = `Links to various published articles and press releases about our interior design work.`;
    const seoData = {
