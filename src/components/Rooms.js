@@ -30,6 +30,7 @@ const ProjIntroDiv = styled.div`
    div.proj-intro-pic {
       width: 100%;
       align-self: center;
+      padding: 1rem;
 
       @media screen and (min-width: 768px) {
          width: 66%;
