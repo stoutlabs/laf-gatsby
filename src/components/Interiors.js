@@ -16,7 +16,6 @@ const ProjIntroDiv = styled.div`
    }
 
    div.proj-intro-details {
-      min-width: 360px;
       width: 100%;
       text-align: center;
       margin-bottom: 1.4rem;
