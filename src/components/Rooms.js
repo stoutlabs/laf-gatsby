@@ -16,14 +16,13 @@ const ProjIntroDiv = styled.div`
    }
 
    div.proj-intro-details {
-      min-width: 330px;
       width: 100%;
       text-align: center;
       margin-bottom: 1.4rem;
 
       @media screen and (min-width: 768px) {
          flex-direction: row;
-         width: 33%;
+         width: 360px;
       }
    }
 
