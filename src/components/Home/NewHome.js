@@ -12,21 +12,11 @@ const HomepageDiv = styled.div`
    display: flex;
    flex-direction: column;
 
-   div.homebox {
-      width: 100%;
-      &:first-child {
-         margin-bottom: 0.5rem;
-      }
-   }
-
    @media screen and (min-width: 768px) {
       width: 750px;
       height: 416px;
       flex-direction: row;
       justify-content: space-between;
-      &:first-child {
-         margin-bottom: 0;
-      }
 
       div.homebox {
          width: 250px;
@@ -57,12 +47,26 @@ const HomepageDiv = styled.div`
 
 const HomeNY = styled.div`
    position: relative;
-   order: 2;
+   order: 3;
+   padding: 0 0.6rem;
+
+   @media screen and (min-width: 768px) {
+      order: 1;
+      padding: 0;
+   }
 `;
 
 const HomePB = styled.div`
    position: relative;
-   order: 4;
+   order: 2;
+   padding: 0 0.6rem;
+
+   @media screen and (min-width: 768px) {
+      order: 3;
+      padding: 0;
+   }
+
+}
 `;
 
 const HomeLogoBox = styled.div`
@@ -71,15 +75,18 @@ const HomeLogoBox = styled.div`
    align-items: center;
    justify-content: space-between;
    min-width: 220px;
-   border: 0.8rem solid #dfe5e5;
-   padding: 0 0.8rem;
-   margin: 0.8rem;
+   border: 0.6rem solid #dfe5e5;
+   padding: 0;
+   margin: 0rem;
    order: 1;
+   background: #fefefe;
 
    @media screen and (min-width: 768px) {
+      border-width: 0.5rem;
       order: 3;
       margin: 0 0.8rem;
       width: 26%;
+      padding: 0 0.8rem;
    }
 
    img {

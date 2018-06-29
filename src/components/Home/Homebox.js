@@ -6,8 +6,46 @@ import Link from "gatsby-link";
 import HomeInfo from "./HomeInfo";
 
 const HomeboxDiv = styled.div`
-   height: 100%;
+   background: #fefefe;
+   border: 1px solid #ddd;
+   border-width: 1px 0 1px 0;
    cursor: pointer;
+   width: 100%;
+   margin: 0;
+   display: flex;
+   flex-direction: row-reverse;
+   padding: 0.5rem;
+   justify-content: space-between;
+   align-items: center;
+
+   &:first-child {
+      margin-bottom: 0.6rem;
+   }
+
+   @media screen and (min-width: 768px) {
+      height: 100%;
+      border: none;
+      padding: 0;
+
+      &:first-child {
+         margin-bottom: 0;
+      }
+   }
+
+   div.pic-container {
+      width: 250px;
+
+      @media screen and (min-width: 768px) {
+         height: 100%;
+         width: 100%;
+      }
+   }
+
+   div.homebox-pic-outer-wrapper {
+      @media screen and (min-width: 768px) {
+         height: 100%;
+      }
+   }
 
    div.homebtn {
       position: absolute;
@@ -52,23 +90,25 @@ export class Homebox extends Component {
          <HomeboxDiv
             onMouseEnter={this.handleBoxOver}
             onMouseLeave={this.handleBoxOut}
-            // onClick={() => this.props.handleBoxClick(this.props.url, this.props.locSlug)}
+            className="homebox-inner"
          >
-            <Img
-               sizes={this.props.image}
-               outerWrapperClassName={"homebox-pic-outer-wrapper"}
-               style={{ height: "100%" }}
-               imgStyle={{
-                  objectFit: "cover",
-                  width: "100%",
-                  height: "100%"
-               }}
-               alt=""
-            />
+            <div className="pic-container">
+               <Img
+                  sizes={this.props.image}
+                  outerWrapperClassName={"homebox-pic-outer-wrapper"}
+                  style={{ height: "100%" }}
+                  imgStyle={{
+                     objectFit: "cover",
+                     width: "100%",
+                     height: "100%"
+                  }}
+                  alt=""
+               />
+            </div>
             <HomeInfo title={this.props.title} overClass={overClass} />
 
             <div className="homebtn">
-               <Link to={`/${this.props.locSlug}/interiors`}>{this.props.title}</Link>
+               <Link to={this.props.url}>{this.props.title}</Link>
             </div>
          </HomeboxDiv>
       );

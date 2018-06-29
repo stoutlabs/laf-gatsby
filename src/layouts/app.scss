@@ -14,7 +14,7 @@ div {
 main {
    background: #fefefe;
    margin: 0 0 1rem;
-   padding: 0.5rem 0;
+   padding: 0;
    box-shadow: 1px 1px 6px 1px rgba(30, 30, 30, 0.2);
    width: 100%;
 
@@ -35,7 +35,10 @@ main {
    }
 
    &.homepage {
+      background: #dee4e5;
+
       @media screen and (min-width: 768px) {
+         background: #fefefe;
          padding: 0.8rem;
          width: auto;
          max-width: max-content;
@@ -52,6 +55,7 @@ main {
 
 main div.inner {
    background: transparent;
+
    border: 1px solid #eef1f1;
 
    @media screen and (min-width: 768px) {
@@ -61,11 +65,6 @@ main div.inner {
    &.home {
       border: none;
    }
-}
-
-/* homepage extra styles */
-div.homebox-pic-outer-wrapper {
-   height: 100%;
 }
 
 /* project intro stuff */
