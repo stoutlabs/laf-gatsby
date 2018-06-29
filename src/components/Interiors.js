@@ -23,6 +23,7 @@ const ProjIntroDiv = styled.div`
 
       @media screen and (min-width: 768px) {
          flex-direction: row;
+         width: 360px;
       }
    }
 
