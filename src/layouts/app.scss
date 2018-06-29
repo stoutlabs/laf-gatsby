@@ -60,6 +60,7 @@ main div.inner {
 
    @media screen and (min-width: 768px) {
       padding: 0;
+      overflow: hidden;
    }
 
    &.home {
