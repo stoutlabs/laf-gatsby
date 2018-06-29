@@ -149,7 +149,7 @@ export const ConnectedNav = props => {
                   exact
                   to={`/palm-beach/palm-beach-boutique`}
                   onClick={() => {
-                     props.hideNav;
+                     props.hideNav();
                      props.setLocation("palm-beach");
                   }}
                >
