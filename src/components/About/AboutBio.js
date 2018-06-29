@@ -18,16 +18,16 @@ const BioDiv = styled.div`
       text-transform: uppercase;
       text-align: center;
 
-      @media screen and (min-width: 769px) {
+      @media screen and (min-width: 768px) {
          font-size: 1.2rem;
       }
    }
 
    p {
       color: #999;
-      font-size: 0.9rem;
-      @media screen and (min-width: 769px) {
-         font-size: 1rem;
+      font-size: 1rem;
+      @media screen and (min-width: 768px) {
+         font-size: 1.1rem;
       }
    }
 `;

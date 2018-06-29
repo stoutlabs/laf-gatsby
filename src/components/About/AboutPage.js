@@ -25,8 +25,8 @@ const AboutPageDiv = styled.div`
       }
 
       p {
-         margin: 0 0 1rem;
-         line-height: 1.6;
+         margin: 0 0 1.5rem;
+         line-height: 1.7;
       }
    }
 

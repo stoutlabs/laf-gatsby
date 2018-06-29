@@ -4,7 +4,7 @@ import Link from "gatsby-link";
 import styled from "styled-components";
 
 const TypeToggler = styled.div`
-   margin: 1rem 0;
+   margin: 2.5rem 0 2rem;
    font-style: italic;
    color: #999;
    font-size: 0.9rem;
@@ -14,10 +14,6 @@ const TypeToggler = styled.div`
       a.active {
          font-weight: bold;
       }
-   }
-
-   @media screen and (min-width: 768px) {
-      margin: 2.5rem 0 2rem;
    }
 `;
 

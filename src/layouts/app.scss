@@ -14,7 +14,7 @@ div {
 main {
    background: #fefefe;
    margin: 0 0 1rem;
-   padding: 0;
+   padding: 0.8rem;
    box-shadow: 1px 1px 6px 1px rgba(30, 30, 30, 0.2);
    width: 100%;
 
@@ -100,6 +100,7 @@ div.grid-main {
 
    @media screen and (min-width: 960px) {
       padding: 1rem;
+      align-items: center;
    }
 }
 
@@ -110,25 +111,25 @@ div.grid-thumbs {
 div.gallery-grid {
    display: grid;
 
-   grid-template-columns: 33% 1fr;
-   grid-template-rows: auto 1fr;
+   grid-template-columns: 1fr;
+   grid-template-rows: 185px 1fr 265px;
+   padding: 0;
 
    grid-template-areas:
-      "labels grid-main"
-      "grid-thumbs grid-main";
+      "labels"
+      "grid-main"
+      "grid-thumbs";
 
-   //padding: 1rem;
-
-   @media screen and (max-width: 959px) {
-      grid-template-columns: 1fr;
-      grid-template-rows: 170px 1fr 250px;
-      padding: 1rem 0;
+   @media screen and (min-width: 960px) {
+      grid-template-columns: 360px 1fr;
+      grid-template-rows: auto 1fr;
 
       grid-template-areas:
-         "labels"
-         "grid-main"
-         "grid-thumbs";
+         "labels grid-main"
+         "grid-thumbs grid-main";
    }
+
+   //padding: 1rem;
 }
 /* END - gallery grid define */
 
@@ -151,10 +152,6 @@ div.gallery-grid {
 .thumbs {
    width: 330px;
    margin: 0 auto;
-
-   @media screen and (min-width: 960px) {
-      // margin: 0 0 0 1rem;
-   }
 }
 
 .gallery-thumbs {
