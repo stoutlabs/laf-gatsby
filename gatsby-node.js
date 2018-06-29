@@ -50,7 +50,7 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
       }
    `);
 
-   //console.log("allLocProjects", JSON.stringify(allLocProjects, null, 4));
+   //console.log("allLocs", JSON.stringify(allLocs, null, 4));
 
    // make all the pages
    allLocs.data.allPrismicLocations.edges.forEach(edge => {
