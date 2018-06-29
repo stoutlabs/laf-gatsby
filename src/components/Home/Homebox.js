@@ -90,7 +90,7 @@ export class Homebox extends Component {
          <HomeboxDiv
             onMouseEnter={this.handleBoxOver}
             onMouseLeave={this.handleBoxOut}
-            className="homebox-inner"
+            onClick={() => this.props.handleBoxClick(this.props.url, this.props.locSlug)}
          >
             <div className="pic-container">
                <Img

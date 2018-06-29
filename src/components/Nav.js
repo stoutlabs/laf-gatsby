@@ -5,7 +5,7 @@ import Link from "gatsby-link";
 import styled from "styled-components";
 
 import { setLocation } from "../actions";
-import { LocationToggler } from "./LocationToggler";
+import LocationToggler from "./LocationToggler";
 
 const StyledNav = styled.nav`
    width: 100%;
@@ -81,7 +81,6 @@ const isInterior = (match, location) => {
    //console.log("match:", match);
 
    let locArray = null;
-
    if (!match && !location) {
       return false;
    }
@@ -99,43 +98,16 @@ const isInterior = (match, location) => {
    return false;
 };
 
-const handleLocationClick = (locProps, locSlug) => {
-   const curUrl = locProps.location.pathname;
-   let urlArr = curUrl.split("/");
-   urlArr[1] = locSlug;
-
-   // if on 'interiors' pages (or on the boutique page), just go back to list page on loc change.
-   // otherwise just swap out the location in the url and go there.
-   const newUrl =
-      urlArr[2] === "interiors" || urlArr[2] === "palm-beach-boutique"
-         ? `/${locSlug}/interiors`
-         : urlArr.join("/");
-
-   if (curUrl !== newUrl) {
-      locProps.setLocation(locSlug);
-      locProps.history.push(newUrl);
-   }
-};
-
 export const ConnectedNav = props => {
-   // This (dirty hack) sets the correct location in redux if refreshing the page, or coming from an outside link.
-   // (Sorry, feel free to show me a better way!)
-   let curLoc = "";
-   if (props.theLocation === undefined) {
-      curLoc = props.location.pathname.split("/")[1];
-      curLoc = curLoc === "palm-beach" ? "palm-beach" : "new-york";
-      //curLoc = "new-york"; //just defaulting to NY on undefined (404 errors) - fixes nav bug on bad paths
-      props.setLocation(curLoc);
-   }
-
    return (
       <StyledNav>
          <LocationToggler
             theLocation={props.theLocation}
             locProps={props}
-            handleClick={handleLocationClick}
             hideNav={props.hideNav}
+            location={props.location}
          />
+
          <StyledUl className={props.status}>
             <li>
                <Link to="/" onClick={props.hideNav}>
@@ -172,13 +144,18 @@ export const ConnectedNav = props => {
                </Link>
             </li>
 
-            {props.theLocation === "palm-beach" && (
-               <li>
-                  <Link exact to={`/palm-beach/palm-beach-boutique`} onClick={props.hideNav}>
-                     Boutique
-                  </Link>
-               </li>
-            )}
+            <li>
+               <Link
+                  exact
+                  to={`/palm-beach/palm-beach-boutique`}
+                  onClick={() => {
+                     props.hideNav;
+                     props.setLocation("palm-beach");
+                  }}
+               >
+                  Boutique
+               </Link>
+            </li>
          </StyledUl>
       </StyledNav>
    );
