@@ -2,42 +2,43 @@ import React from "react";
 import styled from "styled-components";
 import Img from "gatsby-image";
 
-const StyledTextWithImage = styled.div`
+const StyledImageCentered = styled.div`
   margin: 0 0 3rem;
   padding: 3rem 0 0;
   border-top: 1px solid #ddd;
+
+  h3 {
+    margin-bottom: 1rem;
+  }
 
   div.slice-inner {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0 1rem;
-    text-align: center;
 
     @media screen and (min-width: 768px) {
       flex-direction: row;
-      text-align: left;
     }
 
     div.slice-text_content {
-      margin: 0 0 1.5rem 0;
+      margin: 0 1rem 0 0;
 
       @media screen and (min-width: 768px) {
         width: 60%;
-        margin: 0 2rem 0 0;
       }
 
       p {
-        font-size: 1.2rem;
-        line-height: 1.6;
+        font-size: 1.15rem;
       }
     }
 
     div.slice-image {
       height: 100%;
+      margin: 0 auto;
 
       @media screen and (min-width: 768px) {
-        width: 40%;
+        width: 80%;
       }
 
       div.slice-pic-outer-wrapper {
@@ -48,33 +49,29 @@ const StyledTextWithImage = styled.div`
   }
 `;
 
-export const SliceTextImage = ({ textWithImage }) => {
+export const SliceImageCentered = ({ content }) => {
   return (
-    <StyledTextWithImage className="slice-textWithImage">
+    <StyledImageCentered className="slice-imageCentered">
       <div className="slice-inner">
-        <div className="slice-text_content">
-          <div dangerouslySetInnerHTML={{ __html: textWithImage.content.html }} />
-        </div>
-
         <div className="slice-image">
           <Img
-            sizes={textWithImage.image.localFile.childImageSharp.sizes}
+            sizes={content.image.localFile.childImageSharp.sizes}
             outerWrapperClassName={"slice-pic-outer-wrapper"}
             className="slice-pic"
-            position="absolute"
-            style={{ maxHeight: "70vh", height: "100%" }}
-            imgStyle={{
-              maxWidth: "100%",
-              width: "100%",
-              height: "100%",
-              objectFit: "contain"
-            }}
+            position="relative"
+            // style={{ maxHeight: "70vh", height: "100%" }}
+            // imgStyle={{
+            //   maxWidth: "100%",
+            //   width: "100%",
+            //   height: "100%",
+            //   objectFit: "contain"
+            // }}
             alt=""
           />
         </div>
       </div>
-    </StyledTextWithImage>
+    </StyledImageCentered>
   );
 };
 
-export default SliceTextImage;
+export default SliceImageCentered;
