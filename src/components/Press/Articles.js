@@ -13,7 +13,7 @@ const StyledArticles = styled.div`
     display: flex;
     flex-direction: column;
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 600px) {
       flex-direction: row;
       flex-wrap: wrap;
     }
@@ -26,7 +26,7 @@ const StyledArticles = styled.div`
 
     border: 1px solid #eee;
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 600px) {
       width: calc(50% - 1.6rem);
     }
 

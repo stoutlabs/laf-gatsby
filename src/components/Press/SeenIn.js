@@ -7,11 +7,11 @@ const StyledSeens = styled.div`
   padding-bottom: 2rem;
   border-bottom: 1px solid #eee;
 
-  div.seen-in-logos {
+  div.seen-in-list {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
 
     @media screen and (min-width: 500px) {
       flex-direction: row;
@@ -35,7 +35,7 @@ export const AsSeenIn = ({ items }) => {
   return (
     <StyledSeens className="seen-in">
       <h3>As Seen In:</h3>
-      <div className="seen-in-logos">
+      <div className="seen-in-list">
         {items.map(item => {
           if (item.logo_image.localFile.childImageSharp !== null) {
             return (
@@ -47,7 +47,6 @@ export const AsSeenIn = ({ items }) => {
                   position="relative"
                   style={{ height: "auto", width: "auto" }}
                   imgStyle={{
-                    maxWidth: "260px",
                     width: "100%",
                     height: "auto",
                     objectFit: "contain"

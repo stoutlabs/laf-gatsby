@@ -11,34 +11,49 @@ const StyledAwards = styled.div`
 
     @media screen and (min-width: 768px) {
       flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     div.award {
-      border-bottom: 1px solid #eee;
+      align-items: center;
+      border: 1px solid #efefef;
       display: flex;
       flex-direction: column;
+      justify-content: center;
       margin: 0 0 1rem;
-      padding: 0 0 1rem;
+      padding: 0;
       width: 100%;
 
       @media screen and (min-width: 768px) {
         align-items: center;
-        width: calc(50% - 1.5rem);
+        margin: 0 1rem 2rem;
+        justify-content: space-between;
+        width: calc(50% - 2rem);
       }
 
       div.award-image {
-        width: 150px;
+        padding: 1rem;
+        width: 250px;
         height: auto;
 
         @media screen and (min-width: 768px) {
-          align-items: center;
-          width: 200px;
+          justify-self: center;
         }
       }
 
       div.award-text {
+        border-top: 1px solid #f0f0f0;
+        background: rgba(180, 180, 180, 0.1);
         padding: 1rem;
+        margin: 0;
         text-align: center;
+        width: 100%;
+
+        p {
+          font-size: 0.9rem;
+          text-transform: uppercase;
+        }
       }
     }
   }
@@ -54,23 +69,39 @@ export const Awards = ({ awards }) => {
           return (
             <div className="award" key={award.award_title}>
               <div className="award-image">
-                <Img
-                  sizes={award.award_image.localFile.childImageSharp.sizes}
-                  outerWrapperClassName={"award-pic-outer-wrapper"}
-                  className="award-pic-wrapper"
-                  position="relative"
-                  style={{ padding: "1rem" }}
-                  imgStyle={{
-                    maxWidth: "100%",
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "contain"
-                  }}
-                  alt=""
-                />
+                <a
+                  href={award.award_link.url}
+                  title={`Visit: ${award.award_title}`}
+                  rel="noopener nofollow"
+                  target="_blank"
+                >
+                  <Img
+                    sizes={award.award_image.localFile.childImageSharp.sizes}
+                    outerWrapperClassName={"award-pic-outer-wrapper"}
+                    className="award-pic-wrapper"
+                    position="relative"
+                    style={{ padding: "1rem" }}
+                    imgStyle={{
+                      maxWidth: "100%",
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain"
+                    }}
+                    alt=""
+                  />
+                </a>
               </div>
               <div className="award-text">
-                <p>{award.award_title}</p>
+                <p>
+                  <a
+                    href={award.award_link.url}
+                    title={`Visit: ${award.award_title}`}
+                    rel="noopener nofollow"
+                    target="_blank"
+                  >
+                    {award.award_title}
+                  </a>
+                </p>
               </div>
             </div>
           );
