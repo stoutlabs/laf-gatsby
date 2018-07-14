@@ -36,6 +36,15 @@ export const query = graphql`
 
         books {
           book_title
+          book_image {
+            localFile {
+              childImageSharp {
+                sizes(maxWidth: 450, quality: 81) {
+                  ...GatsbyImageSharpSizes
+                }
+              }
+            }
+          }
         }
 
         awards {
