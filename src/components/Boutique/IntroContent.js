@@ -117,7 +117,7 @@ export const IntroContent = props => {
           <p className="hours">
             <b>HOURS:</b>
             <br />
-            Mon thru Fri, 9am - 4pm
+            Mon thru Sat, 10am - 5pm
           </p>
           <p className="addy">
             <b>ADDRESS:</b>

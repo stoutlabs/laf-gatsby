@@ -5,6 +5,7 @@ import styled from "styled-components";
 import SEO from "../../components/SEO";
 import IntroContent from "../../components/Boutique/IntroContent";
 import SliceTextImage from "../../components/Boutique/SliceTextImage";
+import SliceMultiImage from "../../components/Boutique/SliceMultiImage";
 import SliceTextOnly from "../../components/Boutique/SliceTextOnly";
 import SliceQuotation from "../../components/Boutique/SliceQuotation";
 import SliceImageCentered from "../../components/Boutique/SliceImageCentered";
@@ -103,6 +104,10 @@ export const BoutiquePage = props => {
           if ("imageCentered" in slice) {
             return <SliceImageCentered content={slice.imageCentered} key={slice.id} />;
           }
+
+          if ("multiImages" in slice) {
+            return <SliceMultiImage content={slice.multiImages} key={slice.id} />;
+          }
         })}
       </SlicesContainer>
     </StyledBoutiquePage>
@@ -176,6 +181,21 @@ export const query = graphql`
             id
             imageCentered: primary {
               image {
+                localFile {
+                  childImageSharp {
+                    sizes(maxWidth: 650, quality: 81) {
+                      ...GatsbyImageSharpSizes
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          ... on PrismicPbBoutiqueBodyMultiImage {
+            id
+            multiImages: items {
+              images {
                 localFile {
                   childImageSharp {
                     sizes(maxWidth: 650, quality: 81) {

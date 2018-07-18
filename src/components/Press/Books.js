@@ -19,6 +19,7 @@ const StyledBooks = styled.div`
     @media screen and (min-width: 650px) {
       flex-direction: row;
       flex-wrap: wrap;
+      justify-content: space-evenly;
     }
 
     div.book {
@@ -40,6 +41,7 @@ const StyledBooks = styled.div`
         display: inline-block;
         text-decoration: underline;
         font-size: 0.95rem;
+        color: #888;
       }
     }
   }
