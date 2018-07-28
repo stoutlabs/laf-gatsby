@@ -51,7 +51,7 @@ export const SliceMultiImage = ({ content }) => {
       <div className="slice-inner">
         {content.map(({ images: image }) => {
           return (
-            <div className="slice-image">
+            <div className="slice-image" key={image.localFile.id}>
               <Img
                 sizes={image.localFile.childImageSharp.sizes}
                 outerWrapperClassName={"slice-pic-outer-wrapper"}

@@ -64,6 +64,7 @@ const SlicesContainer = styled.div`
 
 export const BoutiquePage = props => {
   const content = props.data.prismicPbBoutique.data;
+  const { hours, address, google_maps, phone, email } = content;
 
   // SEO stuff
   const pageTitle = `Leta Austin Foster Interior Design | Palm Beach Boutique`;
@@ -80,7 +81,14 @@ export const BoutiquePage = props => {
     <StyledBoutiquePage className="pb-boutique">
       <SEO postData={seoData} />
       <h2>Leta Austin Foster Boutique</h2>
-      <IntroContent content={content.intro.html} />
+      <IntroContent
+        hours={hours}
+        address={address}
+        google_maps={google_maps}
+        phone={phone}
+        email={email}
+        content={content.intro.html}
+      />
 
       <SlicesContainer className="slices">
         {content.body.map(slice => {
@@ -124,6 +132,16 @@ export const query = graphql`
         title {
           text
         }
+
+        hours
+        address {
+          html
+        }
+        google_maps {
+          url
+        }
+        phone
+        email
 
         intro {
           html
@@ -197,6 +215,7 @@ export const query = graphql`
             multiImages: items {
               images {
                 localFile {
+                  id
                   childImageSharp {
                     sizes(maxWidth: 650, quality: 81) {
                       ...GatsbyImageSharpSizes

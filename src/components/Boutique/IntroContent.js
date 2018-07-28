@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMapMarkerAlt, faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
 
 const StyledIntro = styled.div`
   margin: 0 auto;
@@ -81,6 +83,11 @@ const StyledIntro = styled.div`
         font-size: 1.15rem;
         margin-bottom: 1.5rem;
 
+        &.gmap,
+        &.call {
+          margin-bottom: 0.5rem;
+        }
+
         &:last-child {
           margin-bottom: 0;
         }
@@ -92,6 +99,10 @@ const StyledIntro = styled.div`
 
           &:hover {
             color: #444;
+          }
+
+          svg {
+            margin-right: 0.3rem;
           }
         }
 
@@ -117,25 +128,38 @@ export const IntroContent = props => {
           <p className="hours">
             <b>HOURS:</b>
             <br />
-            Mon thru Sat, 10am - 5pm
+            {props.hours}
           </p>
           <p className="addy">
             <b>ADDRESS:</b>
             <br />
-            64 Via Mizner <br />
-            Palm Beach, Florida 33480 <br />
+            <span
+              className="intro-content"
+              dangerouslySetInnerHTML={{ __html: props.address.html }}
+            />
+          </p>
+
+          <p className="gmap">
             <a
-              href="https://goo.gl/maps/ASVPa6ZZfaK2"
+              href={props.google_maps.url}
               rel="noopener noreferrer"
               title="View on Google Maps"
               target="_blank"
             >
-              > View Google Map
+              <FontAwesomeIcon icon={faMapMarkerAlt} /> View Google Map
             </a>
           </p>
-          <p className="call">561.655.7367</p>
+
+          <p className="call">
+            <a href={`tel: ${props.phone}`}>
+              <FontAwesomeIcon icon={faPhone} /> {props.phone}
+            </a>
+          </p>
+
           <p className="email">
-            <a href="mailto:jenny@letaaustinfoster.com">Email</a>
+            <a href={`mailto:${props.email}`}>
+              <FontAwesomeIcon icon={faEnvelope} /> Email
+            </a>
           </p>
         </div>
       </div>
