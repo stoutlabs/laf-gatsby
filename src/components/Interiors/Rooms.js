@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import Img from "gatsby-image";
 import Link from "gatsby-link";
 import styled from "styled-components";
 
-import SEO from "./SEO";
-import TypeNav from "./GridGallery/TypeNav";
+import SEO from "../SEO";
+import IntroPic from "./IntroPic";
+import TypeNav from "../GridGallery/TypeNav";
 
 const ProjIntroDiv = styled.div`
   display: flex;
@@ -34,17 +34,6 @@ const ProjIntroDiv = styled.div`
       }
     }
   }
-
-  div.proj-intro-pic {
-    width: 100%;
-    align-self: center;
-    padding: 1rem;
-
-    @media screen and (min-width: 768px) {
-      width: 66%;
-      ${"" /* margin: 1rem; */};
-    }
-  }
 `;
 
 const StyledH3 = styled.h3`
@@ -69,24 +58,25 @@ const StyledUl = styled.ul`
   }
 `;
 
-export class Interiors extends Component {
-  state = { projects: [], hasContent: false, images: [], content: null };
+export class Rooms extends Component {
+  state = { rooms: [], hasContent: false, images: [], content: null };
 
   componentDidMount = () => {
     this.setState(() => {
-      return { projects: this.props.data.prismicLocations.data.locprojects, hasContent: true };
+      return { rooms: this.props.data.prismicLocations.data.rooms_list, hasContent: true };
     });
   };
 
   render() {
     const locationForTitle = this.props.data.prismicLocations.data.title.text;
+
     const seoImage = this.props.data.prismicLocations.data.intro_image.localFile.childImageSharp
       .sizes.src;
     const seoData = {
       frontmatter: {
-        title: `Leta Austin Foster Interior Design • ${locationForTitle} | Interiors`,
-        slug: `${this.props.pathContext.locuid}/interiors/projects/`,
-        description: `Have a look at all of the interior design projects via our ${locationForTitle} office.`
+        title: `Leta Austin Foster Interior Design • ${locationForTitle} | Rooms`,
+        slug: `${this.props.pathContext.locuid}/interiors/rooms/`,
+        description: `Here we have sorted the photos from our interior design projects into rooms. These are from our ${locationForTitle} office.`
       }
     };
 
@@ -97,60 +87,46 @@ export class Interiors extends Component {
         <div className="proj-intro-details">
           <TypeNav />
           <div className={`gallery-info ${this.state.hasContent ? "ready" : ""}`}>
-            <StyledH3>Projects</StyledH3>
+            <StyledH3>Rooms</StyledH3>
             {this.state.hasContent ? (
               <StyledUl>
-                {this.state.projects.map((project, index) => {
+                {this.state.rooms.map(({ room }, index) => {
                   return (
                     <li key={index}>
                       <Link
-                        to={`/${this.props.data.prismicLocations.uid}/interiors/${
-                          project.theproject.document[0].uid
+                        to={`/${this.props.data.prismicLocations.uid}/interiors/room/${
+                          room.document[0].uid
                         }`}
                       >
-                        {project.theproject.document[0].data.title.text}
+                        {room.document[0].data.title.text}
                       </Link>
                     </li>
                   );
                 })}
               </StyledUl>
             ) : (
-              <p>Loading... </p>
+              <p>Loading...</p>
             )}
           </div>
         </div>
 
-        <div className="proj-intro-pic">
-          <Img
-            sizes={
-              this.props.data.prismicLocations.data.intro_image.localFile.childImageSharp.sizes
-            }
-            position="absolute"
-            style={{ maxHeight: "70vh", height: "100%" }}
-            imgStyle={{
-              maxWidth: "100%",
-              width: "100%",
-              objectFit: "contain"
-            }}
-            alt=""
-          />
-        </div>
+        <IntroPic intro_image={this.props.data.prismicLocations.data.intro_image} />
       </ProjIntroDiv>
     );
   }
 }
 
-export default Interiors;
+export default Rooms;
 
 export const query = graphql`
-  query AllInteriorsListQuery($uid: String!) {
+  query AllRoomsListQuery($uid: String!) {
     prismicLocations(uid: { eq: $uid }) {
       uid
       data {
-        locprojects {
-          theproject {
+        rooms_list {
+          room {
             __typename
-            ... on theproject_2 {
+            ... on room_2 {
               document {
                 uid
                 data {

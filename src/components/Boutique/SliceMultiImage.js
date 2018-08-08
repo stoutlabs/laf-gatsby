@@ -45,7 +45,6 @@ const StyledMultiImage = styled.div`
 `;
 
 export const SliceMultiImage = ({ content }) => {
-  console.log(content);
   return (
     <StyledMultiImage className="slice-multiImage">
       <div className="slice-inner">
