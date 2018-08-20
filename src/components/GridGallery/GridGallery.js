@@ -56,7 +56,7 @@ export class GridGallery extends Component {
       <div className="gallery-grid">
         <div className="labels has-text-centered">
           <InfoPanel
-            content={this.state.content}
+            content={content}
             title={this.state.content ? this.state.content.title : "Loading..."}
             label={this.props.label}
           />
