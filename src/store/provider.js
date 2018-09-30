@@ -8,20 +8,29 @@ class AppProvider extends Component {
     super(props);
 
     this.state = {
-      location: this.locationListener(),
+      location: "",
       toggleLocation: this.toggleLocation
     };
   }
 
-  locationListener = () => {
-    console.log("loclisten:", window.location.pathname);
+  componentDidMount() {
     let locSlug = window.location.pathname.split("/")[1];
 
     if (locSlug !== "new-york" && locSlug !== "palm-beach") {
       locSlug = "new-york";
     }
-    return locSlug;
-  };
+    this.setState(() => ({ location: locSlug }));
+  }
+
+  // locationListener = () => {
+  //   console.log("loclisten:", window.location.pathname);
+  //   let locSlug = window.location.pathname.split("/")[1];
+
+  //   if (locSlug !== "new-york" && locSlug !== "palm-beach") {
+  //     locSlug = "new-york";
+  //   }
+  //   return locSlug;
+  // };
 
   toggleLocation = location => {
     this.setState(state => ({ location: location }));
