@@ -1,103 +1,85 @@
 import React from "react";
-import { connect } from "react-redux";
 import styled from "styled-components";
+import { navigate } from "@reach/router";
 
-import { setLocation } from "../actions/index";
+//import Provider from "../store/provider";
+import AppConsumer from "../store/consumer";
 
 const StyledToggler = styled.div`
-   margin: -10px 0 0.4rem;
-   padding: 0;
-   display: block;
+  margin: -10px 0 0.4rem;
+  padding: 0;
+  display: block;
 
-   a {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-family: "Vollkorn", serif;
-      text-transform: uppercase;
-      text-decoration: none;
-      letter-spacing: 2px;
+  a {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-family: "Vollkorn", serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 2px;
 
-      color: #999;
+    color: #999;
 
-      &.active {
-         color: #333;
-      }
+    &.active {
+      color: #333;
+    }
 
-      &:first-child {
-         margin-right: 1rem;
-      }
-   }
+    &:first-child {
+      margin-right: 1rem;
+    }
+  }
 `;
 
-const handleLocationClick = (locProps, locSlug) => {
-   const curUrl = locProps.location.pathname;
-   let urlArr = curUrl.split("/");
-   urlArr[1] = locSlug;
+const handleLocationToggle = (contextToggleFn, locProps, slug) => {
+  const curUrl = locProps.pathname;
+  let urlArr = curUrl.split("/");
+  urlArr[1] = slug;
 
-   // if on 'interiors' pages (or on the boutique page), go back to list page on loc change.
-   // otherwise just swap out the location in the url and go there.
-   const newUrl =
-      urlArr[2] === "interiors" || urlArr[2] === "palm-beach-boutique"
-         ? `/${locSlug}/interiors`
-         : urlArr.join("/");
+  const newUrl =
+    urlArr[2] === "interiors" || urlArr[2] === "palm-beach-boutique"
+      ? `/${slug}/interiors`
+      : urlArr.join("/");
 
-   if (curUrl !== newUrl) {
-      locProps.setLocation(locSlug);
-      locProps.history.push(newUrl);
-   }
+  contextToggleFn(slug);
+
+  navigate(newUrl);
 };
 
-export const ConnectedLocationToggler = props => {
-   // This (dirty hack) sets the correct location in redux if refreshing the page, or coming from an outside link.
-   // (Sorry, feel free to show me a better way!)
-   let curLoc = "";
-   if (props.theLocation === undefined) {
-      curLoc = props.location.pathname.split("/")[1];
-      curLoc = curLoc === "palm-beach" ? "palm-beach" : "new-york";
-      props.setLocation(curLoc);
-   }
-
-   return (
-      <StyledToggler className="location-toggler">
-         <a
-            onClick={() => {
-               if (props.locProps.location.pathname !== "/press") {
-                  handleLocationClick(props.locProps, "new-york");
-                  props.hideNav();
-               }
+export const LocationToggler = props => {
+  return (
+    <AppConsumer>
+      {state => (
+        <StyledToggler className="location-toggler">
+          <a
+            onClick={e => {
+              e.preventDefault();
+              if (props.location.pathname !== "/press") {
+                handleLocationToggle(state.toggleLocation, props.location, "new-york");
+                props.hideNav();
+              }
             }}
-            className={props.theLocation === "new-york" ? "active" : ""}
-         >
+            className={state.location === "new-york" ? "active" : ""}
+            href={`/new-york/${props.location.pathname.split("/")[2]}`}
+          >
             New York
-         </a>
-         <a
-            onClick={() => {
-               if (props.locProps.location.pathname !== "/press") {
-                  handleLocationClick(props.locProps, "palm-beach");
-                  props.hideNav();
-               }
+          </a>
+          <a
+            onClick={e => {
+              e.preventDefault();
+              if (props.location.pathname !== "/press") {
+                handleLocationToggle(state.toggleLocation, props.location, "palm-beach");
+                props.hideNav();
+              }
             }}
-            className={props.theLocation === "palm-beach" ? "active" : ""}
-         >
+            className={state.location === "palm-beach" ? "active" : ""}
+            href={`/palm-beach/${props.location.pathname.split("/")[2]}`}
+          >
             Palm Beach
-         </a>
-      </StyledToggler>
-   );
+          </a>
+        </StyledToggler>
+      )}
+    </AppConsumer>
+  );
 };
-
-const mapStateToProps = state => {
-   return { theLocation: state.theLocation };
-};
-
-const mapDispatchToProps = dispatch => {
-   return {
-      setLocation: theLocation => dispatch(setLocation(theLocation))
-   };
-};
-
-const LocationToggler = connect(
-   mapStateToProps,
-   mapDispatchToProps
-)(ConnectedLocationToggler);
 
 export default LocationToggler;

@@ -3,12 +3,7 @@ import styled from "styled-components";
 
 const StyledRightDiv = styled.div`
   color: #999;
-  opacity: 0;
   transition: opacity 400ms ease-in 150ms;
-
-  &.ready {
-    opacity: 1;
-  }
 
   h2 {
     border: 3px double #eff2f2;
@@ -53,9 +48,9 @@ const StyledRightDiv = styled.div`
   }
 `;
 
-export const ContactRight = ({ contactInfo, isReady }) => {
+export const ContactRight = ({ contactInfo }) => {
   return (
-    <StyledRightDiv className={`contact-right ${isReady ? "ready" : ""}`}>
+    <StyledRightDiv className={`contact-right`}>
       <h2>{contactInfo.title}</h2>
       <p dangerouslySetInnerHTML={{ __html: contactInfo.address }} />
 

@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-import GridGallery from "../GridGallery/GridGallery";
+import { graphql } from "gatsby";
 
+import GridGallery from "../GridGallery/GridGallery";
 import SEO from "../SEO";
+import Layout from "../Layout";
 
 export class ViewProject extends Component {
-  state = { hasContent: false, images: [], content: null };
+  state = { activeItem: this.props.data.prismicProjects.data.uid };
 
-  componentDidMount = () => {
+  render() {
     const project = this.props.data.prismicProjects.data;
 
     //separating images and content here
@@ -18,47 +20,31 @@ export class ViewProject extends Component {
       return picture.localFile.childImageSharp;
     });
 
-    this.setState(() => {
-      return {
-        images: theImages,
-        thumbs: theThumbs,
-        content: theContent,
-        activeItem: project.uid
-      };
-    });
-  };
-
-  render() {
-    // console.log("props:", this.props);
     // SEO stuff
     const postImage = this.props.data.prismicProjects.data.pictures[0].picture.localFile
-      .childImageSharp.sizes.src;
+      .childImageSharp.fluid.src;
     const pageTitle = `Leta Austin Foster Interior Design | ${
       this.props.data.prismicProjects.data.title.text
     }`;
     const postData = {
       frontmatter: {
         title: pageTitle,
-        slug: `${this.props.pathContext.locuid}/interiors/${this.props.data.prismicProjects.uid}`
+        slug: `${this.props.pageContext.locuid}/interiors/${this.props.data.prismicProjects.uid}`
       }
     };
 
     return (
-      <div>
-        <SEO postData={postData} postImage={postImage} isProjectPage={true} />
-        {this.state.content ? (
+      <Layout location={this.props.location}>
+        <div>
+          <SEO postData={postData} postImage={postImage} isProjectPage={true} />
           <GridGallery
-            images={this.state.images}
-            thumbs={this.state.thumbs}
-            content={this.state.content}
+            images={theImages}
+            thumbs={theThumbs}
+            content={theContent}
             label={"Projects"}
           />
-        ) : (
-          <div>
-            <p>Loading...</p>
-          </div>
-        )}
-      </div>
+        </div>
+      </Layout>
     );
   }
 }
@@ -81,8 +67,8 @@ export const query = graphql`
               childImageSharp {
                 id
 
-                sizes(maxWidth: 800, quality: 81) {
-                  ...GatsbyImageSharpSizes
+                fluid(maxWidth: 800, quality: 81) {
+                  ...GatsbyImageSharpFluid
                 }
               }
             }
@@ -94,8 +80,8 @@ export const query = graphql`
             localFile {
               childImageSharp {
                 id
-                resolutions(width: 100, height: 100) {
-                  ...GatsbyImageSharpResolutions
+                fixed(width: 100, height: 100) {
+                  ...GatsbyImageSharpFixed
                 }
               }
             }

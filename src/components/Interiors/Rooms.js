@@ -1,10 +1,12 @@
-import React, { Component } from "react";
-import Link from "gatsby-link";
+import React from "react";
+import { Link } from "gatsby";
 import styled from "styled-components";
+import { graphql } from "gatsby";
 
 import SEO from "../SEO";
 import IntroPic from "./IntroPic";
 import TypeNav from "../GridGallery/TypeNav";
+import Layout from "../Layout";
 
 const ProjIntroDiv = styled.div`
   display: flex;
@@ -23,15 +25,6 @@ const ProjIntroDiv = styled.div`
     @media screen and (min-width: 768px) {
       flex-direction: row;
       width: 360px;
-    }
-
-    div.gallery-info {
-      opacity: 0;
-      transition: opacity 500ms ease-out 300ms;
-
-      &.ready {
-        opacity: 1;
-      }
     }
   }
 `;
@@ -58,63 +51,52 @@ const StyledUl = styled.ul`
   }
 `;
 
-export class Rooms extends Component {
-  state = { rooms: [], hasContent: false, images: [], content: null };
+const Rooms = props => {
+  const locationForTitle = props.data.prismicLocations.data.title.text;
 
-  componentDidMount = () => {
-    this.setState(() => {
-      return { rooms: this.props.data.prismicLocations.data.rooms_list, hasContent: true };
-    });
+  const seoImage = props.data.prismicLocations.data.intro_image.localFile.childImageSharp.sizes.src;
+  const seoData = {
+    frontmatter: {
+      title: `Leta Austin Foster Interior Design • ${locationForTitle} | Rooms`,
+      slug: `${props.pageContext.locuid}/interiors/rooms/`,
+      description: `Here we have sorted the photos from our interior design projects into rooms. These are from our ${locationForTitle} office.`
+    }
   };
+  const rooms = props.data.prismicLocations.data.rooms_list;
 
-  render() {
-    const locationForTitle = this.props.data.prismicLocations.data.title.text;
-
-    const seoImage = this.props.data.prismicLocations.data.intro_image.localFile.childImageSharp
-      .sizes.src;
-    const seoData = {
-      frontmatter: {
-        title: `Leta Austin Foster Interior Design • ${locationForTitle} | Rooms`,
-        slug: `${this.props.pathContext.locuid}/interiors/rooms/`,
-        description: `Here we have sorted the photos from our interior design projects into rooms. These are from our ${locationForTitle} office.`
-      }
-    };
-
-    return (
+  return (
+    <Layout location={props.location}>
       <ProjIntroDiv className="proj-intro">
         <SEO postData={seoData} postImage={seoImage} />
 
         <div className="proj-intro-details">
           <TypeNav />
-          <div className={`gallery-info ${this.state.hasContent ? "ready" : ""}`}>
+          <div className={`gallery-info`}>
             <StyledH3>Rooms</StyledH3>
-            {this.state.hasContent ? (
-              <StyledUl>
-                {this.state.rooms.map(({ room }, index) => {
-                  return (
-                    <li key={index}>
-                      <Link
-                        to={`/${this.props.data.prismicLocations.uid}/interiors/room/${
-                          room.document[0].uid
-                        }`}
-                      >
-                        {room.document[0].data.title.text}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </StyledUl>
-            ) : (
-              <p>Loading...</p>
-            )}
+
+            <StyledUl>
+              {rooms.map(({ room }, index) => {
+                return (
+                  <li key={index}>
+                    <Link
+                      to={`/${props.data.prismicLocations.uid}/interiors/room/${
+                        room.document[0].uid
+                      }`}
+                    >
+                      {room.document[0].data.title.text}
+                    </Link>
+                  </li>
+                );
+              })}
+            </StyledUl>
           </div>
         </div>
 
-        <IntroPic intro_image={this.props.data.prismicLocations.data.intro_image} />
+        <IntroPic intro_image={props.data.prismicLocations.data.intro_image} />
       </ProjIntroDiv>
-    );
-  }
-}
+    </Layout>
+  );
+};
 
 export default Rooms;
 

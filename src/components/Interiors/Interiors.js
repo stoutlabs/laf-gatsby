@@ -1,8 +1,10 @@
-import React, { Component } from "react";
-import Link from "gatsby-link";
+import React from "react";
+import { Link } from "gatsby";
 import styled from "styled-components";
+import { graphql } from "gatsby";
 
 import SEO from "../SEO";
+import Layout from "../Layout";
 import IntroPic from "./IntroPic";
 import TypeNav from "../GridGallery/TypeNav";
 
@@ -23,15 +25,6 @@ const ProjIntroDiv = styled.div`
     @media screen and (min-width: 768px) {
       flex-direction: row;
       width: 360px;
-    }
-
-    div.gallery-info {
-      opacity: 0;
-      transition: opacity 500ms ease-out 300ms;
-
-      &.ready {
-        opacity: 1;
-      }
     }
   }
 `;
@@ -58,62 +51,52 @@ const StyledUl = styled.ul`
   }
 `;
 
-export class Interiors extends Component {
-  state = { projects: [], hasContent: false, images: [], content: null };
-
-  componentDidMount = () => {
-    this.setState(() => {
-      return { projects: this.props.data.prismicLocations.data.locprojects, hasContent: true };
-    });
+const Interiors = props => {
+  const locationForTitle = props.data.prismicLocations.data.title.text;
+  const seoImage = props.data.prismicLocations.data.intro_image.localFile.childImageSharp.sizes.src;
+  const seoData = {
+    frontmatter: {
+      title: `Leta Austin Foster Interior Design • ${locationForTitle} | Interiors`,
+      slug: `${props.pageContext.locuid}/interiors/projects/`,
+      description: `Have a look at all of the interior design projects via our ${locationForTitle} office.`
+    }
   };
 
-  render() {
-    const locationForTitle = this.props.data.prismicLocations.data.title.text;
-    const seoImage = this.props.data.prismicLocations.data.intro_image.localFile.childImageSharp
-      .sizes.src;
-    const seoData = {
-      frontmatter: {
-        title: `Leta Austin Foster Interior Design • ${locationForTitle} | Interiors`,
-        slug: `${this.props.pathContext.locuid}/interiors/projects/`,
-        description: `Have a look at all of the interior design projects via our ${locationForTitle} office.`
-      }
-    };
+  const projects = props.data.prismicLocations.data.locprojects;
 
-    return (
+  return (
+    <Layout location={props.location}>
       <ProjIntroDiv className="proj-intro">
         <SEO postData={seoData} postImage={seoImage} />
 
         <div className="proj-intro-details">
           <TypeNav />
-          <div className={`gallery-info ${this.state.hasContent ? "ready" : ""}`}>
+          <div className={`gallery-info`}>
             <StyledH3>Projects</StyledH3>
-            {this.state.hasContent ? (
-              <StyledUl>
-                {this.state.projects.map((project, index) => {
-                  return (
-                    <li key={index}>
-                      <Link
-                        to={`/${this.props.data.prismicLocations.uid}/interiors/${
-                          project.theproject.document[0].uid
-                        }`}
-                      >
-                        {project.theproject.document[0].data.title.text}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </StyledUl>
-            ) : (
-              <p>Loading... </p>
-            )}
+
+            <StyledUl>
+              {projects.map((project, index) => {
+                return (
+                  <li key={index}>
+                    <Link
+                      to={`/${props.data.prismicLocations.uid}/interiors/${
+                        project.theproject.document[0].uid
+                      }`}
+                    >
+                      {project.theproject.document[0].data.title.text}
+                    </Link>
+                  </li>
+                );
+              })}
+            </StyledUl>
           </div>
         </div>
 
-        <IntroPic intro_image={this.props.data.prismicLocations.data.intro_image} />
+        <IntroPic intro_image={props.data.prismicLocations.data.intro_image} />
       </ProjIntroDiv>
-    );
-  }
-}
+    </Layout>
+  );
+};
 
 export default Interiors;
 

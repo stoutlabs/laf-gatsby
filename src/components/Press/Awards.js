@@ -72,7 +72,7 @@ export const Awards = ({ awards }) => {
                 <a
                   href={award.award_link.url}
                   title={`Visit: ${award.award_title}`}
-                  rel="noopener nofollow"
+                  rel="noopener noreferrer"
                   target="_blank"
                 >
                   <Img
@@ -96,7 +96,7 @@ export const Awards = ({ awards }) => {
                   <a
                     href={award.award_link.url}
                     title={`Visit: ${award.award_title}`}
-                    rel="noopener nofollow"
+                    rel="noopener noreferrer"
                     target="_blank"
                   >
                     {award.award_title}

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "gatsby";
 import styled from "styled-components";
 
 import Nav from "./Nav";
@@ -92,8 +92,8 @@ export class Header extends Component {
   };
 
   render() {
-    const loc = this.props.location.pathname.slice(1);
-    const locStyle = loc === "" ? "home" : "";
+    const loc = this.props.location.pathname;
+    const locStyle = loc === "/" ? "home" : "";
 
     return (
       <StyledHeader className={locStyle}>
@@ -108,7 +108,11 @@ export class Header extends Component {
           location={this.props.location}
         />
 
-        <Nav status={this.state.navActive ? "show" : "hide"} hideNav={this.hideNav} />
+        <Nav
+          status={this.state.navActive ? "show" : "hide"}
+          hideNav={this.hideNav}
+          location={this.props.location}
+        />
         <NavOverlay className={this.state.navActive ? "show" : "hide"} onClick={this.hideNav} />
       </StyledHeader>
     );
