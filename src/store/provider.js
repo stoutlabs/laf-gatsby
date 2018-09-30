@@ -8,10 +8,16 @@ class AppProvider extends Component {
     super(props);
 
     this.state = {
-      location: "new-york",
+      location: this.locationListener(),
       toggleLocation: this.toggleLocation
     };
   }
+
+  locationListener = () => {
+    console.log("loclisten:", window.location.pathname);
+    const locSlug = window.location.pathname.split("/")[1];
+    return locSlug;
+  };
 
   toggleLocation = location => {
     this.setState(state => ({ location: location }));
