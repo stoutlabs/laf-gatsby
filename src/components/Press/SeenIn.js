@@ -56,6 +56,7 @@ export const AsSeenIn = ({ items }) => {
               </div>
             );
           }
+          return false;
         })}
       </div>
     </StyledSeens>

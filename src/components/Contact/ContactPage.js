@@ -1,11 +1,12 @@
-import React, { Component } from "react";
-import Helmet from "react-helmet";
+import React from "react";
 import styled from "styled-components";
-import { connect } from "react-redux";
+import { graphql } from "gatsby";
 
 import ContactLeft from "./ContactLeft";
 import ContactRight from "./ContactRight";
 import SEO from "../SEO";
+import Layout from "../Layout";
+import AppConsumer from "../../store/consumer";
 
 const ContactPageDiv = styled.div`
   display: flex;
@@ -19,61 +20,48 @@ const ContactPageDiv = styled.div`
   }
 `;
 
-export class ConnectedContactPage extends Component {
-  state = { hasContent: false };
+const ContactPage = props => {
+  const urlLoc = props.location.pathname.split("/")[1];
+  const contactContent = props.data.prismicContactPage.data;
 
-  componentDidMount = () => {
-    this.setState(() => {
-      return { hasContent: true };
-    });
+  const contactInfo =
+    urlLoc === "new-york"
+      ? {
+          fluid: contactContent.contact_image.localFile.childImageSharp.fluid,
+          title: contactContent.label_ny.text,
+          address: contactContent.address_ny.html,
+          phone: contactContent.phone_ny,
+          fax: contactContent.fax_ny,
+          email: contactContent.email_ny
+        }
+      : {
+          fluid: contactContent.image_pb.localFile.childImageSharp.fluid,
+          title: contactContent.label_pb.text,
+          address: contactContent.address_pb.html,
+          phone: contactContent.phone_pb,
+          fax: contactContent.fax_pb,
+          email: contactContent.email_pb
+        };
+
+  // For SEO stuff
+  const seoData = {
+    frontmatter: {
+      title: `Leta Austin Foster Interior Design • ${contactInfo.title} | Contact`,
+      slug: `${urlLoc}/contact`
+    }
   };
-
-  render() {
-    const contactContent = this.props.data.prismicContactPage.data;
-
-    const contactInfo =
-      this.props.theLocation === "new-york"
-        ? {
-            sizes: contactContent.contact_image.localFile.childImageSharp.sizes,
-            title: contactContent.label_ny.text,
-            address: contactContent.address_ny.html,
-            phone: contactContent.phone_ny,
-            fax: contactContent.fax_ny,
-            email: contactContent.email_ny
-          }
-        : {
-            sizes: contactContent.image_pb.localFile.childImageSharp.sizes,
-            title: contactContent.label_pb.text,
-            address: contactContent.address_pb.html,
-            phone: contactContent.phone_pb,
-            fax: contactContent.fax_pb,
-            email: contactContent.email_pb
-          };
-
-    // For SEO stuff
-    const seoData = {
-      frontmatter: {
-        title: `Leta Austin Foster Interior Design • ${contactInfo.title} | Contact`,
-        slug: `${this.props.theLocation}/contact`
-      }
-    };
-
-    return (
-      <ContactPageDiv className={`contact-page ${this.state.hasContent ? "ready" : ""}`}>
+  return (
+    <Layout location={props.location}>
+      <ContactPageDiv className={`contact-page`}>
         <SEO postData={seoData} />
-        <ContactLeft sizes={contactInfo.sizes} />
-        <ContactRight contactInfo={contactInfo} isReady={this.state.hasContent} />
+        <ContactLeft fluid={contactInfo.fluid} />
+        <ContactRight contactInfo={contactInfo} />
       </ContactPageDiv>
-    );
-  }
-}
-
-const mapStateToProps = state => {
-  return { theLocation: state.theLocation };
+    </Layout>
+  );
 };
 
-const ContactPage = connect(mapStateToProps)(ConnectedContactPage);
-export default ContactPage;
+export default props => <AppConsumer>{state => <ContactPage {...props} />}</AppConsumer>;
 
 export const query = graphql`
   query ContactContentsQuery {
@@ -93,8 +81,8 @@ export const query = graphql`
           localFile {
             childImageSharp {
               id
-              sizes(maxWidth: 800, quality: 79) {
-                ...GatsbyImageSharpSizes
+              fluid(maxWidth: 800, quality: 79) {
+                ...GatsbyImageSharpFluid
               }
             }
           }
@@ -112,8 +100,8 @@ export const query = graphql`
           localFile {
             childImageSharp {
               id
-              sizes(maxWidth: 800, quality: 79) {
-                ...GatsbyImageSharpSizes
+              fluid(maxWidth: 800, quality: 79) {
+                ...GatsbyImageSharpFluid
               }
             }
           }

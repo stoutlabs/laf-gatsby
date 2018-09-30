@@ -1,21 +1,20 @@
 import React from "react";
-import { Provider } from "react-redux";
 import { renderToString } from "react-dom/server";
 import { ServerStyleSheet } from "styled-components";
+import AppProvider from "./src/store/provider";
+// import wrapPageElementWithTransition from "./src/helpers/wrapPageElement";
 
-import createStore from "./src/state/createStore";
+export const replaceRenderer = ({ bodyComponent, replaceBodyHTMLString, setHeadComponents }) => {
+  // React Context in SSR/build
+  const ConnectedBody = () => <AppProvider>{bodyComponent}</AppProvider>;
+  replaceBodyHTMLString(renderToString(<ConnectedBody />));
 
-exports.replaceRenderer = ({ bodyComponent, replaceBodyHTMLString, setHeadComponents }) => {
-   const store = createStore();
-
-   const ConnectedBody = () => <Provider store={store}>{bodyComponent}</Provider>;
-   replaceBodyHTMLString(renderToString(<ConnectedBody />));
-
-   // Add styled-components SSR
-   const sheet = new ServerStyleSheet();
-   const bodyHTML = renderToString(sheet.collectStyles(<ConnectedBody />));
-   const styleElement = sheet.getStyleElement();
-
-   replaceBodyHTMLString(bodyHTML);
-   setHeadComponents(styleElement);
+  // Add styled-components in SSR/build
+  const sheet = new ServerStyleSheet();
+  const bodyHTML = renderToString(sheet.collectStyles(<ConnectedBody />));
+  const styleElement = sheet.getStyleElement();
+  setHeadComponents(styleElement);
 };
+
+// Page Transitions
+// export const wrapPageElement = wrapPageElementWithTransition;

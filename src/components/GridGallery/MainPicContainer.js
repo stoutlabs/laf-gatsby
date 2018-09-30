@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Img from "gatsby-image";
 import ReactCSSTransitionReplace from "react-css-transition-replace";
 
@@ -13,7 +13,7 @@ export const MainPicContainer = ({ item }) => {
         transitionLeaveTimeout={600}
       >
         <Img
-          sizes={item.sizes}
+          fluid={item.fluid}
           position="absolute"
           key={item.id}
           style={{ maxHeight: "70vh" }}

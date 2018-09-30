@@ -1,181 +1,162 @@
 import React from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import Link from "gatsby-link";
+import { Link } from "gatsby";
 import styled from "styled-components";
 
-import { setLocation } from "../actions";
 import LocationToggler from "./LocationToggler";
+import AppConsumer from "../store/consumer";
 
 const StyledNav = styled.nav`
-   width: 100%;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   transition: opacity 300ms ease-out 0ms, visibility 0ms linear 0ms;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 300ms ease-out 0ms, visibility 0ms linear 0ms;
 `;
 
 const StyledUl = styled.ul`
-   display: flex;
-   align-items: flex-end;
-   list-style: none;
-   justify-content: flex-start;
+  display: flex;
+  align-items: flex-end;
+  list-style: none;
+  justify-content: flex-start;
 
-   @media screen and (min-width: 768px) {
-      flex-direction: row;
-      justify-content: space-around;
-      height: auto;
-      margin-bottom: 0.3rem;
-   }
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-around;
+    height: auto;
+    margin-bottom: 0.3rem;
+  }
 
-   @media screen and (max-width: 767px) {
-      flex-direction: column;
-      background-color: #dee4e5;
-      height: 100vh;
-      left: 0;
-      position: fixed;
-      top: 0;
-      transform: translateX(-200px);
-      transition: transform 150ms ease-out;
-      width: 200px;
-      z-index: 100;
-      padding-top: 2.8rem;
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    background-color: #dee4e5;
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    top: 0;
+    transform: translateX(-200px);
+    transition: transform 150ms ease-out;
+    width: 200px;
+    z-index: 100;
+    padding-top: 2.8rem;
 
-      &.show {
-         transform: translateX(0px);
+    &.show {
+      transform: translateX(0px);
+    }
+  }
+
+  li {
+    margin: 0 1rem 1rem 0;
+    padding: 0 10px;
+
+    @media screen and (min-width: 768px) {
+      border-right: 1px solid #ccc;
+      margin: 0 0.3rem 0 0;
+
+      &:last-child {
+        border-right: none;
       }
-   }
+    }
 
-   li {
-      margin: 0 1rem 1rem 0;
-      padding: 0 10px;
+    a {
+      font-size: 0.8rem;
+      font-family: "Vollkorn", serif;
+      text-transform: uppercase;
+      text-decoration: none;
+      letter-spacing: 3px;
+      height: 50px;
+      color: #999;
 
-      @media screen and (min-width: 768px) {
-         border-right: 1px solid #ccc;
-         margin: 0 0.3rem 0 0;
-
-         &:last-child {
-            border-right: none;
-         }
+      &.active {
+        color: #333;
       }
-
-      a {
-         font-size: 0.8rem;
-         font-family: "Vollkorn", serif;
-         text-transform: uppercase;
-         text-decoration: none;
-         letter-spacing: 3px;
-         height: 50px;
-         color: #999;
-
-         &.active {
-            color: #333;
-         }
-      }
-   }
+    }
+  }
 `;
 
-//custom 'isActive' function for 'interiors' pages
-const isInterior = (match, location) => {
-   //console.log("match:", match);
-
-   let locArray = null;
-   if (!match && !location) {
-      return false;
-   }
-
-   if (location) {
-      locArray = location.pathname.split("/");
-   } else {
-      locArray = match.path.split("/");
-   }
-
-   if (locArray[2] === "interiors") {
-      return true;
-   }
-
-   return false;
+const isActive = ({ isCurrent }) => {
+  return isCurrent ? { className: "active" } : null;
 };
 
-export const ConnectedNav = props => {
-   return (
-      <StyledNav>
-         <LocationToggler
-            theLocation={props.theLocation}
-            locProps={props}
+const isPartiallyActive = ({ isPartiallyCurrent }) => {
+  return isPartiallyCurrent ? { className: "active" } : null;
+};
+
+export const Nav = props => {
+  return (
+    <AppConsumer>
+      {state => (
+        <StyledNav>
+          <LocationToggler
+            theLocation={state.theLocation}
             hideNav={props.hideNav}
             location={props.location}
-         />
+          />
 
-         <StyledUl className={props.status}>
+          <StyledUl className={props.status}>
             <li>
-               <Link to="/" onClick={props.hideNav}>
-                  Home
-               </Link>
+              <Link to="/" onClick={props.hideNav}>
+                Home
+              </Link>
             </li>
 
             <li>
-               <Link
-                  exact
-                  to={`/${props.theLocation}/interiors`}
-                  onClick={props.hideNav}
-                  isActive={isInterior}
-               >
-                  Interiors
-               </Link>
+              <Link
+                exact="true"
+                to={`/${state.location}/interiors`}
+                onClick={props.hideNav}
+                getProps={isPartiallyActive}
+              >
+                Interiors
+              </Link>
             </li>
 
             <li>
-               <Link exact to={`/${props.theLocation}/about`} onClick={props.hideNav}>
-                  About
-               </Link>
+              <Link
+                exact="true"
+                to={`/${state.location}/about`}
+                onClick={props.hideNav}
+                getProps={isActive}
+              >
+                About
+              </Link>
             </li>
 
             <li>
-               <Link exact to={`/press`} onClick={props.hideNav}>
-                  Press
-               </Link>
+              <Link exact="true" to={`/press`} onClick={props.hideNav} getProps={isActive}>
+                Press
+              </Link>
             </li>
 
             <li>
-               <Link exact to={`/${props.theLocation}/contact`} onClick={props.hideNav}>
-                  Contact
-               </Link>
+              <Link
+                exact="true"
+                to={`/${state.location}/contact`}
+                onClick={props.hideNav}
+                getProps={isActive}
+              >
+                Contact
+              </Link>
             </li>
 
             <li>
-               <Link
-                  exact
-                  to={`/palm-beach/palm-beach-boutique`}
-                  onClick={() => {
-                     props.hideNav();
-                     props.setLocation("palm-beach");
-                  }}
-               >
-                  Boutique
-               </Link>
+              <Link
+                exact="true"
+                to={`/palm-beach/palm-beach-boutique`}
+                onClick={() => {
+                  props.hideNav();
+                  state.toggleLocation("palm-beach");
+                }}
+                getProps={isActive}
+              >
+                Boutique
+              </Link>
             </li>
-         </StyledUl>
-      </StyledNav>
-   );
+          </StyledUl>
+        </StyledNav>
+      )}
+    </AppConsumer>
+  );
 };
-
-const mapDispatchToProps = dispatch => {
-   return {
-      setLocation: theLocation => dispatch(setLocation(theLocation))
-   };
-};
-
-const mapStateToProps = state => {
-   return { theLocation: state.theLocation };
-};
-
-const Nav = withRouter(
-   connect(
-      mapStateToProps,
-      mapDispatchToProps
-   )(ConnectedNav)
-);
 
 export default Nav;

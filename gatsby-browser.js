@@ -1,19 +1,11 @@
-require("typeface-vollkorn");
-
 import React from "react";
-import { Provider } from "react-redux";
-import { Router } from "react-router-dom";
+import AppProvider from "./src/store/provider";
+//import wrapPageElementWithTransition from "./src/helpers/wrapPageElement";
 
-import createStore from "./src/state/createStore";
-
-exports.replaceRouterComponent = ({ history }) => {
-  const store = createStore();
-
-  const ConnectedRouterWrapper = ({ children }) => (
-    <Provider store={store}>
-      <Router history={history}>{children}</Router>
-    </Provider>
-  );
-
-  return ConnectedRouterWrapper;
+// React Context in Browser
+export const wrapRootElement = ({ element }) => {
+  return <AppProvider>{element}</AppProvider>;
 };
+
+// Page Transitions
+//export const wrapPageElement = wrapPageElementWithTransition;

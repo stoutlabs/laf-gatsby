@@ -151,7 +151,7 @@ export const IntroContent = props => {
           </p>
 
           <p className="call">
-            <a href={`tel: +1${props.phone.replace(/[\.\-]+/g, "")}`}>
+            <a href={`tel: +1${props.phone.replace(/[.-]+/g, "")}`}>
               <FontAwesomeIcon icon={faPhone} /> {props.phone}
             </a>
           </p>

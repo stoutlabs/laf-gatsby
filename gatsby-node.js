@@ -4,8 +4,8 @@ exports.onCreateNode = ({ node }) => {
   //console.log(node.internal.type);
 };
 
-exports.createPages = async ({ graphql, boundActionCreators }) => {
-  const { createPage } = boundActionCreators;
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions;
 
   const allLocs = await graphql(`
     {

@@ -1,10 +1,10 @@
-import React, { Fragment, Component } from "react";
-import Helmet from "react-helmet";
+import React, { Fragment } from "react";
 import styled from "styled-components";
-import { connect } from "react-redux";
+import { graphql } from "gatsby";
 
 import SEO from "../SEO";
 import AboutBio from "./AboutBio";
+import Layout from "../Layout";
 
 const AboutPageDiv = styled.div`
   display: flex;
@@ -19,15 +19,9 @@ const AboutPageDiv = styled.div`
   div.leftside,
   div.rightside {
     padding: 1rem;
-    opacity: 0;
-    transition: opacity 400ms ease-in 150ms;
 
     @media screen and (min-width: 960px) {
       width: 50%;
-    }
-
-    &.ready {
-      opacity: 1;
     }
 
     p {
@@ -43,63 +37,49 @@ const AboutPageDiv = styled.div`
   }
 `;
 
-export class ConnectedAboutPage extends Component {
-  //console.log("postData", postData);
+const AboutPage = props => {
+  const urlLoc = props.location.pathname.split("/")[1];
 
-  state = { hasContent: false };
-
-  componentDidMount = () => {
-    this.setState(() => {
-      return { hasContent: true };
-    });
+  const locationForTitle = urlLoc === "new-york" ? "New York" : "Palm Beach";
+  const seoDesc = `Learn more about the backgrounds of Leta Austin Foster and her associates: Sallie Giordano, Alexandra Wernink, and India Foster.`;
+  const seoData = {
+    frontmatter: {
+      title: `Leta Austin Foster Interior Design • ${locationForTitle} | About`,
+      slug: `${urlLoc}/about`,
+      description: seoDesc
+    }
   };
 
-  render() {
-    const locationForTitle = this.props.theLocation === "new-york" ? "New York" : "Palm Beach";
-    const seoDesc = `Learn more about the backgrounds of Leta Austin Foster and her associates: Sallie Giordano, Alexandra Wernink, and India Foster.`;
-    const seoData = {
-      frontmatter: {
-        title: `Leta Austin Foster Interior Design • ${locationForTitle} | About`,
-        slug: `${this.props.theLocation}/about`,
-        description: seoDesc
-      }
-    };
+  const curBios =
+    urlLoc === "new-york"
+      ? {
+          bio_0: props.data.prismicAboutPage.data.bios_ny[0],
+          bio_1: props.data.prismicAboutPage.data.bios_ny[1]
+        }
+      : {
+          bio_0: props.data.prismicAboutPage.data.bios_pb[0],
+          bio_1: props.data.prismicAboutPage.data.bios_pb[1]
+        };
 
-    const curBios =
-      this.props.theLocation === "new-york"
-        ? {
-            bio_0: this.props.data.prismicAboutPage.data.bios_ny[0],
-            bio_1: this.props.data.prismicAboutPage.data.bios_ny[1]
-          }
-        : {
-            bio_0: this.props.data.prismicAboutPage.data.bios_pb[0],
-            bio_1: this.props.data.prismicAboutPage.data.bios_pb[1]
-          };
-
-    return (
+  return (
+    <Layout location={props.location}>
       <AboutPageDiv className="about-page">
         {/* <Helmet title={`Leta Austin Foster Interior Design • ${locationForTitle} | About`} /> */}
         <SEO postData={seoData} />
 
         <Fragment>
-          <div className={`leftside ${this.state.hasContent ? "ready" : ""}`}>
+          <div className={`leftside`}>
             <AboutBio heading={curBios.bio_0.title.text} content={curBios.bio_0.text.html} />
           </div>
 
-          <div className={`rightside ${this.state.hasContent ? "ready" : ""}`}>
+          <div className={`rightside`}>
             <AboutBio heading={curBios.bio_1.title.text} content={curBios.bio_1.text.html} />
           </div>
         </Fragment>
       </AboutPageDiv>
-    );
-  }
-}
-
-const mapStateToProps = state => {
-  return { theLocation: state.theLocation };
+    </Layout>
+  );
 };
-
-const AboutPage = connect(mapStateToProps)(ConnectedAboutPage);
 
 export default AboutPage;
 

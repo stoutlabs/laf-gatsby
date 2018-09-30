@@ -1,11 +1,14 @@
 import React, { Component } from "react";
+import { graphql } from "gatsby";
+
 import GridGallery from "../GridGallery/GridGallery";
 import SEO from "../SEO";
+import Layout from "../Layout";
 
 export class ViewRoom extends Component {
-  state = { hasContent: false, images: [], content: null };
+  state = { activeItem: this.props.data.prismicRoom.data.uid };
 
-  componentDidMount = () => {
+  render() {
     const room = this.props.data.prismicRoom.data;
 
     //separating images and content here
@@ -17,46 +20,26 @@ export class ViewRoom extends Component {
       return photo.localFile.childImageSharp;
     });
 
-    this.setState(() => {
-      return {
-        images: theImages,
-        thumbs: theThumbs,
-        content: theContent,
-        activeItem: room.uid
-      };
-    });
-  };
-
-  render() {
     // SEO stuff
     const seoImage = this.props.data.prismicRoom.data.photos[0].photo.localFile.childImageSharp
-      .sizes.src;
+      .fluid.src;
     const pageTitle = `Leta Austin Foster Interior Design | ${
       this.props.data.prismicRoom.data.title.text
     }`;
     const seoData = {
       frontmatter: {
         title: pageTitle,
-        slug: `${this.props.pathContext.locuid}/interiors/room/${this.props.data.prismicRoom.uid}`
+        slug: `${this.props.pageContext.locuid}/interiors/room/${this.props.data.prismicRoom.uid}`
       }
     };
 
     return (
-      <div>
-        <SEO postData={seoData} postImage={seoImage} isProjectPage={true} />
-        {this.state.content ? (
-          <GridGallery
-            images={this.state.images}
-            thumbs={this.state.thumbs}
-            content={this.state.content}
-            label={"Rooms"}
-          />
-        ) : (
-          <div>
-            <p>Loading...</p>
-          </div>
-        )}
-      </div>
+      <Layout location={this.props.location}>
+        <div>
+          <SEO postData={seoData} postImage={seoImage} isProjectPage={true} />
+          <GridGallery images={theImages} thumbs={theThumbs} content={theContent} label={"Rooms"} />
+        </div>
+      </Layout>
     );
   }
 }
@@ -77,8 +60,8 @@ export const query = graphql`
               childImageSharp {
                 id
 
-                sizes(maxWidth: 800, quality: 81) {
-                  ...GatsbyImageSharpSizes
+                fluid(maxWidth: 800, quality: 81) {
+                  ...GatsbyImageSharpFluid
                 }
               }
             }
@@ -90,8 +73,8 @@ export const query = graphql`
             localFile {
               childImageSharp {
                 id
-                resolutions(width: 100, height: 100) {
-                  ...GatsbyImageSharpResolutions
+                fixed(width: 100, height: 100) {
+                  ...GatsbyImageSharpFixed
                 }
               }
             }
