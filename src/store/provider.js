@@ -15,7 +15,11 @@ class AppProvider extends Component {
 
   locationListener = () => {
     console.log("loclisten:", window.location.pathname);
-    const locSlug = window.location.pathname.split("/")[1];
+    let locSlug = window.location.pathname.split("/")[1];
+
+    if (locSlug !== "new-york" && locSlug !== "palm-beach") {
+      locSlug = "new-york";
+    }
     return locSlug;
   };
 
