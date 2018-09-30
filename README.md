@@ -6,7 +6,7 @@ Source code for the 2018 update of LetaAustinFoster.com. I am sharing the full s
 - Features a custom thumbnail gallery component, which makes use of react-css-transition-replace and gatsby-image. (I couldn't find an existing one that did what I wanted, so I built my own.)
 - Uses [react-pose](https://popmotion.io/pose/) for page transitions. (I'll probably swap over the transitions in the gallery to use Pose as well.)
 - Uses [Prismic.io](https://prismic.io/) to provide content as a headless CMS
-- Hosted/deployed via [Netlify.com](https://netlify.com/) (with continuous integration and branch previews!)
+- Hosted/deployed via [Netlify.com](https://netlify.com/) (with effortless continuous integration and branch previews!)
 
 ---
 
