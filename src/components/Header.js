@@ -19,7 +19,7 @@ const StyledHeader = styled.header`
   }
 
   div.logo {
-    margin: 0 auto;
+    margin: 0 auto 0.2rem;
     padding: 0;
     transition: opacity 300ms ease-out 0ms, visibility 0ms linear 0ms, display 0ms linear 0ms;
     max-width: 210px;
