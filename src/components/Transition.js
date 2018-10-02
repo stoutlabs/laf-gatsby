@@ -28,7 +28,7 @@ class Transition extends PureComponent {
     // To enable page transitions on mount / initial load,
     // use the prop `animateOnMount={true}` on `PoseGroup`.
     return (
-      <PoseGroup animateOnMount={true}>
+      <PoseGroup>
         <RoutesContainer key={location.pathname}>{children}</RoutesContainer>
       </PoseGroup>
     );
