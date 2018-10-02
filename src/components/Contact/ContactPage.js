@@ -5,7 +5,6 @@ import { graphql } from "gatsby";
 import ContactLeft from "./ContactLeft";
 import ContactRight from "./ContactRight";
 import SEO from "../SEO";
-import Layout from "../Layout";
 import AppConsumer from "../../store/consumer";
 
 const ContactPageDiv = styled.div`
@@ -51,13 +50,11 @@ const ContactPage = props => {
     }
   };
   return (
-    <Layout location={props.location}>
-      <ContactPageDiv className={`contact-page`}>
-        <SEO postData={seoData} />
-        <ContactLeft fluid={contactInfo.fluid} />
-        <ContactRight contactInfo={contactInfo} />
-      </ContactPageDiv>
-    </Layout>
+    <ContactPageDiv className={`contact-page`}>
+      <SEO postData={seoData} />
+      <ContactLeft fluid={contactInfo.fluid} />
+      <ContactRight contactInfo={contactInfo} />
+    </ContactPageDiv>
   );
 };
 

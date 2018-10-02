@@ -9,12 +9,18 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/layouts/index.js`)
+      }
+    },
     `gatsby-plugin-sass`,
     `gatsby-plugin-sitemap`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-      resolve: "gatsby-source-prismic",
+      resolve: "gatsby-source-prismic-stoutlabs",
       options: {
         repositoryName: "stoutlabs-sandbox",
         accessToken: `${process.env.API_KEY}`,

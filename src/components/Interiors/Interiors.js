@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { graphql } from "gatsby";
 
 import SEO from "../SEO";
-import Layout from "../Layout";
 import IntroPic from "./IntroPic";
 import TypeNav from "../GridGallery/TypeNav";
 
@@ -65,36 +64,34 @@ const Interiors = props => {
   const projects = props.data.prismicLocations.data.locprojects;
 
   return (
-    <Layout location={props.location}>
-      <ProjIntroDiv className="proj-intro">
-        <SEO postData={seoData} postImage={seoImage} />
+    <ProjIntroDiv className="proj-intro">
+      <SEO postData={seoData} postImage={seoImage} />
 
-        <div className="proj-intro-details">
-          <TypeNav />
-          <div className={`gallery-info`}>
-            <StyledH3>Projects</StyledH3>
+      <div className="proj-intro-details">
+        <TypeNav />
+        <div className={`gallery-info`}>
+          <StyledH3>Projects</StyledH3>
 
-            <StyledUl>
-              {projects.map((project, index) => {
-                return (
-                  <li key={index}>
-                    <Link
-                      to={`/${props.data.prismicLocations.uid}/interiors/${
-                        project.theproject.document[0].uid
-                      }`}
-                    >
-                      {project.theproject.document[0].data.title.text}
-                    </Link>
-                  </li>
-                );
-              })}
-            </StyledUl>
-          </div>
+          <StyledUl>
+            {projects.map((project, index) => {
+              return (
+                <li key={index}>
+                  <Link
+                    to={`/${props.data.prismicLocations.uid}/interiors/${
+                      project.theproject.document[0].uid
+                    }`}
+                  >
+                    {project.theproject.document[0].data.title.text}
+                  </Link>
+                </li>
+              );
+            })}
+          </StyledUl>
         </div>
+      </div>
 
-        <IntroPic intro_image={props.data.prismicLocations.data.intro_image} />
-      </ProjIntroDiv>
-    </Layout>
+      <IntroPic intro_image={props.data.prismicLocations.data.intro_image} />
+    </ProjIntroDiv>
   );
 };
 
