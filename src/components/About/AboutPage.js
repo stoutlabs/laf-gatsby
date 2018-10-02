@@ -4,7 +4,6 @@ import { graphql } from "gatsby";
 
 import SEO from "../SEO";
 import AboutBio from "./AboutBio";
-import Layout from "../Layout";
 
 const AboutPageDiv = styled.div`
   display: flex;
@@ -62,22 +61,20 @@ const AboutPage = props => {
         };
 
   return (
-    <Layout location={props.location}>
-      <AboutPageDiv className="about-page">
-        {/* <Helmet title={`Leta Austin Foster Interior Design • ${locationForTitle} | About`} /> */}
-        <SEO postData={seoData} />
+    <AboutPageDiv className="about-page">
+      {/* <Helmet title={`Leta Austin Foster Interior Design • ${locationForTitle} | About`} /> */}
+      <SEO postData={seoData} />
 
-        <Fragment>
-          <div className={`leftside`}>
-            <AboutBio heading={curBios.bio_0.title.text} content={curBios.bio_0.text.html} />
-          </div>
+      <Fragment>
+        <div className={`leftside`}>
+          <AboutBio heading={curBios.bio_0.title.text} content={curBios.bio_0.text.html} />
+        </div>
 
-          <div className={`rightside`}>
-            <AboutBio heading={curBios.bio_1.title.text} content={curBios.bio_1.text.html} />
-          </div>
-        </Fragment>
-      </AboutPageDiv>
-    </Layout>
+        <div className={`rightside`}>
+          <AboutBio heading={curBios.bio_1.title.text} content={curBios.bio_1.text.html} />
+        </div>
+      </Fragment>
+    </AboutPageDiv>
   );
 };
 

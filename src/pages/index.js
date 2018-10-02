@@ -1,13 +1,10 @@
 import React from "react";
 import { graphql } from "gatsby";
 
-import Layout from "../components/Layout";
 import Home from "../components/Home/NewHome";
 
 const IndexPage = props => (
-  <Layout location={props.location}>
-    <Home content={props.data.prismicHomePage.data} history={props.history} />
-  </Layout>
+  <Home content={props.data.prismicHomePage.data} history={props.history} />
 );
 
 export default IndexPage;

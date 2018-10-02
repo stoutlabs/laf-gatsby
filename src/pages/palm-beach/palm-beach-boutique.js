@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { graphql } from "gatsby";
 
-import Layout from "../../components/Layout";
 import SEO from "../../components/SEO";
 import IntroContent from "../../components/Boutique/IntroContent";
 import SliceTextImage from "../../components/Boutique/SliceTextImage";
@@ -79,50 +78,48 @@ export const BoutiquePage = props => {
   };
 
   return (
-    <Layout location={props.location}>
-      <StyledBoutiquePage className="pb-boutique">
-        <SEO postData={seoData} />
-        <h2>Leta Austin Foster Boutique</h2>
-        <IntroContent
-          hours={hours}
-          address={address}
-          google_maps={google_maps}
-          phone={phone}
-          email={email}
-          content={content.intro.html}
-        />
+    <StyledBoutiquePage className="pb-boutique">
+      <SEO postData={seoData} />
+      <h2>Leta Austin Foster Boutique</h2>
+      <IntroContent
+        hours={hours}
+        address={address}
+        google_maps={google_maps}
+        phone={phone}
+        email={email}
+        content={content.intro.html}
+      />
 
-        <SlicesContainer className="slices">
-          {content.body.map(slice => {
-            if ("textWithImage" in slice) {
-              return (
-                <SliceTextImage
-                  textWithImage={slice.textWithImage}
-                  key={slice.textWithImage.heading.text}
-                />
-              );
-            }
+      <SlicesContainer className="slices">
+        {content.body.map(slice => {
+          if ("textWithImage" in slice) {
+            return (
+              <SliceTextImage
+                textWithImage={slice.textWithImage}
+                key={slice.textWithImage.heading.text}
+              />
+            );
+          }
 
-            if ("textOnly" in slice) {
-              return <SliceTextOnly textOnly={slice.textOnly} key={slice.id} />;
-            }
+          if ("textOnly" in slice) {
+            return <SliceTextOnly textOnly={slice.textOnly} key={slice.id} />;
+          }
 
-            if ("quotation" in slice) {
-              return <SliceQuotation content={slice.quotation} key={slice.id} />;
-            }
+          if ("quotation" in slice) {
+            return <SliceQuotation content={slice.quotation} key={slice.id} />;
+          }
 
-            if ("imageCentered" in slice) {
-              return <SliceImageCentered content={slice.imageCentered} key={slice.id} />;
-            }
+          if ("imageCentered" in slice) {
+            return <SliceImageCentered content={slice.imageCentered} key={slice.id} />;
+          }
 
-            if ("multiImages" in slice) {
-              return <SliceMultiImage content={slice.multiImages} key={slice.id} />;
-            }
-            return false;
-          })}
-        </SlicesContainer>
-      </StyledBoutiquePage>
-    </Layout>
+          if ("multiImages" in slice) {
+            return <SliceMultiImage content={slice.multiImages} key={slice.id} />;
+          }
+          return false;
+        })}
+      </SlicesContainer>
+    </StyledBoutiquePage>
   );
 };
 

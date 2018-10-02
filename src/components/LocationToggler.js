@@ -10,15 +10,18 @@ const StyledToggler = styled.div`
   padding: 0;
   display: block;
 
-  a {
+  button {
+    background: transparent;
+    border: none;
+    color: #999;
+    cursor: pointer;
     display: inline-block;
     font-size: 0.75rem;
     font-family: "Vollkorn", serif;
     text-transform: uppercase;
     text-decoration: none;
     letter-spacing: 2px;
-
-    color: #999;
+    outline: none;
 
     &.active {
       color: #333;
@@ -50,7 +53,7 @@ export const LocationToggler = props => {
     <AppConsumer>
       {state => (
         <StyledToggler className="location-toggler">
-          <a
+          <button
             onClick={e => {
               e.preventDefault();
               if (props.location.pathname !== "/press") {
@@ -59,11 +62,10 @@ export const LocationToggler = props => {
               }
             }}
             className={state.location === "new-york" ? "active" : ""}
-            href={`/new-york/${props.location.pathname.split("/")[2]}`}
           >
             New York
-          </a>
-          <a
+          </button>
+          <button
             onClick={e => {
               e.preventDefault();
               if (props.location.pathname !== "/press") {
@@ -72,10 +74,9 @@ export const LocationToggler = props => {
               }
             }}
             className={state.location === "palm-beach" ? "active" : ""}
-            href={`/palm-beach/${props.location.pathname.split("/")[2]}`}
           >
             Palm Beach
-          </a>
+          </button>
         </StyledToggler>
       )}
     </AppConsumer>

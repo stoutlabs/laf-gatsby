@@ -3,7 +3,6 @@ import { graphql } from "gatsby";
 
 import GridGallery from "../GridGallery/GridGallery";
 import SEO from "../SEO";
-import Layout from "../Layout";
 
 export class ViewProject extends Component {
   state = { activeItem: this.props.data.prismicProjects.data.uid };
@@ -34,17 +33,15 @@ export class ViewProject extends Component {
     };
 
     return (
-      <Layout location={this.props.location}>
-        <div>
-          <SEO postData={postData} postImage={postImage} isProjectPage={true} />
-          <GridGallery
-            images={theImages}
-            thumbs={theThumbs}
-            content={theContent}
-            label={"Projects"}
-          />
-        </div>
-      </Layout>
+      <div>
+        <SEO postData={postData} postImage={postImage} isProjectPage={true} />
+        <GridGallery
+          images={theImages}
+          thumbs={theThumbs}
+          content={theContent}
+          label={"Projects"}
+        />
+      </div>
     );
   }
 }

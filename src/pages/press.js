@@ -1,14 +1,9 @@
 import React from "react";
 import { graphql } from "gatsby";
 
-import Layout from "../components/Layout";
 import Press from "../components/Press/Press";
 
-const PressPage = props => (
-  <Layout location={props.location}>
-    <Press content={props.data.prismicPress.data} history={props.history} />
-  </Layout>
-);
+const PressPage = props => <Press content={props.data.prismicPress.data} history={props.history} />;
 
 export default PressPage;
 
