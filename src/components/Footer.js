@@ -7,10 +7,29 @@ const StyledFooter = styled.footer`
   color: #888;
   font-size: 0.85rem;
   letter-spacing: 2px;
-  margin-bottom: 1rem;
+  margin-bottom: 0.25rem;
 
   @media screen and (max-width: 600px) {
     font-size: 0.8rem;
+  }
+
+  .siteby {
+    color: #bbb;
+    font-style: italic;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0;
+    padding: 0 0.5rem;
+
+    a {
+      font-size: 0.75rem;
+      color: #bbb;
+
+      &:hover {
+        color: #888;
+      }
+    }
   }
 `;
 
@@ -22,6 +41,12 @@ export const Footer = () => {
         INC
       </p>
       <SocialIcons />
+      <div className="siteby">
+        website:{" "}
+        <a href="https://www.stoutlabs.com/" target="_blank" rel="noopener noreferrer">
+          stoutlabs
+        </a>
+      </div>
     </StyledFooter>
   );
 };
