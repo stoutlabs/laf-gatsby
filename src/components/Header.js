@@ -4,10 +4,8 @@ import styled from "styled-components";
 
 import Nav from "./Nav";
 import HamburgerBtn from "./HamburgerBtn";
-//import BoutiqueBtn from "./BoutiqueBtn";
 
 import Logo from "../assets/laf_logo_2018.png";
-// import { LocationToggler } from "./LocationToggler";
 
 const StyledHeader = styled.header`
   padding: 0;

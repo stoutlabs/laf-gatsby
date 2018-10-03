@@ -42,21 +42,4 @@ const TemplateWrapper = ({ data, children, location }) => (
   </Fragment>
 );
 
-// const TemplateWrapperWithQuery = props => {
-//   return (
-//     <StaticQuery
-//       query={graphql`
-//         query TemplateWrapperQuery {
-//           site {
-//             siteMetadata {
-//               title
-//             }
-//           }
-//         }
-//       `}
-//       render={data => <TemplateWrapper data={data} {...props} />}
-//     />
-//   );
-// };
-
 export default TemplateWrapper;

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Provider } from "./createContext";
 
 // The provider, which holds the page-wide store and its actions.
-// Feel free to abstract actions and state away from this file.
 class AppProvider extends Component {
   constructor(props) {
     super(props);
@@ -14,6 +13,7 @@ class AppProvider extends Component {
   }
 
   componentDidMount() {
+    // gotta wait until this is mounted before 'window' is available!
     let locSlug = window.location.pathname.split("/")[1];
 
     if (locSlug !== "new-york" && locSlug !== "palm-beach") {
@@ -21,16 +21,6 @@ class AppProvider extends Component {
     }
     this.setState(() => ({ location: locSlug }));
   }
-
-  // locationListener = () => {
-  //   console.log("loclisten:", window.location.pathname);
-  //   let locSlug = window.location.pathname.split("/")[1];
-
-  //   if (locSlug !== "new-york" && locSlug !== "palm-beach") {
-  //     locSlug = "new-york";
-  //   }
-  //   return locSlug;
-  // };
 
   toggleLocation = location => {
     this.setState(state => ({ location: location }));
