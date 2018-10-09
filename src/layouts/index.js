@@ -24,6 +24,10 @@ const TemplateWrapper = ({ data, children, location }) => (
           name: "keywords",
           content:
             "leta austin foster, interior design, designer, east coast, new york, palm beach, southampton, hobe sound, manhattan"
+        },
+        {
+          name: "p:domain_verify",
+          content: "8acaf2989607ebc58b085d4ab3a56dc8"
         }
       ]}
     >
