@@ -3,8 +3,8 @@ module.exports = {
   titleshort: "LAF - Design",
   description: `Leta Austin Foster & Associates are an established and well-known East coast interior design firm with office locations in Palm Beach and New York.`,
   url: "https://www.letaaustinfoster.com",
-  image: "https://www.letaaustinfoster.com/site-image.jpg",
-  logo: "https://www.letaaustinfoster.com/android-chrome-512x512.jpg",
+  image: "https://www.letaaustinfoster.com/assets/site-image.jpg",
+  logo: "https://www.letaaustinfoster.com/assets/android-chrome-512x512.jpg",
   //twitter: '@LAFPB',
   fbAppID: "",
 
