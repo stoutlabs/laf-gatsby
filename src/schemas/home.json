@@ -1,0 +1,53 @@
+{
+  "Main" : {
+    "title" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1, heading2",
+        "label" : "Title"
+      }
+    },
+    "uid" : {
+      "type" : "UID",
+      "config" : {
+        "label" : "Unique  ID"
+      }
+    },
+    "left_image" : {
+      "type" : "Image",
+      "config" : {
+        "constraint" : {
+          "width" : 550,
+          "height" : 750
+        },
+        "thumbnails" : [ ],
+        "label" : "Left Image"
+      }
+    },
+    "right_image" : {
+      "type" : "Image",
+      "config" : {
+        "constraint" : {
+          "width" : 550,
+          "height" : 750
+        },
+        "thumbnails" : [ ],
+        "label" : "Right Image"
+      }
+    }
+  },
+  "SEO" : {
+    "meta_keywords" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Meta Keywords"
+      }
+    },
+    "meta_description" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Meta Description"
+      }
+    }
+  }
+}

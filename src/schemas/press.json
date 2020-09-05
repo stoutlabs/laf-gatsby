@@ -1,0 +1,135 @@
+{
+  "Main" : {
+    "title" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1, heading2",
+        "label" : "Title"
+      }
+    },
+    "intro" : {
+      "type" : "StructuredText",
+      "config" : {
+        "multi" : "paragraph, heading3, heading4, heading5, strong, em, list-item, o-list-item",
+        "allowTargetBlank" : true,
+        "label" : "Intro"
+      }
+    },
+    "as_seen_in" : {
+      "type" : "Group",
+      "config" : {
+        "fields" : {
+          "logo_image" : {
+            "type" : "Image",
+            "config" : {
+              "constraint" : {
+                "width" : 300
+              },
+              "thumbnails" : [ ],
+              "label" : "Logo Image"
+            }
+          }
+        },
+        "label" : "As Seen In"
+      }
+    }
+  },
+  "Press Articles" : {
+    "articles" : {
+      "type" : "Group",
+      "config" : {
+        "fields" : {
+          "cover_image" : {
+            "type" : "Image",
+            "config" : {
+              "constraint" : {
+                "width" : 600
+              },
+              "thumbnails" : [ ],
+              "label" : "Cover Image"
+            }
+          },
+          "article_title" : {
+            "type" : "Text",
+            "config" : {
+              "label" : "Article Title"
+            }
+          },
+          "article_link" : {
+            "type" : "Link",
+            "config" : {
+              "allowTargetBlank" : true,
+              "label" : "Link to Article"
+            }
+          }
+        },
+        "label" : "Articles"
+      }
+    }
+  },
+  "Books" : {
+    "books" : {
+      "type" : "Group",
+      "config" : {
+        "fields" : {
+          "book_image" : {
+            "type" : "Image",
+            "config" : {
+              "constraint" : {
+                "width" : 800
+              },
+              "thumbnails" : [ ],
+              "label" : "Book Image"
+            }
+          },
+          "book_title" : {
+            "type" : "Text",
+            "config" : {
+              "label" : "Book Title"
+            }
+          },
+          "book_author" : {
+            "type" : "Text",
+            "config" : {
+              "label" : "Author"
+            }
+          }
+        },
+        "label" : "Books"
+      }
+    }
+  },
+  "Awards/Recognition" : {
+    "awards" : {
+      "type" : "Group",
+      "config" : {
+        "fields" : {
+          "award_image" : {
+            "type" : "Image",
+            "config" : {
+              "constraint" : {
+                "width" : 300
+              },
+              "thumbnails" : [ ],
+              "label" : "Award Image"
+            }
+          },
+          "award_title" : {
+            "type" : "Text",
+            "config" : {
+              "label" : "Award Title"
+            }
+          },
+          "award_link" : {
+            "type" : "Link",
+            "config" : {
+              "allowTargetBlank" : true,
+              "label" : "Award Link"
+            }
+          }
+        },
+        "label" : "Awards and Recognition"
+      }
+    }
+  }
+}

@@ -78,10 +78,10 @@ const Interiors = props => {
                 <li key={index}>
                   <Link
                     to={`/${props.data.prismicLocations.uid}/interiors/${
-                      project.theproject.document[0].uid
+                      project.theproject.document.uid
                     }`}
                   >
-                    {project.theproject.document[0].data.title.text}
+                    {project.theproject.document.data.title.text}
                   </Link>
                 </li>
               );
@@ -105,8 +105,8 @@ export const query = graphql`
         locprojects {
           theproject {
             __typename
-            ... on theproject_2 {
-              document {
+            document {
+              ... on PrismicProjects {
                 uid
                 data {
                   title {

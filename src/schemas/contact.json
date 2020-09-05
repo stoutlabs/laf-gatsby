@@ -1,0 +1,106 @@
+{
+  "New York" : {
+    "uid" : {
+      "type" : "UID",
+      "config" : {
+        "label" : "Unique ID"
+      }
+    },
+    "heading" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1, heading2, heading3, heading4, heading5, heading6",
+        "label" : "Heading",
+        "placeholder" : "Contact Us"
+      }
+    },
+    "label_ny" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading2, heading3",
+        "label" : "Label (NY)"
+      }
+    },
+    "address_ny" : {
+      "type" : "StructuredText",
+      "config" : {
+        "multi" : "paragraph, heading4, heading5, strong, em",
+        "label" : "Address"
+      }
+    },
+    "phone_ny" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Phone (NY)"
+      }
+    },
+    "fax_ny" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Fax (NY)"
+      }
+    },
+    "email_ny" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Email (NY)"
+      }
+    },
+    "contact_image" : {
+      "type" : "Image",
+      "config" : {
+        "constraint" : {
+          "width" : 1200,
+          "height" : null
+        },
+        "thumbnails" : [ ],
+        "label" : "Contact Image"
+      }
+    }
+  },
+  "Palm Beach" : {
+    "label_pb" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading2, heading3",
+        "label" : "Label (PB)"
+      }
+    },
+    "address_pb" : {
+      "type" : "StructuredText",
+      "config" : {
+        "multi" : "paragraph, heading3, heading4, heading5, heading6, strong, em, hyperlink",
+        "label" : "Address (PB)"
+      }
+    },
+    "phone_pb" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Phone (PB)"
+      }
+    },
+    "fax_pb" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Fax (PB)"
+      }
+    },
+    "email_pb" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Email (PB)"
+      }
+    },
+    "image_pb" : {
+      "type" : "Image",
+      "config" : {
+        "constraint" : {
+          "width" : 1200,
+          "height" : null
+        },
+        "thumbnails" : [ ],
+        "label" : "Image - Palm Beach"
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "Main" : {
+    "uid" : {
+      "type" : "UID",
+      "config" : {
+        "label" : "uid"
+      }
+    },
+    "title" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading2",
+        "label" : "Title"
+      }
+    },
+    "intro_image" : {
+      "type" : "Image",
+      "config" : {
+        "constraint" : {
+          "width" : 1200
+        },
+        "thumbnails" : [ ],
+        "label" : "Intro Image"
+      }
+    },
+    "locprojects" : {
+      "type" : "Group",
+      "config" : {
+        "fields" : {
+          "theproject" : {
+            "type" : "Link",
+            "config" : {
+              "select" : "document",
+              "customtypes" : [ "projects" ],
+              "label" : "Project"
+            }
+          }
+        },
+        "label" : "Projects"
+      }
+    }
+  },
+  "Rooms" : {
+    "rooms_list" : {
+      "type" : "Group",
+      "config" : {
+        "fields" : {
+          "room" : {
+            "type" : "Link",
+            "config" : {
+              "select" : "document",
+              "customtypes" : [ "room" ],
+              "label" : "Room"
+            }
+          }
+        },
+        "label" : "Rooms List"
+      }
+    }
+  }
+}

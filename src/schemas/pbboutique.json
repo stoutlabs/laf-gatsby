@@ -1,0 +1,215 @@
+{
+  "Main" : {
+    "uid" : {
+      "type" : "UID",
+      "config" : {
+        "label" : "Page UID"
+      }
+    },
+    "title" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1, heading2",
+        "label" : "Title"
+      }
+    },
+    "hours" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Hours"
+      }
+    },
+    "address" : {
+      "type" : "StructuredText",
+      "config" : {
+        "multi" : "paragraph",
+        "allowTargetBlank" : true,
+        "label" : "Address"
+      }
+    },
+    "google_maps" : {
+      "type" : "Link",
+      "config" : {
+        "allowTargetBlank" : true,
+        "label" : "Google Maps Link"
+      }
+    },
+    "phone" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Phone"
+      }
+    },
+    "email" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Email"
+      }
+    },
+    "intro" : {
+      "type" : "StructuredText",
+      "config" : {
+        "multi" : "paragraph, preformatted, heading2, heading3, heading4, heading5, strong, em, hyperlink, list-item, o-list-item",
+        "allowTargetBlank" : true,
+        "label" : "Intro"
+      }
+    },
+    "seo_description" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "SEO Description"
+      }
+    },
+    "body" : {
+      "type" : "Slices",
+      "fieldset" : "Slice zone",
+      "config" : {
+        "choices" : {
+          "text_with_image" : {
+            "type" : "Slice",
+            "fieldset" : "Text With Image",
+            "description" : "Adds a block of text along with an image",
+            "icon" : "add_a_photo",
+            "display" : "grid",
+            "non-repeat" : {
+              "heading" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "single" : "heading2, heading3, heading4",
+                  "label" : "Heading"
+                }
+              },
+              "content" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "multi" : "paragraph, heading2, heading3, heading4, heading5, strong, em, hyperlink, list-item, o-list-item",
+                  "allowTargetBlank" : true,
+                  "label" : "Content"
+                }
+              },
+              "image" : {
+                "type" : "Image",
+                "config" : {
+                  "constraint" : {
+                    "width" : 650
+                  },
+                  "thumbnails" : [ ],
+                  "label" : "Image"
+                }
+              }
+            },
+            "repeat" : { }
+          },
+          "full_width_image" : {
+            "type" : "Slice",
+            "fieldset" : "Full width image",
+            "description" : "Use this for full-width image \"dividers\"",
+            "icon" : "all_out",
+            "display" : "list",
+            "non-repeat" : {
+              "full_width_image" : {
+                "type" : "Image",
+                "config" : {
+                  "constraint" : {
+                    "width" : 1440
+                  },
+                  "thumbnails" : [ ],
+                  "label" : "Full Width Image"
+                }
+              }
+            },
+            "repeat" : { }
+          },
+          "text_only" : {
+            "type" : "Slice",
+            "fieldset" : "Text Only",
+            "description" : "Just text, no image.",
+            "icon" : "format_size",
+            "display" : "list",
+            "non-repeat" : {
+              "heading" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "single" : "heading2, heading3, heading4",
+                  "label" : "Heading"
+                }
+              },
+              "content" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "multi" : "paragraph, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, embed, list-item, o-list-item",
+                  "allowTargetBlank" : true,
+                  "label" : "Content"
+                }
+              }
+            },
+            "repeat" : { }
+          },
+          "image_centered" : {
+            "type" : "Slice",
+            "fieldset" : "Image Centered",
+            "description" : "Just an image, centered (not a full-width image)",
+            "icon" : "filter_frames",
+            "display" : "list",
+            "non-repeat" : {
+              "image" : {
+                "type" : "Image",
+                "config" : {
+                  "constraint" : {
+                    "width" : 640
+                  },
+                  "thumbnails" : [ ],
+                  "label" : "Image"
+                }
+              }
+            },
+            "repeat" : { }
+          },
+          "quotation" : {
+            "type" : "Slice",
+            "fieldset" : "Quotation",
+            "description" : "Centered quotation text with no image.",
+            "icon" : "format_quote",
+            "display" : "list",
+            "non-repeat" : {
+              "content" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "multi" : "paragraph, heading3, heading4, heading5, strong, em",
+                  "label" : "Content"
+                }
+              }
+            },
+            "repeat" : { }
+          },
+          "multi-image" : {
+            "type" : "Slice",
+            "fieldset" : "Multi-Image",
+            "description" : "Multiple images (only)",
+            "icon" : "burst_mode",
+            "display" : "grid",
+            "non-repeat" : { },
+            "repeat" : {
+              "images" : {
+                "type" : "Image",
+                "config" : {
+                  "constraint" : {
+                    "width" : 1000
+                  },
+                  "thumbnails" : [ ],
+                  "label" : "Images"
+                }
+              },
+              "caption" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "Caption"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

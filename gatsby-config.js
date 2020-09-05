@@ -2,6 +2,15 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`
 });
 
+const aboutSchema = require("./src/schemas/about.json");
+const contactSchema = require("./src/schemas/contact.json");
+const homepageSchema = require("./src/schemas/home.json");
+const locationSchema = require("./src/schemas/locations.json");
+const pbBoutiqueSchema = require("./src/schemas/pbboutique.json");
+const pressSchema = require("./src/schemas/press.json");
+const projectSchema = require("./src/schemas/projects.json");
+const roomSchema = require("./src/schemas/room.json");
+
 module.exports = {
   siteMetadata: {
     siteUrl: `https://www.letaaustinfoster.com`,
@@ -16,51 +25,42 @@ module.exports = {
       }
     },
     `gatsby-plugin-sass`,
+    `gatsby-plugin-styled-components`,
     `gatsby-plugin-sitemap`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-      resolve: "gatsby-source-prismic-stoutlabs",
+      resolve: "gatsby-source-prismic",
       options: {
         repositoryName: "stoutlabs-sandbox",
         accessToken: `${process.env.API_KEY}`,
-        linkResolver: ({ node, key, value }) => doc => {
-          // console.log("doc.type:", doc.type);
-          // Your link resolver
-          //if (doc.type === "theproject") return "/project/" + doc.uid;
-          //if (doc.type === "page") return "/" + doc.uid;
-          // Fallback for other types, in case new custom types get created
-          return "/doc/" + doc.id;
+        schemas: {
+          home_page: homepageSchema,
+          about_page: aboutSchema,
+          contact_page: contactSchema,
+          locations: locationSchema,
+          pb_boutique: pbBoutiqueSchema,
+          press: pressSchema,
+          projects: projectSchema,
+          room: roomSchema,
         },
+        // eslint-disable-next-line
+        linkResolver: ({ node, key, value }) => doc => {
+          // Your link resolver
+        },
+        fetchLinks: [
+          // Your list of links
+        ],
+        // eslint-disable-next-line
         htmlSerializer: ({ node, key, value }) => (type, element, content, children) => {
-          //  switch (type) {
-          //    // Add a class to paragraph elements
-          //    case Elements.paragraph:
-          //      return '<p class="paragraph-class">' + children.join('') + '</p>'
-          //    // Don't wrap images in a <p> tag
-          //    case Elements.image:
-          //      return '<img src="' + element.url + '" alt="' + element.alt + '">'
-          //    // Add a class to hyperlinks
-          //    case Elements.hyperlink:
-          //      var target = element.data.target
-          //        ? 'target="' + element.data.target + '" rel="noopener"'
-          //        : ''
-          //      var linkUrl = PrismicDOM.Link.url(element.data, linkResolver)
-          //      return (
-          //        '<a class="some-link"' +
-          //        target +
-          //        ' href="' +
-          //        linkUrl +
-          //        '">' +
-          //        content +
-          //        '</a>'
-          //      )
-          //    // Return null to stick with the default behavior for all other elements
-          //    default:
-          //      return null
-          //  }
-        }
-      }
+          // Your HTML serializer
+        },
+        lang: "*",
+        // eslint-disable-next-line
+        // shouldNormalizeImage: ({ node, key, value }) => true,
+        shouldDownloadImage: ({ node, key, value }) => true,
+        typePathsFilenamePrefix: "prismic-typepaths-laf",
+      },
     },
     {
       resolve: `gatsby-plugin-google-analytics`,

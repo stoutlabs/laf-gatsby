@@ -1,0 +1,42 @@
+{
+  "Main" : {
+    "label" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "Label",
+        "useAsTitle" : true
+      }
+    },
+    "title" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading3, heading4",
+        "label" : "Title"
+      }
+    },
+    "uid" : {
+      "type" : "UID",
+      "config" : {
+        "label" : "Unique ID"
+      }
+    },
+    "photos" : {
+      "type" : "Group",
+      "config" : {
+        "fields" : {
+          "photo" : {
+            "type" : "Image",
+            "config" : {
+              "constraint" : {
+                "width" : 1200
+              },
+              "thumbnails" : [ ],
+              "label" : "Photo"
+            }
+          }
+        },
+        "label" : "Photos"
+      }
+    }
+  }
+}

@@ -52,12 +52,12 @@ const AboutPage = props => {
   const curBios =
     urlLoc === "new-york"
       ? {
-          bio_0: props.data.prismicAboutPage.data.bios_ny[0],
-          bio_1: props.data.prismicAboutPage.data.bios_ny[1]
+          bio_0: props.data.prismicAboutPage.data.biosny[0],
+          bio_1: props.data.prismicAboutPage.data.biosny[1]
         }
       : {
-          bio_0: props.data.prismicAboutPage.data.bios_pb[0],
-          bio_1: props.data.prismicAboutPage.data.bios_pb[1]
+          bio_0: props.data.prismicAboutPage.data.biospb[0],
+          bio_1: props.data.prismicAboutPage.data.biospb[1]
         };
 
   return (
@@ -87,7 +87,7 @@ export const query = graphql`
         title {
           text
         }
-        bios_ny {
+        biosny {
           title {
             text
           }
@@ -95,7 +95,7 @@ export const query = graphql`
             html
           }
         }
-        bios_pb {
+        biospb {
           title {
             text
           }

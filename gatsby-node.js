@@ -1,5 +1,16 @@
 const path = require("path");
 
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      modules: [path.resolve(__dirname, "src"), "node_modules"],
+      alias: {
+        react: path.resolve("./node_modules/react"),
+      },
+    },
+  });
+};
+
 exports.onCreateNode = ({ node }) => {
   //console.log(node.internal.type);
 };
@@ -19,8 +30,8 @@ exports.createPages = async ({ graphql, actions }) => {
               locprojects {
                 theproject {
                   __typename
-                  ... on theproject {
-                    document {
+                  document {
+                    ... on PrismicProjects {
                       id
                       uid
                     }
@@ -31,8 +42,8 @@ exports.createPages = async ({ graphql, actions }) => {
               rooms_list {
                 room {
                   __typename
-                  ... on room {
-                    document {
+                  document {
+                    ... on PrismicRoom {
                       id
                       uid
                     }
@@ -101,11 +112,11 @@ exports.createPages = async ({ graphql, actions }) => {
     // each project page
     edge.node.data.locprojects.forEach(item => {
       createPage({
-        path: `${edge.node.uid}/interiors/${item.theproject.document[0].uid}`,
+        path: `${edge.node.uid}/interiors/${item.theproject.document.uid}`,
         component: path.resolve("./src/components/Interiors/ViewProject.js"),
         context: {
-          id: item.theproject.document[0].id,
-          uid: item.theproject.document[0].uid,
+          id: item.theproject.document.id,
+          uid: item.theproject.document.uid,
           locuid: edge.node.uid
         }
       });
@@ -114,11 +125,11 @@ exports.createPages = async ({ graphql, actions }) => {
     // each room page
     edge.node.data.rooms_list.forEach(item => {
       createPage({
-        path: `${edge.node.uid}/interiors/room/${item.room.document[0].uid}`,
+        path: `${edge.node.uid}/interiors/room/${item.room.document.uid}`,
         component: path.resolve("./src/components/Interiors/ViewRoom.js"),
         context: {
-          id: item.room.document[0].id,
-          uid: item.room.document[0].uid,
+          id: item.room.document.id,
+          uid: item.room.document.uid,
           locuid: edge.node.uid
         }
       });
