@@ -76,7 +76,7 @@ export const Awards = ({ awards }) => {
                   target="_blank"
                 >
                   <Img
-                    sizes={award.award_image.localFile.childImageSharp.sizes}
+                    fluid={award.award_image.localFile.childImageSharp.fluid}
                     outerWrapperClassName={"award-pic-outer-wrapper"}
                     className="award-pic-wrapper"
                     position="relative"

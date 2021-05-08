@@ -24,8 +24,8 @@ export const query = graphql`
             localFile {
               id
               childImageSharp {
-                sizes(maxWidth: 300, quality: 84) {
-                  ...GatsbyImageSharpSizes
+                fluid(maxWidth: 300, quality: 84) {
+                  ...GatsbyImageSharpFluid
                 }
               }
             }
@@ -37,8 +37,8 @@ export const query = graphql`
           book_image {
             localFile {
               childImageSharp {
-                sizes(maxWidth: 450, quality: 81) {
-                  ...GatsbyImageSharpSizes
+                fluid(maxWidth: 450, quality: 81) {
+                  ...GatsbyImageSharpFluid
                 }
               }
             }
@@ -53,8 +53,8 @@ export const query = graphql`
           award_image {
             localFile {
               childImageSharp {
-                sizes(maxWidth: 300, quality: 84) {
-                  ...GatsbyImageSharpSizes
+                fluid(maxWidth: 300, quality: 84) {
+                  ...GatsbyImageSharpFluid
                 }
               }
             }
@@ -69,8 +69,8 @@ export const query = graphql`
           cover_image {
             localFile {
               childImageSharp {
-                sizes(maxWidth: 600, quality: 84) {
-                  ...GatsbyImageSharpSizes
+                fluid(maxWidth: 600, quality: 84) {
+                  ...GatsbyImageSharpFluid
                 }
               }
             }

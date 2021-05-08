@@ -58,7 +58,7 @@ export const SliceTextImage = ({ textWithImage }) => {
 
         <div className="slice-image">
           <Img
-            sizes={textWithImage.image.localFile.childImageSharp.sizes}
+            fluid={textWithImage.image.localFile.childImageSharp.fluid}
             outerWrapperClassName={"slice-pic-outer-wrapper"}
             className="slice-pic"
             position="absolute"

@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import styled from "styled-components";
 import { graphql } from "gatsby";
 
-import SEO from "../SEO";
+import Seo from "../Seo";
 import AboutBio from "./AboutBio";
 
 const AboutPageDiv = styled.div`
@@ -63,7 +63,7 @@ const AboutPage = props => {
   return (
     <AboutPageDiv className="about-page">
       {/* <Helmet title={`Leta Austin Foster Interior Design • ${locationForTitle} | About`} /> */}
-      <SEO postData={seoData} />
+      <Seo postData={seoData} />
 
       <Fragment>
         <div className={`leftside`}>

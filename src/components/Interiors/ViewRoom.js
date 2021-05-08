@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { graphql } from "gatsby";
 
 import GridGallery from "../GridGallery/GridGallery";
-import SEO from "../SEO";
+import Seo from "../Seo";
 
-export class ViewRoom extends Component {
+class ViewRoom extends Component {
   state = { activeItem: this.props.data.prismicRoom.data.uid };
 
   render() {
@@ -34,7 +34,7 @@ export class ViewRoom extends Component {
 
     return (
       <div>
-        <SEO postData={seoData} postImage={seoImage} isProjectPage={true} />
+        <Seo postData={seoData} postImage={seoImage} isProjectPage={true} />
         <GridGallery images={theImages} thumbs={theThumbs} content={theContent} label={"Rooms"} />
       </div>
     );

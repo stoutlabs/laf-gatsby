@@ -104,7 +104,7 @@ export const Articles = props => {
               >
                 {item.cover_image.localFile !== null && (
                   <Img
-                    sizes={item.cover_image.localFile.childImageSharp.sizes}
+                    fluid={item.cover_image.localFile.childImageSharp.fluid}
                     outerWrapperClassName={"article-pic-outer-wrapper"}
                     className="article-pic"
                     position="relative"

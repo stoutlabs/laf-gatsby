@@ -11,11 +11,11 @@ const StyledIntroPic = styled.div`
     width: 66%;
   }
 `;
-export default props => {
+const IntroPic = props => {
   return (
     <StyledIntroPic className="proj-intro-pic">
       <Img
-        sizes={props.intro_image.localFile.childImageSharp.sizes}
+        fluid={props.intro_image.localFile.childImageSharp.fluid}
         position="absolute"
         style={{ maxHeight: "70vh", height: "100%" }}
         imgStyle={{
@@ -28,3 +28,5 @@ export default props => {
     </StyledIntroPic>
   );
 };
+
+export default IntroPic;

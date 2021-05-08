@@ -55,7 +55,7 @@ export const SliceImageCentered = ({ content }) => {
       <div className="slice-inner">
         <div className="slice-image">
           <Img
-            sizes={content.image.localFile.childImageSharp.sizes}
+            fluid={content.image.localFile.childImageSharp.fluid}
             outerWrapperClassName={"slice-pic-outer-wrapper"}
             className="slice-pic"
             position="relative"

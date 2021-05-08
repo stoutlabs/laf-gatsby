@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { navigate } from "@reach/router";
 
 import Homebox from "./Homebox";
-import SEO from "../SEO";
+import Seo from "../Seo";
 import AppConsumer from "../../store/consumer";
 import homeLogo from "../../assets/laf_logo_2018.png";
 
@@ -123,11 +123,11 @@ export class HomePage extends Component {
 
     return (
       <HomepageDiv className="home-page">
-        <SEO postData={seoData} />
+        <Seo postData={seoData} />
 
         <HomeNY className="homebox ny">
           <Homebox
-            image={this.props.content.left_image.localFile.childImageSharp.sizes}
+            image={this.props.content.left_image.localFile.childImageSharp.fluid}
             title="New York"
             url="/new-york/interiors"
             locSlug="new-york"
@@ -142,7 +142,7 @@ export class HomePage extends Component {
 
         <HomePB className="homebox pb">
           <Homebox
-            image={this.props.content.right_image.localFile.childImageSharp.sizes}
+            image={this.props.content.right_image.localFile.childImageSharp.fluid}
             title="Palm Beach"
             url="/palm-beach/interiors"
             locSlug="palm-beach"
@@ -154,10 +154,16 @@ export class HomePage extends Component {
   }
 }
 
-export default props => (
+const ConsumedHome = props => (
   <AppConsumer>
     {state => (
-      <HomePage {...props} theLocation={state.location} toggleLocation={state.toggleLocation} />
+      <HomePage
+        {...props}
+        theLocation={state.location}
+        toggleLocation={state.toggleLocation}
+      />
     )}
   </AppConsumer>
 );
+
+export default ConsumedHome;

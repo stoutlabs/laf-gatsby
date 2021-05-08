@@ -41,7 +41,7 @@ export const AsSeenIn = ({ items }) => {
             return (
               <div className="item" key={item.logo_image.localFile.id}>
                 <Img
-                  sizes={item.logo_image.localFile.childImageSharp.sizes}
+                  fluid={item.logo_image.localFile.childImageSharp.fluid}
                   outerWrapperClassName={"logo-pic-outer-wrapper"}
                   className="logo-pic"
                   position="relative"

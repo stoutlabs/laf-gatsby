@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import SEO from "../SEO";
+import Seo from "../Seo";
 import Articles from "./Articles";
 import Awards from "./Awards";
 import Books from "./Books";
@@ -71,7 +71,7 @@ export const Press = props => {
   return (
     <PressDiv className="press-page">
       {/* <Helmet title={`Leta Austin Foster Interior Design • ${locationForTitle} | About`} /> */}
-      <SEO postData={seoData} />
+      <Seo postData={seoData} />
 
       <div className="press-intro">
         <h2>{pressData.title.text}</h2>

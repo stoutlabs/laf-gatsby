@@ -94,7 +94,7 @@ export class Homebox extends Component {
       >
         <div className="pic-container">
           <Img
-            sizes={this.props.image}
+            fluid={this.props.image}
             outerWrapperClassName={"homebox-pic-outer-wrapper"}
             style={{ height: "100%" }}
             imgStyle={{

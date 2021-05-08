@@ -62,7 +62,7 @@ export const Books = ({ books }) => {
             <div className="book" key={book.book_title}>
               <div className="book-image">
                 <Img
-                  sizes={book.book_image.localFile.childImageSharp.sizes}
+                  fluid={book.book_image.localFile.childImageSharp.fluid}
                   outerWrapperClassName={"book-image-outer-wrapper"}
                   className="book-image-wrapper"
                   position="relative"

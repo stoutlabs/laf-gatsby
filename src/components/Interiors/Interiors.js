@@ -3,7 +3,7 @@ import { Link } from "gatsby";
 import styled from "styled-components";
 import { graphql } from "gatsby";
 
-import SEO from "../SEO";
+import Seo from "../Seo";
 import IntroPic from "./IntroPic";
 import TypeNav from "../GridGallery/TypeNav";
 
@@ -52,7 +52,7 @@ const StyledUl = styled.ul`
 
 const Interiors = props => {
   const locationForTitle = props.data.prismicLocations.data.title.text;
-  const seoImage = props.data.prismicLocations.data.intro_image.localFile.childImageSharp.sizes.src;
+  const seoImage = props.data.prismicLocations.data.intro_image.localFile.childImageSharp.fluid.src;
   const seoData = {
     frontmatter: {
       title: `Leta Austin Foster Interior Design • ${locationForTitle} | Interiors`,
@@ -65,7 +65,7 @@ const Interiors = props => {
 
   return (
     <ProjIntroDiv className="proj-intro">
-      <SEO postData={seoData} postImage={seoImage} />
+      <Seo postData={seoData} postImage={seoImage} />
 
       <div className="proj-intro-details">
         <TypeNav />
@@ -125,8 +125,8 @@ export const query = graphql`
             childImageSharp {
               id
 
-              sizes(maxWidth: 800, quality: 77) {
-                ...GatsbyImageSharpSizes
+              fluid(maxWidth: 800, quality: 77) {
+                ...GatsbyImageSharpFluid
               }
             }
           }

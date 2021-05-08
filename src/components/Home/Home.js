@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { navigate } from "@reach/router";
 
 import Homebox from "./Homebox";
-import SEO from "../SEO";
+import Seo from "../Seo";
 import AppConsumer from "../../store/consumer";
 import homeLogo from "../../assets/laf_logo_2018.png";
 
@@ -85,7 +85,7 @@ export class HomePage extends Component {
     };
     return (
       <HomepageDiv className="home-page">
-        <SEO postData={seoData} />
+        <Seo postData={seoData} />
         <HomeNY>
           <Homebox
             image={this.props.content.left_image.localFile.childImageSharp.sizes}

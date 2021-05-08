@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { graphql } from "gatsby";
 
-import SEO from "../../components/SEO";
+import Seo from "../../components/Seo";
 import IntroContent from "../../components/Boutique/IntroContent";
 import SliceTextImage from "../../components/Boutique/SliceTextImage";
 import SliceMultiImage from "../../components/Boutique/SliceMultiImage";
@@ -62,7 +62,7 @@ const SlicesContainer = styled.div`
   margin: 0 auto;
 `;
 
-export const BoutiquePage = props => {
+const BoutiquePage = props => {
   const content = props.data.prismicPbBoutique.data;
   const { hours, address, google_maps, phone, email } = content;
 
@@ -79,7 +79,7 @@ export const BoutiquePage = props => {
 
   return (
     <StyledBoutiquePage className="pb-boutique">
-      <SEO postData={seoData} />
+      <Seo postData={seoData} />
       <h2>Leta Austin Foster Boutique</h2>
       <IntroContent
         hours={hours}
@@ -165,8 +165,8 @@ export const query = graphql`
               image {
                 localFile {
                   childImageSharp {
-                    sizes(maxWidth: 500, quality: 81) {
-                      ...GatsbyImageSharpSizes
+                    fluid(maxWidth: 500, quality: 81) {
+                      ...GatsbyImageSharpFluid
                     }
                   }
                 }
@@ -202,8 +202,8 @@ export const query = graphql`
               image {
                 localFile {
                   childImageSharp {
-                    sizes(maxWidth: 650, quality: 81) {
-                      ...GatsbyImageSharpSizes
+                    fluid(maxWidth: 650, quality: 81) {
+                      ...GatsbyImageSharpFluid
                     }
                   }
                 }
@@ -218,8 +218,8 @@ export const query = graphql`
                 localFile {
                   id
                   childImageSharp {
-                    sizes(maxWidth: 650, quality: 81) {
-                      ...GatsbyImageSharpSizes
+                    fluid(maxWidth: 650, quality: 81) {
+                      ...GatsbyImageSharpFluid
                     }
                   }
                 }
