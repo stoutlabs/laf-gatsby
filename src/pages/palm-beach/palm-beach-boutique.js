@@ -151,7 +151,7 @@ export const query = graphql`
         seo_description
 
         body {
-          ... on PrismicPbBoutiqueBodyTextWithImage {
+          ... on PrismicPbBoutiqueDataBodyTextWithImage {
             id
             textWithImage: primary {
               heading {
@@ -174,7 +174,7 @@ export const query = graphql`
             }
           }
 
-          ... on PrismicPbBoutiqueBodyTextOnly {
+          ... on PrismicPbBoutiqueDataBodyTextOnly {
             id
             textOnly: primary {
               heading {
@@ -187,7 +187,7 @@ export const query = graphql`
             }
           }
 
-          ... on PrismicPbBoutiqueBodyQuotation {
+          ... on PrismicPbBoutiqueDataBodyQuotation {
             id
             quotation: primary {
               content {
@@ -196,7 +196,7 @@ export const query = graphql`
             }
           }
 
-          ... on PrismicPbBoutiqueBodyImageCentered {
+          ... on PrismicPbBoutiqueDataBodyImageCentered {
             id
             imageCentered: primary {
               image {
@@ -211,7 +211,7 @@ export const query = graphql`
             }
           }
 
-          ... on PrismicPbBoutiqueBodyMultiImage {
+          ... on PrismicPbBoutiqueDataBodyMultiImage {
             id
             multiImages: items {
               images {
