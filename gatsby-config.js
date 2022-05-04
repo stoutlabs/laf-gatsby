@@ -14,15 +14,17 @@ const roomSchema = require("./src/schemas/room.json");
 module.exports = {
   siteMetadata: {
     siteUrl: `https://www.letaaustinfoster.com`,
-    title: "Leta Austin Foster and Associates • Interior Design | New York - Palm Beach"
+    title:
+      "Leta Austin Foster and Associates • Interior Design | New York - Palm Beach",
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-image`,
     {
       resolve: `gatsby-plugin-layout`,
       options: {
-        component: require.resolve(`./src/layouts/index.js`)
-      }
+        component: require.resolve(`./src/layouts/index.js`),
+      },
     },
     `gatsby-plugin-sass`,
     `gatsby-plugin-styled-components`,
@@ -43,23 +45,26 @@ module.exports = {
           press: pressSchema,
           projects: projectSchema,
           room: roomSchema,
+          photo: {},
         },
+        customTypesApiEndpoint: process.env.PRISMIC_CUSTOM_TYPES_API_ENDPOINT,
         // eslint-disable-next-line
-        linkResolver: ({ node, key, value }) => doc => {
-          // Your link resolver
-        },
-        fetchLinks: [
-          // Your list of links
-        ],
+        linkResolver:
+          ({ node, key, value }) =>
+          doc => {
+            // Your link resolver
+          },
+        // fetchLinks: [
+        //   // Your list of links
+        // ],
         // eslint-disable-next-line
-        htmlSerializer: ({ node, key, value }) => (type, element, content, children) => {
-          // Your HTML serializer
+        htmlSerializer: (type, element, content, children) => {
+          // Return HTML for an piece of content.
         },
         lang: "*",
+        shouldDownloadFiles: true,
         // eslint-disable-next-line
-        // shouldNormalizeImage: ({ node, key, value }) => true,
-        shouldDownloadImage: ({ node, key, value }) => true,
-        typePathsFilenamePrefix: "prismic-typepaths-laf",
+        // typePathsFilenamePrefix: "prismic-typepaths-laf",
       },
     },
     {
@@ -67,15 +72,15 @@ module.exports = {
       options: {
         trackingId: `UA-1076375-35`,
         // Puts tracking script in the head instead of the body
-        head: true
+        head: true,
         // Setting this parameter is optional
         //anonymize: true,
         // Setting this parameter is also optional
         //respectDNT: true,
         // Avoids sending pageview hits from custom paths
         //exclude: ["/preview/**", "/do-not-track/me/too/"],
-      }
+      },
     },
-    `gatsby-plugin-netlify`
-  ]
+    `gatsby-plugin-netlify`,
+  ],
 };
